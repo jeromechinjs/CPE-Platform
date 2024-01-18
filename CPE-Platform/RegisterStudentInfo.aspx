@@ -9,7 +9,7 @@
 		<asp:Label ID="lblStudentID" runat="server" Text="StudentID"></asp:Label>
 		<asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox><br />
 		
-		<asp:Label ID="lblStudentName" runat="server" Text="StudentNamme"></asp:Label>
+		<asp:Label ID="lblStudentName" runat="server" Text="StudentName"></asp:Label>
 		<asp:TextBox ID="txtStudentName" runat="server"></asp:TextBox><br />
 
 		<asp:Label ID="lblStudentPhoneNum" runat="server" Text="Student Phone Number"></asp:Label>
