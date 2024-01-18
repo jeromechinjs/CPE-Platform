@@ -6,9 +6,10 @@
 	</div>
 	
 	<div>
-		<asp:TextBox ID="StudentID" runat="server"></asp:TextBox><br />
-		<asp:TextBox ID="StudentPassword" runat="server"></asp:TextBox><br />
-		<asp:Button ID="btnStudentLogin" runat="server" Text="Login" />
+		<asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox><br />
+		<asp:TextBox ID="txtStudentPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
+		<asp:Button ID="btnStudentLogin" runat="server" Text="Login" OnClick="btnStudentLogin_Click" />
 	</div>
 	
 </asp:Content>

@@ -15,22 +15,31 @@ namespace CPE_Platform
 	{
 
 		/// <summary>
-		/// StudentID control.
+		/// txtStudentID control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox StudentID;
+		protected global::System.Web.UI.WebControls.TextBox txtStudentID;
 
 		/// <summary>
-		/// StudentPassword control.
+		/// txtStudentPassword control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox StudentPassword;
+		protected global::System.Web.UI.WebControls.TextBox txtStudentPassword;
+
+		/// <summary>
+		/// lblErrorMsg control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
 		/// <summary>
 		/// btnStudentLogin control.
