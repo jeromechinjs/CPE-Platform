@@ -7,7 +7,8 @@
 	
 	<div>
 		<asp:TextBox ID="txtStaffID" runat="server"></asp:TextBox><br />
-		<asp:TextBox ID="txtStaffPassword" runat="server" TextMode="Password"></asp:TextBox><br />
+		<asp:TextBox ID="txtStaffPassword" runat="server" TextMode="Password"></asp:TextBox><asp:GridView runat="server"></asp:GridView>
+		<br />
 		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
 		<asp:Button ID="btnStaffLogin" runat="server" Text="Login" OnClick="btnStaffLogin_Click" />
 	</div>

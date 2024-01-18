@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Cryptography;
 using System.Text;
+using System.Configuration;
 
 namespace CPE_Platform
 {
@@ -27,7 +28,8 @@ namespace CPE_Platform
 
         protected void btnStaffLogin_Click(object sender, EventArgs e)
         {
-			SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\FYP Project 2\\CPE-Platform\\App_Data\\DatabaseCPE.mdf\";Integrated Security=True");
+			string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			SqlConnection con = new SqlConnection(strCon);
 			SqlCommand cmd = new SqlCommand("Select * from Staff where StaffID = @StaffID and StaffPassword = @StaffPassword", con);
 			cmd.Parameters.AddWithValue("@StaffID", txtStaffID.Text);
 			cmd.Parameters.AddWithValue("@StaffPassword", EncryptData(txtStaffPassword.Text.Trim()));
