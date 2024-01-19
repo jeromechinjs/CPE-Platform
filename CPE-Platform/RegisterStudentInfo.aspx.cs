@@ -32,8 +32,9 @@ namespace CPE_Platform
 		protected void btnStudentRegister_Click(object sender, EventArgs e)
 		{
 			SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\FYP Project 2\\CPE-Platform\\App_Data\\DatabaseCPE.mdf\";Integrated Security=True");
-			SqlCommand cmd = new SqlCommand("Insert into Student (StudentID, StudentName, StudentPhoneNum, StudentPassword, StudentEmail, StudentFaculty) Values (@StudentID, @StudentName, @StudentPhoneNum, @StudentPassword, @StudentEmail, @StudentFaculty)", con);
+			SqlCommand cmd = new SqlCommand("Insert into Student (StudentID, StudentIC, StudentName, StudentPhoneNum, StudentPassword, StudentEmail, StudentFaculty) Values (@StudentID, @StudentIC, @StudentName, @StudentPhoneNum, @StudentPassword, @StudentEmail, @StudentFaculty)", con);
 			cmd.Parameters.AddWithValue("@StudentID", txtStudentID.Text);
+			cmd.Parameters.AddWithValue("@StudentIC", txtStudentIC.Text);
 			cmd.Parameters.AddWithValue("@StudentName", txtStudentName.Text);
 			cmd.Parameters.AddWithValue("@StudentPhoneNum", txtStudentPhoneNum.Text);
 			cmd.Parameters.AddWithValue("@StudentPassword", EncryptData(txtStudentPassword.Text.Trim()));

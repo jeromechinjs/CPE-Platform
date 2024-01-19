@@ -187,7 +187,9 @@
     <Content Include="Site.Master" />
     <Content Include="StaffLogin.aspx" />
     <Content Include="StaffRegisterInfo.aspx" />
+    <Content Include="StudentForgetPassword.aspx" />
     <Content Include="StudentLogin.aspx" />
+    <Content Include="StudentResetPassword.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -256,12 +258,26 @@
     <Compile Include="StaffRegisterInfo.aspx.designer.cs">
       <DependentUpon>StaffRegisterInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StudentForgetPassword.aspx.cs">
+      <DependentUpon>StudentForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentForgetPassword.aspx.designer.cs">
+      <DependentUpon>StudentForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="StudentLogin.aspx.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="StudentLogin.aspx.designer.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentResetPassword.aspx.cs">
+      <DependentUpon>StudentResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentResetPassword.aspx.designer.cs">
+      <DependentUpon>StudentResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

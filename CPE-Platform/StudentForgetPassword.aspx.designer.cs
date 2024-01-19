@@ -11,8 +11,17 @@ namespace CPE_Platform
 {
 
 
-	public partial class StudentLogin
+	public partial class StudentForgetPassword
 	{
+
+		/// <summary>
+		/// lblStudentIDFP control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblStudentIDFP;
 
 		/// <summary>
 		/// txtStudentID control.
@@ -24,13 +33,22 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.TextBox txtStudentID;
 
 		/// <summary>
-		/// txtStudentPassword control.
+		/// lblStudentICFP control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtStudentPassword;
+		protected global::System.Web.UI.WebControls.Label lblStudentICFP;
+
+		/// <summary>
+		/// txtStudentIC control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtStudentIC;
 
 		/// <summary>
 		/// lblErrorMsg control.
@@ -42,21 +60,21 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
 		/// <summary>
-		/// btnStudentLogin control.
+		/// btnRetrieveStudentLogin control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnStudentLogin;
+		protected global::System.Web.UI.WebControls.Button btnRetrieveStudentLogin;
 
 		/// <summary>
-		/// btnStudentForgetPasswordLogin control.
+		/// btnConfirmStudentForgetPassword control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnStudentForgetPasswordLogin;
+		protected global::System.Web.UI.WebControls.Button btnConfirmStudentForgetPassword;
 	}
 }

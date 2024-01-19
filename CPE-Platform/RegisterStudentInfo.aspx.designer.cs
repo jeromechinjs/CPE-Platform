@@ -33,6 +33,24 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.TextBox txtStudentID;
 
 		/// <summary>
+		/// lblStudetnIC control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblStudetnIC;
+
+		/// <summary>
+		/// txtStudentIC control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtStudentIC;
+
+		/// <summary>
 		/// lblStudentName control.
 		/// </summary>
 		/// <remarks>

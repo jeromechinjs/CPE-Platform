@@ -9,6 +9,9 @@
 		<asp:Label ID="lblStudentID" runat="server" Text="StudentID"></asp:Label>
 		<asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox><br />
 		
+		<asp:Label ID="lblStudetnIC" runat="server" Text="StudentIC"></asp:Label>
+		<asp:TextBox ID="txtStudentIC" runat="server"></asp:TextBox><br />
+
 		<asp:Label ID="lblStudentName" runat="server" Text="StudentName"></asp:Label>
 		<asp:TextBox ID="txtStudentName" runat="server"></asp:TextBox><br />
 

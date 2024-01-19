@@ -11,26 +11,44 @@ namespace CPE_Platform
 {
 
 
-	public partial class StudentLogin
+	public partial class StudentResetPassword
 	{
 
 		/// <summary>
-		/// txtStudentID control.
+		/// lblNewPassword control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtStudentID;
+		protected global::System.Web.UI.WebControls.Label lblNewPassword;
 
 		/// <summary>
-		/// txtStudentPassword control.
+		/// txtNewPassword control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtStudentPassword;
+		protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
+
+		/// <summary>
+		/// lblConfirmPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblConfirmPassword;
+
+		/// <summary>
+		/// txtConfirmPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
 
 		/// <summary>
 		/// lblErrorMsg control.
@@ -42,21 +60,21 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
 		/// <summary>
-		/// btnStudentLogin control.
+		/// btnRetrieveStudentLogin control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnStudentLogin;
+		protected global::System.Web.UI.WebControls.Button btnRetrieveStudentLogin;
 
 		/// <summary>
-		/// btnStudentForgetPasswordLogin control.
+		/// btnConfirmStudentForgetPassword control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnStudentForgetPasswordLogin;
+		protected global::System.Web.UI.WebControls.Button btnConfirmStudentForgetPassword;
 	}
 }
