@@ -34,11 +34,11 @@ namespace CPE_Platform
 				SqlCommand cmd = new SqlCommand("spResetPassword", con);
 				cmd.CommandType = CommandType.StoredProcedure;
 
-				SqlParameter paramUsername1 = new SqlParameter("@StudentId", txtStudentID.Text);
-				SqlParameter paramUsername2 = new SqlParameter("@StudentIc", txtStudentIC.Text);
+				SqlParameter paramStudentID = new SqlParameter("@StudentId", txtStudentID.Text);
+				SqlParameter paramStudentIC = new SqlParameter("@StudentIc", txtStudentIC.Text);
 
-				cmd.Parameters.Add(paramUsername1);
-				cmd.Parameters.Add(paramUsername2);
+				cmd.Parameters.Add(paramStudentID);
+				cmd.Parameters.Add(paramStudentIC);
 
 				con.Open();
 				SqlDataReader rdr = cmd.ExecuteReader();
@@ -78,8 +78,8 @@ namespace CPE_Platform
 
 			smtpClient.Credentials = new System.Net.NetworkCredential()
 			{
-				UserName = "chungyc-wp20@student.tarc.edu.my",
-				Password = "@Cyc93983218"
+				UserName = "my gmail",
+				Password = "my password"
 			};
 
 			smtpClient.EnableSsl = true;
