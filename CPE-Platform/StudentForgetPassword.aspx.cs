@@ -34,19 +34,19 @@ namespace CPE_Platform
 				SqlCommand cmd = new SqlCommand("spResetPassword", con);
 				cmd.CommandType = CommandType.StoredProcedure;
 
-				SqlParameter paramStudentID = new SqlParameter("@StudentId", txtStudentID.Text);
+				//SqlParameter paramStudentID = new SqlParameter("@StudentId", txtStudentID.Text);
 				SqlParameter paramStudentIC = new SqlParameter("@StudentIc", txtStudentIC.Text);
 
-				cmd.Parameters.Add(paramStudentID);
+				//cmd.Parameters.Add(paramStudentID);
 				cmd.Parameters.Add(paramStudentIC);
 
 				con.Open();
 				SqlDataReader rdr = cmd.ExecuteReader();
 				while (rdr.Read())
 				{
-					if (Convert.ToBoolean(rdr["ReturnCode"]))
+					if (Convert.ToBoolean(rdr["ReturnCode"]) == true)
 					{
-						SendPasswordResetEmail(rdr["Email"].ToString(), txtStudentID.Text, rdr["UniqueId"].ToString());
+						SendPasswordResetEmail(rdr["Email"].ToString(), rdr["StuName"].ToString(), rdr["UniqueId"].ToString());
 						lblErrorMsg.Text = "An email with instructions to reset your password is sent to your registered email";
 					}
 					else
@@ -78,8 +78,8 @@ namespace CPE_Platform
 
 			smtpClient.Credentials = new System.Net.NetworkCredential()
 			{
-				UserName = "my gmail",
-				Password = "my password"
+				UserName = "chungyc-wp20@student.tarc.edu.my",
+				Password = "@Cyc93983218"
 			};
 
 			smtpClient.EnableSsl = true;
