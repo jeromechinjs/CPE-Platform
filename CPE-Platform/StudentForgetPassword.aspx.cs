@@ -68,7 +68,7 @@ namespace CPE_Platform
 			sbEmailBody.Append("Please click on the following link to reset your password");
 			sbEmailBody.Append("<br/>"); sbEmailBody.Append("http://localhost:62893/StudentResetPassword?uid=" + UniqueId);
 			sbEmailBody.Append("<br/><br/>");
-			sbEmailBody.Append("<b>Pragim Technologies</b>");
+			sbEmailBody.Append("<b>Tunku Abdul Rahman University of Management and Technology (TAR UMT) </b>");
 
 			mailMessage.IsBodyHtml = true;
 
