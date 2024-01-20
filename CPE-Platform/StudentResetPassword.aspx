@@ -8,10 +8,10 @@
 	
 	<div>
 		<asp:Label runat="server" ID="lblNewPassword" Text="New Password"></asp:Label><br />
-		<asp:TextBox ID="txtNewPassword" runat="server"></asp:TextBox><br />
+		<asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox><br />
 
 		<asp:Label runat="server" ID="lblConfirmPassword" Text="Confirm Password"></asp:Label><br />
-		<asp:TextBox ID="txtConfirmPassword" runat="server"></asp:TextBox><br />
+		<asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox><br />
 
 		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
 		<asp:Button ID="btnRetrieveStudentLogin" runat="server" Text="Back to Login" OnClick="btnRetrieveStudentLogin_Click"></asp:Button>
