@@ -78,8 +78,8 @@ namespace CPE_Platform
 
 			smtpClient.Credentials = new System.Net.NetworkCredential()
 			{
-				UserName = "chungyc-wp20@student.tarc.edu.my",
-				Password = "@Cyc93983218"
+				UserName = "your email address",
+				Password = "google account password"
 			};
 
 			smtpClient.EnableSsl = true;

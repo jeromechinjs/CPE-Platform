@@ -15,7 +15,7 @@
 
 		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
 		<asp:Button ID="btnRetrieveStudentLogin" runat="server" Text="Back to Login" OnClick="btnRetrieveStudentLogin_Click"></asp:Button>
-		<asp:Button ID="btnConfirmStudentForgetPassword" runat="server" Text="Submit"></asp:Button>
+		<asp:Button ID="btnConfirmStudentForgetPassword" runat="server" Text="Submit" OnClick="btnConfirmStudentForgetPassword_Click"></asp:Button>
 	</div>
 	
 </asp:Content>
