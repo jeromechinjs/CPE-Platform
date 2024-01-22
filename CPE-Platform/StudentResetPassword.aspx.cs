@@ -98,16 +98,24 @@ namespace CPE_Platform
 
 		protected void btnConfirmStudentForgetPassword_Click(object sender, EventArgs e)
 		{
-			if (ChangeUserPassword())
+			if (Page.IsValid)
 			{
-				lblErrorMsg.Text = "Password Changed Successfully!";
-				Response.Redirect("StudentLogin.aspx");
+				if (ChangeUserPassword())
+				{
+					lblErrorMsg.Text = "Password Changed Successfully!";
+					Response.Redirect("StudentLogin.aspx");
+				}
+				else
+				{
+					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+				}
 			}
 			else
 			{
-				lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-				lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+				lblErrorMsg.Text = "Invalid Password.";
 			}
+			
 		}
 	}
 }

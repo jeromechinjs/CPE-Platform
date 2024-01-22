@@ -10,7 +10,8 @@
 		<asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox><br />--%>
 
 		<asp:Label runat="server" ID="lblStudentICFP" Text="Student IC"></asp:Label>
-		<asp:TextBox ID="txtStudentIC" runat="server"></asp:TextBox><br />
+		<asp:TextBox ID="txtStudentIC" runat="server"></asp:TextBox>
+		<asp:RequiredFieldValidator ID="RequiredFieldValidatorStudentIC" Text="*" ForeColor="Red" runat="server" ErrorMessage="IC Number is required" ControlToValidate="txtStudentIC"></asp:RequiredFieldValidator><br />
 
 		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
 		<asp:Button ID="btnRetrieveStudentLogin" runat="server" Text="Back to Login" OnClick="btnRetrieveStudentLogin_Click"></asp:Button>

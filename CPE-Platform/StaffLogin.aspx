@@ -7,10 +7,11 @@
 	
 	<div>
 		<asp:TextBox ID="txtStaffID" runat="server"></asp:TextBox><br />
-		<asp:TextBox ID="txtStaffPassword" runat="server" TextMode="Password"></asp:TextBox><asp:GridView runat="server"></asp:GridView>
+		<asp:TextBox ID="txtStaffPassword" runat="server" TextMode="Password"></asp:TextBox>
 		<br />
 		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
 		<asp:Button ID="btnStaffLogin" runat="server" Text="Login" OnClick="btnStaffLogin_Click" />
+		<asp:Button ID="btnStaffForgetPasswordLogin" runat="server" Text="Forget Password" OnClick="btnStaffForgetPasswordLogin_Click"></asp:Button>
 	</div>
 	
 </asp:Content>

@@ -33,6 +33,15 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
 
 		/// <summary>
+		/// RequiredFieldValidatorStuNewPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorStuNewPassword;
+
+		/// <summary>
 		/// lblConfirmPassword control.
 		/// </summary>
 		/// <remarks>
@@ -49,6 +58,15 @@ namespace CPE_Platform
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
+
+		/// <summary>
+		/// RequiredFieldValidatorStuConfirmPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorStuConfirmPassword;
 
 		/// <summary>
 		/// lblErrorMsg control.

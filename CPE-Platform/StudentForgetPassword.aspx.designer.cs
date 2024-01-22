@@ -33,6 +33,15 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.TextBox txtStudentIC;
 
 		/// <summary>
+		/// RequiredFieldValidatorStudentIC control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorStudentIC;
+
+		/// <summary>
 		/// lblErrorMsg control.
 		/// </summary>
 		/// <remarks>

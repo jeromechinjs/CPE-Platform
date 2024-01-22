@@ -28,34 +28,38 @@ namespace CPE_Platform
 
 		protected void btnConfirmStudentForgetPassword_Click(object sender, EventArgs e)
 		{
-			string conStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-			using (SqlConnection con = new SqlConnection(conStr))
+			if (Page.IsValid)
 			{
-				SqlCommand cmd = new SqlCommand("spResetPassword", con);
-				cmd.CommandType = CommandType.StoredProcedure;
-
-				//SqlParameter paramStudentID = new SqlParameter("@StudentId", txtStudentID.Text);
-				SqlParameter paramStudentIC = new SqlParameter("@StudentIc", txtStudentIC.Text);
-
-				//cmd.Parameters.Add(paramStudentID);
-				cmd.Parameters.Add(paramStudentIC);
-
-				con.Open();
-				SqlDataReader rdr = cmd.ExecuteReader();
-				while (rdr.Read())
+				string conStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+				using (SqlConnection con = new SqlConnection(conStr))
 				{
-					if (Convert.ToBoolean(rdr["ReturnCode"]) == true)
+					SqlCommand cmd = new SqlCommand("spResetPassword", con);
+					cmd.CommandType = CommandType.StoredProcedure;
+
+					//SqlParameter paramStudentID = new SqlParameter("@StudentId", txtStudentID.Text);
+					SqlParameter paramStudentIC = new SqlParameter("@StudentIc", txtStudentIC.Text);
+
+					//cmd.Parameters.Add(paramStudentID);
+					cmd.Parameters.Add(paramStudentIC);
+
+					con.Open();
+					SqlDataReader rdr = cmd.ExecuteReader();
+					while (rdr.Read())
 					{
-						SendPasswordResetEmail(rdr["Email"].ToString(), rdr["StuName"].ToString(), rdr["UniqueId"].ToString());
-						lblErrorMsg.Text = "An email with instructions to reset your password is sent to your registered email";
-					}
-					else
-					{
-						lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-						lblErrorMsg.Text = "Username not found!";
+						if (Convert.ToBoolean(rdr["ReturnCode"]) == true)
+						{
+							SendPasswordResetEmail(rdr["Email"].ToString(), rdr["StuName"].ToString(), rdr["UniqueId"].ToString());
+							lblErrorMsg.Text = "An email with instructions to reset your password is sent to your registered email";
+						}
+						else
+						{
+							lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+							lblErrorMsg.Text = "IC Number not found!";
+						}
 					}
 				}
 			}
+			
 		}
 
 		private void SendPasswordResetEmail(string ToEmail, string studentName, string UniqueId)

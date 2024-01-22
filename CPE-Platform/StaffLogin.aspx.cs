@@ -47,5 +47,10 @@ namespace CPE_Platform
 				Response.Redirect("Default.aspx");  // will redirect to home page once home page is created
 			}
 		}
+
+        protected void btnStaffForgetPasswordLogin_Click(object sender, EventArgs e)
+        {
+			Response.Redirect("StaffForgetPassword.aspx");
+		}
     }
 }
