@@ -41,6 +41,7 @@ namespace CPE_Platform
 				dataAdapter.Fill(ds, "Student");
 				if (ds.Tables["Student"].Rows.Count == 0)
 				{
+					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
 					String errorMsg = "Invalid Student ID or Password. Please Try again";
 					lblErrorMsg.Text = errorMsg;
 					//Response.Write("<script>alert('Invalid Student ID or Password. Please Try again')</script>");

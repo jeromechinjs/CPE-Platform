@@ -33,15 +33,6 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.TextBox txtStudentID;
 
 		/// <summary>
-		/// RequiredFieldValidatorStudentID control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorStudentID;
-
-		/// <summary>
 		/// lblStudentPassword control.
 		/// </summary>
 		/// <remarks>
@@ -58,15 +49,6 @@ namespace CPE_Platform
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtStudentPassword;
-
-		/// <summary>
-		/// RequiredFieldValidatorStudentPassword control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorStudentPassword;
 
 		/// <summary>
 		/// lblErrorMsg control.

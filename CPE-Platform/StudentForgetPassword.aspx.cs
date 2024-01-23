@@ -23,6 +23,7 @@ namespace CPE_Platform
 		protected void btnRetrieveStudentLogin_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("StudentLogin.aspx");
+
 		}
 
 
@@ -65,7 +66,7 @@ namespace CPE_Platform
 		private void SendPasswordResetEmail(string ToEmail, string studentName, string UniqueId)
 		{
 			// MailMessage class is present is System.Net.Mail namespace
-			MailMessage mailMessage = new MailMessage("chungyc-wp20@student.tarc.edu.my", ToEmail);
+			MailMessage mailMessage = new MailMessage("fypproject811@gmail.com", ToEmail);
 			// StringBuilder class is present in System.Text namespace
 			StringBuilder sbEmailBody = new StringBuilder();
 			sbEmailBody.Append("Dear " + studentName + ",<br/><br/>");
@@ -82,8 +83,8 @@ namespace CPE_Platform
 
 			smtpClient.Credentials = new System.Net.NetworkCredential()
 			{
-				UserName = "your email address",
-				Password = "google account password"
+				UserName = "your email",
+				Password = "your email password"
 			};
 
 			smtpClient.EnableSsl = true;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -62,7 +63,6 @@ namespace CPE_Platform
 				},
 				new SqlParameter()
 				{
-					
 					ParameterName = "@Password",
 					Value = EncryptData(txtConfirmPassword.Text.Trim())
 					//Value = FormsAuthentication.HashPasswordForStoringInConfigFile(EncryptData(txtConfirmPassword.Text.Trim()), "SHA1")
@@ -100,16 +100,24 @@ namespace CPE_Platform
 		{
 			if (Page.IsValid)
 			{
-				if (ChangeUserPassword())
+				if (txtNewPassword.Text == txtConfirmPassword.Text) 
 				{
-					lblErrorMsg.Text = "Password Changed Successfully!";
-					Response.Redirect("StudentLogin.aspx");
+					if (ChangeUserPassword())
+					{
+						lblErrorMsg.Text = "Password Changed Successfully!";
+						Response.Redirect("StudentLogin.aspx");
+					}
+					else
+					{
+						lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+						lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					}
 				}
 				else
 				{
-					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					lblErrorMsg.Text = "The New Password and the Confirm Password are not match.";
 				}
+				
 			}
 			else
 			{
