@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
+using System.Net.Configuration;
 
 namespace CPE_Platform
 {
@@ -63,6 +64,7 @@ namespace CPE_Platform
 			
 		}
 
+		SmtpSection secObj = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
 		private void SendPasswordResetEmail(string ToEmail, string studentName, string UniqueId)
 		{
 			// MailMessage class is present is System.Net.Mail namespace
@@ -77,18 +79,19 @@ namespace CPE_Platform
 
 			mailMessage.IsBodyHtml = true;
 
+			SmtpClient smtp = new SmtpClient();
+			smtp.Host = secObj.Network.Host; //---- SMTP Host Details. 
+			smtp.EnableSsl = secObj.Network.EnableSsl; //---- Specify whether host accepts SSL Connections or not.
+			NetworkCredential NetworkCred = new NetworkCredential(secObj.Network.UserName, secObj.Network.Password);
+			//---Your Email and password
+			smtp.UseDefaultCredentials = true;
+			smtp.Credentials = NetworkCred;
+			smtp.Port = 587; //---- SMTP Server port number. This varies from host to host. 
+			
 			mailMessage.Body = sbEmailBody.ToString();
 			mailMessage.Subject = "Reset Your Password";
-			SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-
-			smtpClient.Credentials = new System.Net.NetworkCredential()
-			{
-				UserName = "your existing email",
-				Password = "your google account password"
-			};
-
-			smtpClient.EnableSsl = true;
-			smtpClient.Send(mailMessage);
+			
+			smtp.Send(mailMessage);
+		}
 		}
 	}
-}
