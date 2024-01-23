@@ -69,6 +69,15 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorStuConfirmPassword;
 
 		/// <summary>
+		/// CompareValidatorConfirmPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorConfirmPassword;
+
+		/// <summary>
 		/// lblErrorMsg control.
 		/// </summary>
 		/// <remarks>

@@ -104,7 +104,8 @@ namespace CPE_Platform
 				{
 					if (ChangeUserPassword())
 					{
-						lblErrorMsg.Text = "Password Changed Successfully!";
+						Response.Write("<script>alert('Password Changed Successfully!')</script>");
+						//lblErrorMsg.Text = "Password Changed Successfully!";
 						Response.Redirect("StudentLogin.aspx");
 					}
 					else

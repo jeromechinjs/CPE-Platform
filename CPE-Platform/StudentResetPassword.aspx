@@ -14,6 +14,7 @@
 		<asp:Label runat="server" ID="lblConfirmPassword" Text="Confirm Password"></asp:Label><br />
 		<asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
 		<asp:RequiredFieldValidator ID="RequiredFieldValidatorStuConfirmPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="Confirm New Password is required" ControlToValidate="txtConfirmPassword"></asp:RequiredFieldValidator><br />
+		<asp:CompareValidator ID="CompareValidatorConfirmPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="Password do not match with the new password." ControlToCompare="txtNewPassword" ControlToValidate="txtConfirmPassword"></asp:CompareValidator><br />
 
 		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
 		<asp:Button ID="btnRetrieveStudentLogin" runat="server" Text="Back to Login" OnClick="btnRetrieveStudentLogin_Click"></asp:Button>

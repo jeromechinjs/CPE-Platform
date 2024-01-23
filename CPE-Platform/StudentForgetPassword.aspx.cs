@@ -83,8 +83,8 @@ namespace CPE_Platform
 
 			smtpClient.Credentials = new System.Net.NetworkCredential()
 			{
-				UserName = "your email",
-				Password = "your email password"
+				UserName = "your existing email",
+				Password = "your google account password"
 			};
 
 			smtpClient.EnableSsl = true;
