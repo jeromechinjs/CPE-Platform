@@ -125,6 +125,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\StudentProfileManagement.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -189,6 +190,7 @@
     <Content Include="StaffRegisterInfo.aspx" />
     <Content Include="StudentForgetPassword.aspx" />
     <Content Include="StudentLogin.aspx" />
+    <Content Include="StudentProfileManagement.aspx" />
     <Content Include="StudentResetPassword.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -271,6 +273,13 @@
     </Compile>
     <Compile Include="StudentLogin.aspx.designer.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentProfileManagement.aspx.cs">
+      <DependentUpon>StudentProfileManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentProfileManagement.aspx.designer.cs">
+      <DependentUpon>StudentProfileManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="StudentResetPassword.aspx.cs">
       <DependentUpon>StudentResetPassword.aspx</DependentUpon>
