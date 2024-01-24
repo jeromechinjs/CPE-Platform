@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.Security;
 
 namespace CPE_Platform
 {
@@ -48,11 +49,21 @@ namespace CPE_Platform
 				}
 				else
 				{
+					bool IsValidUser = true;
 					Session["StudentID"] = txtStudentID.Text;
+					if (IsValidUser)
+					{
+						FormsAuthentication.RedirectFromLoginPage(txtStudentID.Text, false);
 
-					Response.Redirect("Default.aspx");  // will redirect to home page once home page is created
+					}
+					else
+					{
+						lblErrorMsg.Text = "Invalid Student ID or Password.";
+					}
 
-					// paste this into homepage.aspx.cs pageload function once created
+					Response.Redirect("~/Private/Default.aspx");  // will redirect to home page once home page is created
+
+					 //paste this into homepage.aspx.cs pageload function once created
 
 					//if (Session["StudentID"] != null)
 					//{
@@ -68,9 +79,5 @@ namespace CPE_Platform
             
         }
 
-		protected void btnStudentForgetPasswordLogin_Click(object sender, EventArgs e)
-		{
-			Response.Redirect("StudentForgetPassword.aspx");
-		}
 	}
 }

@@ -102,12 +102,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="Private\About.aspx" />
     <Content Include="App_Data\DatabaseCPE.mdf" />
     <Content Include="App_Data\DatabaseCPE_log.ldf">
       <DependentUpon>DatabaseCPE.mdf</DependentUpon>
     </Content>
-    <Content Include="Contact.aspx" />
+    <Content Include="Private\Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -126,10 +126,10 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\StudentProfileManagement.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="Private\Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="RegisterStudentInfo.aspx" />
+    <Content Include="Public\RegisterStudentInfo.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -186,12 +186,12 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="StaffLogin.aspx" />
-    <Content Include="StaffRegisterInfo.aspx" />
-    <Content Include="StudentForgetPassword.aspx" />
-    <Content Include="StudentLogin.aspx" />
-    <Content Include="StudentProfileManagement.aspx" />
-    <Content Include="StudentResetPassword.aspx" />
+    <Content Include="Public\StaffLogin.aspx" />
+    <Content Include="Public\StaffRegisterInfo.aspx" />
+    <Content Include="Public\StudentForgetPassword.aspx" />
+    <Content Include="Public\StudentLogin.aspx" />
+    <Content Include="Private\StudentProfileManagement.aspx" />
+    <Content Include="Public\StudentResetPassword.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -199,37 +199,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
+    <Compile Include="Private\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
+    <Compile Include="Private\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
+    <Compile Include="Private\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
+    <Compile Include="Private\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="Private\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="Private\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterStudentInfo.aspx.cs">
+    <Compile Include="Public\RegisterStudentInfo.aspx.cs">
       <DependentUpon>RegisterStudentInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RegisterStudentInfo.aspx.designer.cs">
+    <Compile Include="Public\RegisterStudentInfo.aspx.designer.cs">
       <DependentUpon>RegisterStudentInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
@@ -246,46 +246,46 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="StaffLogin.aspx.cs">
+    <Compile Include="Public\StaffLogin.aspx.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StaffLogin.aspx.designer.cs">
+    <Compile Include="Public\StaffLogin.aspx.designer.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StaffRegisterInfo.aspx.cs">
+    <Compile Include="Public\StaffRegisterInfo.aspx.cs">
       <DependentUpon>StaffRegisterInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StaffRegisterInfo.aspx.designer.cs">
+    <Compile Include="Public\StaffRegisterInfo.aspx.designer.cs">
       <DependentUpon>StaffRegisterInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentForgetPassword.aspx.cs">
+    <Compile Include="Public\StudentForgetPassword.aspx.cs">
       <DependentUpon>StudentForgetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentForgetPassword.aspx.designer.cs">
+    <Compile Include="Public\StudentForgetPassword.aspx.designer.cs">
       <DependentUpon>StudentForgetPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentLogin.aspx.cs">
+    <Compile Include="Public\StudentLogin.aspx.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentLogin.aspx.designer.cs">
+    <Compile Include="Public\StudentLogin.aspx.designer.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentProfileManagement.aspx.cs">
+    <Compile Include="Private\StudentProfileManagement.aspx.cs">
       <DependentUpon>StudentProfileManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentProfileManagement.aspx.designer.cs">
+    <Compile Include="Private\StudentProfileManagement.aspx.designer.cs">
       <DependentUpon>StudentProfileManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentResetPassword.aspx.cs">
+    <Compile Include="Public\StudentResetPassword.aspx.cs">
       <DependentUpon>StudentResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentResetPassword.aspx.designer.cs">
+    <Compile Include="Public\StudentResetPassword.aspx.designer.cs">
       <DependentUpon>StudentResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">

@@ -13,7 +13,10 @@
 		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+		<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" />
+
+		</div>
 		<div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">...</div>
 	</div>
 </asp:Content>

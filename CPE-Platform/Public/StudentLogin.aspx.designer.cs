@@ -15,15 +15,6 @@ namespace CPE_Platform
 	{
 
 		/// <summary>
-		/// lblStudentID control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblStudentID;
-
-		/// <summary>
 		/// txtStudentID control.
 		/// </summary>
 		/// <remarks>
@@ -31,15 +22,6 @@ namespace CPE_Platform
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtStudentID;
-
-		/// <summary>
-		/// lblStudentPassword control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblStudentPassword;
 
 		/// <summary>
 		/// txtStudentPassword control.
@@ -60,6 +42,15 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
 		/// <summary>
+		/// navForgetPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.HyperLink navForgetPassword;
+
+		/// <summary>
 		/// btnStudentLogin control.
 		/// </summary>
 		/// <remarks>
@@ -69,12 +60,12 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Button btnStudentLogin;
 
 		/// <summary>
-		/// btnStudentForgetPasswordLogin control.
+		/// navRegisterStudent control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnStudentForgetPasswordLogin;
+		protected global::System.Web.UI.WebControls.HyperLink navRegisterStudent;
 	}
 }
