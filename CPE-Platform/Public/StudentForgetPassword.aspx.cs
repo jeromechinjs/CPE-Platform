@@ -23,7 +23,7 @@ namespace CPE_Platform
 
 		protected void btnRetrieveStudentLogin_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("StudentLogin.aspx");
+			Response.Redirect("~/StudentLogin.aspx");
 
 		}
 
@@ -73,7 +73,7 @@ namespace CPE_Platform
 			StringBuilder sbEmailBody = new StringBuilder();
 			sbEmailBody.Append("Dear " + studentName + ",<br/><br/>");
 			sbEmailBody.Append("Please click on the following link to reset your password");
-			sbEmailBody.Append("<br/>"); sbEmailBody.Append("http://localhost:62893/StudentResetPassword?uid=" + UniqueId);
+			sbEmailBody.Append("<br/>"); sbEmailBody.Append("http://localhost:62893/Public/StudentResetPassword?uid=" + UniqueId);
 			sbEmailBody.Append("<br/><br/>");
 			sbEmailBody.Append("<b>Tunku Abdul Rahman University of Management and Technology (TAR UMT) </b>");
 

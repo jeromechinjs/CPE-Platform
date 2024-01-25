@@ -93,7 +93,7 @@ namespace CPE_Platform
 
 		protected void btnRetrieveStudentLogin_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("StudentLogin.aspx");
+			Response.Redirect("~/StudentLogin.aspx");
 		}
 
 		protected void btnConfirmStudentForgetPassword_Click(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace CPE_Platform
 					{
 						Response.Write("<script>alert('Password Changed Successfully!')</script>");
 						//lblErrorMsg.Text = "Password Changed Successfully!";
-						Response.Redirect("StudentLogin.aspx");
+						Response.Redirect("~/StudentLogin.aspx");
 					}
 					else
 					{

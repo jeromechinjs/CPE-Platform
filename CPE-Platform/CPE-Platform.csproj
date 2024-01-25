@@ -158,6 +158,8 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Public\Web.config" />
+    <Content Include="Private\Web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -186,10 +188,10 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="Public\StaffLogin.aspx" />
+    <Content Include="StaffLogin.aspx" />
     <Content Include="Public\StaffRegisterInfo.aspx" />
     <Content Include="Public\StudentForgetPassword.aspx" />
-    <Content Include="Public\StudentLogin.aspx" />
+    <Content Include="StudentLogin.aspx" />
     <Content Include="Private\StudentProfileManagement.aspx" />
     <Content Include="Public\StudentResetPassword.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -246,11 +248,11 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Public\StaffLogin.aspx.cs">
+    <Compile Include="StaffLogin.aspx.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Public\StaffLogin.aspx.designer.cs">
+    <Compile Include="StaffLogin.aspx.designer.cs">
       <DependentUpon>StaffLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Public\StaffRegisterInfo.aspx.cs">
@@ -267,11 +269,11 @@
     <Compile Include="Public\StudentForgetPassword.aspx.designer.cs">
       <DependentUpon>StudentForgetPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Public\StudentLogin.aspx.cs">
+    <Compile Include="StudentLogin.aspx.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Public\StudentLogin.aspx.designer.cs">
+    <Compile Include="StudentLogin.aspx.designer.cs">
       <DependentUpon>StudentLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\StudentProfileManagement.aspx.cs">

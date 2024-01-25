@@ -26,7 +26,7 @@ namespace CPE_Platform
 
 		protected void Page_Load(object sender, EventArgs e)
         {
-
+			//FormsAuthentication.SignOut();
         }
 
 		protected void btnStudentLogin_Click(object sender, EventArgs e)
@@ -49,19 +49,20 @@ namespace CPE_Platform
 				}
 				else
 				{
-					bool IsValidUser = true;
-					Session["StudentID"] = txtStudentID.Text;
-					if (IsValidUser)
-					{
-						FormsAuthentication.RedirectFromLoginPage(txtStudentID.Text, false);
+					bool isValidUser = true;
 
+					if(isValidUser)
+					{
+						Session["StudentID"] = txtStudentID.Text;
+						FormsAuthentication.RedirectFromLoginPage(txtStudentID.Text, false);
+						Response.Redirect("~/Private/Default.aspx");  // will redirect to home page once home page is created
 					}
 					else
 					{
 						lblErrorMsg.Text = "Invalid Student ID or Password.";
 					}
 
-					Response.Redirect("~/Private/Default.aspx");  // will redirect to home page once home page is created
+					
 
 					 //paste this into homepage.aspx.cs pageload function once created
 

@@ -18,7 +18,7 @@ namespace CPE_Platform
         protected void btnLogOut_Click(object sender, EventArgs e)
         {
 			FormsAuthentication.SignOut();
-			Response.Redirect("StudentLogin.aspx");
+			Response.Redirect("~/StudentLogin.aspx");
 		}
     }
 }
