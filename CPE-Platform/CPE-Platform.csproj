@@ -102,6 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="loginSelection.aspx" />
     <Content Include="Private\About.aspx" />
     <Content Include="App_Data\DatabaseCPE.mdf" />
     <Content Include="App_Data\DatabaseCPE_log.ldf">
@@ -201,6 +202,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="loginSelection.aspx.cs">
+      <DependentUpon>loginSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginSelection.aspx.designer.cs">
+      <DependentUpon>loginSelection.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Private\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Security.Cryptography;
 using System.Text;
 using System.Configuration;
+using System.Web.Security;
 
 namespace CPE_Platform
 {
@@ -44,13 +45,24 @@ namespace CPE_Platform
 			}
 			else
 			{
-				Response.Redirect("Default.aspx");  // will redirect to home page once home page is created
+				bool isValidUser = true;
+
+				if (isValidUser)
+				{
+					Session["StudentID"] = txtStaffID.Text;
+					FormsAuthentication.RedirectFromLoginPage(txtStaffID.Text, false);
+					Response.Redirect("~/Private/StudentProfileManagement.aspx");  // will redirect to home page once home page is created
+				}
+				else
+				{
+					lblErrorMsg.Text = "Invalid Staff ID or Password.";
+				}
 			}
 		}
 
         protected void btnStaffForgetPasswordLogin_Click(object sender, EventArgs e)
         {
-			Response.Redirect("StaffForgetPassword.aspx");
+			Response.Redirect("~/Public/StaffForgetPassword.aspx");
 		}
     }
 }
