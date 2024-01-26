@@ -32,8 +32,10 @@ namespace CPE_Platform
 			{
 				if (!IsPasswordResetLinkValid())
 				{
-					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					Response.Write("<script>alert('Password Reset link has expired or is invalid');</script>");
+					Response.Redirect("~/StudentLogin.aspx");
+					//lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+					//lblErrorMsg.Text = "Password Reset link has expired or is invalid";
 				}
 			}
 		}
@@ -90,41 +92,29 @@ namespace CPE_Platform
 			}
 		}
 
-
-		protected void btnRetrieveStudentLogin_Click(object sender, EventArgs e)
-		{
-			Response.Redirect("~/StudentLogin.aspx");
-		}
-
 		protected void btnConfirmStudentForgetPassword_Click(object sender, EventArgs e)
 		{
 			if (Page.IsValid)
 			{
-				if (txtNewPassword.Text == txtConfirmPassword.Text) 
+
+				if (ChangeUserPassword())
 				{
-					if (ChangeUserPassword())
-					{
-						Response.Write("<script>alert('Password Changed Successfully!')</script>");
-						//lblErrorMsg.Text = "Password Changed Successfully!";
-						Response.Redirect("~/StudentLogin.aspx");
-					}
-					else
-					{
-						lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-						lblErrorMsg.Text = "Password Reset link has expired or is invalid";
-					}
+					Response.Write("<script>alert('Password Changed Successfully!')</script>");
+					//lblErrorMsg.Text = "Password Changed Successfully!";
+					Response.Redirect("~/StudentLogin.aspx");
 				}
 				else
 				{
-					lblErrorMsg.Text = "The New Password and the Confirm Password are not match.";
+					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
 				}
-				
+
 			}
 			else
 			{
 				lblErrorMsg.Text = "Invalid Password.";
 			}
-			
+
 		}
 	}
 }
