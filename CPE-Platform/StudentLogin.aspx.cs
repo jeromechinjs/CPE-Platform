@@ -33,7 +33,7 @@ namespace CPE_Platform
 		{
 			if (Page.IsValid)
 			{
-				SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\FYP Project 2\\CPE-Platform\\App_Data\\DatabaseCPE.mdf\";Integrated Security=True");
+				SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\DatabaseCPE.mdf\";Integrated Security=True");
 				SqlCommand cmd = new SqlCommand("Select * from Student where StudentID = @StudentID and StudentPassword = @StudentPassword", con);
 				cmd.Parameters.AddWithValue("@StudentID", txtStudentID.Text);
 				cmd.Parameters.AddWithValue("@StudentPassword", EncryptData(txtStudentPassword.Text.Trim()));
