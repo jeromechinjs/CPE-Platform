@@ -103,9 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\DatabaseCPE.mdf" />
-    <Content Include="App_Data\DatabaseCPE_log.ldf">
-      <DependentUpon>DatabaseCPE.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\DatabaseCPE_log.ldf" />
     <Content Include="loginSelection.aspx" />
     <Content Include="Private\About.aspx" />
     <Content Include="Private\Contact.aspx" />
