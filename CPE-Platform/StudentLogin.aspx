@@ -10,6 +10,13 @@
 				display: inline-block;
 			}
 
+			a.custom-link {
+				text-decoration: none;
+			}
+
+			a.custom-link:hover {
+				text-decoration: underline;
+			}
 		</style>
 	</head>
 	</html>
@@ -21,7 +28,7 @@
 					<div class="card bg-dark text-white" style="border-radius: 1rem;">
 						<div class="card-body p-6 text-center">
 
-							<div class="mb-md-5 mt-md-4 pb-5">
+							<div class="mb-md-5 mt-md-4 pb-2">
 								<h2 class="text-lg-center mb-4 text-uppercase">TAR UMT Student Intranet</h2>
 								<h3 class="mb-4 text-sm-center ">Login</h3>
 								<p class="text-white-50 mb-5">Please enter your login and password!</p>
@@ -45,7 +52,7 @@
 									<asp:Label runat="server" ID="lblErrorMsg"></asp:Label>
 								</p>
 								<p class="small mb-3 pb-lg-2">
-									<asp:HyperLink class="text-white-50" ID="navForgetPassword" NavigateUrl="~/Public/StudentForgetPassword.aspx" runat="server">Forgot password?</asp:HyperLink>
+									<asp:HyperLink class="text-white-50 custom-link" ID="navForgetPassword" NavigateUrl="~/Public/StudentForgetPassword.aspx" runat="server">Forgot password?</asp:HyperLink>
 								</p>
 
 								<asp:Button ID="btnStudentLogin" class="btn btn-outline-light btn-lg px-5" runat="server" Text="Login" OnClick="btnStudentLogin_Click"></asp:Button>
@@ -55,7 +62,7 @@
 							<div>
 								<p class="mb-4">
 									Don't have an account?
-									<asp:HyperLink ID="navRegisterStudent" class="text-white-50 fw-bold" NavigateUrl="~/Public/RegisterStudentInfo.aspx" runat="server">Sign Up</asp:HyperLink>
+									<asp:HyperLink ID="navRegisterStudent" class="text-white-50 fw-bold custom-link" NavigateUrl="~/Public/RegisterStudentInfo.aspx" runat="server">Sign Up</asp:HyperLink>
 								</p>
 							</div>
 

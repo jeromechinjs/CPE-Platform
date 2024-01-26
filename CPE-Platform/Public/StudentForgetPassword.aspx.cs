@@ -21,12 +21,6 @@ namespace CPE_Platform
 
 		}
 
-		protected void btnRetrieveStudentLogin_Click(object sender, EventArgs e)
-		{
-			Response.Redirect("~/StudentLogin.aspx");
-
-		}
-
 
 		protected void btnConfirmStudentForgetPassword_Click(object sender, EventArgs e)
 		{

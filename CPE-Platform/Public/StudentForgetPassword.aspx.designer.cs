@@ -15,15 +15,6 @@ namespace CPE_Platform
 	{
 
 		/// <summary>
-		/// lblStudentICFP control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblStudentICFP;
-
-		/// <summary>
 		/// txtStudentIC control.
 		/// </summary>
 		/// <remarks>
@@ -42,15 +33,6 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
 		/// <summary>
-		/// btnRetrieveStudentLogin control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnRetrieveStudentLogin;
-
-		/// <summary>
 		/// btnConfirmStudentForgetPassword control.
 		/// </summary>
 		/// <remarks>
@@ -58,5 +40,14 @@ namespace CPE_Platform
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button btnConfirmStudentForgetPassword;
+
+		/// <summary>
+		/// navRegisterStudent control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.HyperLink navRegisterStudent;
 	}
 }
