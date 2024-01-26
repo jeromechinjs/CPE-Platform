@@ -59,10 +59,6 @@ namespace CPE_Platform
 				}
 			}
 		}
-
-        protected void btnStaffForgetPasswordLogin_Click(object sender, EventArgs e)
-        {
-			Response.Redirect("~/Public/StaffForgetPassword.aspx");
 		}
     }
 }
