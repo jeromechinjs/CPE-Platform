@@ -33,9 +33,9 @@ namespace CPE_Platform
 				if (!IsPasswordResetLinkValid())
 				{
 					Response.Write("<script>alert('Password Reset link has expired or is invalid');</script>");
-					Response.Redirect("~/StudentLogin.aspx");
-					//lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-					//lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					//Response.Redirect("~/StudentLogin.aspx");
+					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
 				}
 			}
 		}
