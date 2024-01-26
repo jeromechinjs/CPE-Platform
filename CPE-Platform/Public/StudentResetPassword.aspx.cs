@@ -32,10 +32,11 @@ namespace CPE_Platform
 			{
 				if (!IsPasswordResetLinkValid())
 				{
-					Response.Write("<script>alert('Password Reset link has expired or is invalid');</script>");
-					//Response.Redirect("~/StudentLogin.aspx");
-					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					string script = "alert('Password Reset link has expired or is invalid');";
+					ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+					string redirectScript = "setTimeout(function() { window.location.href = '../StudentLogin.aspx'; }, 10);"; // Redirect after 0.01 seconds (10 milliseconds)
+					ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 				}
 			}
 		}
@@ -99,9 +100,12 @@ namespace CPE_Platform
 
 				if (ChangeUserPassword())
 				{
-					Response.Write("<script>alert('Password Changed Successfully!')</script>");
-					//lblErrorMsg.Text = "Password Changed Successfully!";
-					Response.Redirect("~/StudentLogin.aspx");
+					string script = "alert('Password Changed Successfully!');";
+					ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+					string redirectScript = "setTimeout(function() { window.location.href = '../StudentLogin.aspx'; }, 1000);"; // Redirect after 1 seconds (1000 milliseconds)
+					ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+
 				}
 				else
 				{

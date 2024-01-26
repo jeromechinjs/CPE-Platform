@@ -45,6 +45,9 @@ namespace CPE_Platform
 						if (Convert.ToBoolean(rdr["ReturnCode"]) == true)
 						{
 							SendPasswordResetEmail(rdr["Email"].ToString(), rdr["StuName"].ToString(), rdr["UniqueId"].ToString());
+							string script = "alert('An email with instructions to reset your password is sent to your registered email');";
+							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
 							lblErrorMsg.Text = "An email with instructions to reset your password is sent to your registered email";
 						}
 						else

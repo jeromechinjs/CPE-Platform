@@ -3,8 +3,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 	<!DOCTYPE html>
-	<html>
-	<head>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head runat="server">
 		<link rel="stylesheet" href="css/StudentProfileManagement.css">
 		<style>
 			.custom-form-control {
