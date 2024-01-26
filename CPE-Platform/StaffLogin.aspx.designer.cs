@@ -42,6 +42,15 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
 		/// <summary>
+		/// navForgetPassword control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.HyperLink navForgetPassword;
+
+		/// <summary>
 		/// btnStaffLogin control.
 		/// </summary>
 		/// <remarks>
@@ -51,12 +60,12 @@ namespace CPE_Platform
 		protected global::System.Web.UI.WebControls.Button btnStaffLogin;
 
 		/// <summary>
-		/// btnStaffForgetPasswordLogin control.
+		/// navRegisterStudent control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnStaffForgetPasswordLogin;
+		protected global::System.Web.UI.WebControls.HyperLink navRegisterStudent;
 	}
 }

@@ -19,11 +19,11 @@
 			<div class="row d-flex justify-content-center align-items-center h-50">
 				<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 					<div class="card bg-dark text-white" style="border-radius: 1rem;">
-						<div class="card-body p-5 text-center">
+						<div class="card-body p-6 text-center">
 
 							<div class="mb-md-5 mt-md-4 pb-5">
-								<h1 class="fw-bold mb-2 text-uppercase">TAR UMT Student Intranet</h1>
-								<h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+								<h2 class="text-lg-center mb-4 text-uppercase">TAR UMT Student Intranet</h2>
+								<h3 class="mb-4 text-sm-center ">Login</h3>
 								<p class="text-white-50 mb-5">Please enter your login and password!</p>
 								<div>
 									<div class="form-outline form-white mb-4">
@@ -66,15 +66,4 @@
 		</div>
 	</section>
 
-
-	<%--<div>
-		<h1>TAR UMT Student Intranet</h1>
-	</div>--%>
-
-	<%--<div>
-		
-		<asp:Label runat="server" ID="lblErrorMsg"></asp:Label><br />
-		
-		<asp:Button ID="btnStudentForgetPasswordLogin" runat="server" Text="Forget Password" OnClick="btnStudentForgetPasswordLogin_Click"></asp:Button>
-	</div>--%>
 </asp:Content>

@@ -131,6 +131,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Public\RegisterStudentInfo.aspx" />
+    <Content Include="Public\StaffForgetPassword.aspx" />
+    <Content Include="Public\StaffResetPassword.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -241,6 +243,20 @@
     </Compile>
     <Compile Include="Public\RegisterStudentInfo.aspx.designer.cs">
       <DependentUpon>RegisterStudentInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\StaffForgetPassword.aspx.cs">
+      <DependentUpon>StaffForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\StaffForgetPassword.aspx.designer.cs">
+      <DependentUpon>StaffForgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\StaffResetPassword.aspx.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\StaffResetPassword.aspx.designer.cs">
+      <DependentUpon>StaffResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
