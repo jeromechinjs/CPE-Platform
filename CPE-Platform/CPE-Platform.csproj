@@ -102,12 +102,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="loginSelection.aspx" />
-    <Content Include="Private\About.aspx" />
     <Content Include="App_Data\DatabaseCPE.mdf" />
     <Content Include="App_Data\DatabaseCPE_log.ldf">
       <DependentUpon>DatabaseCPE.mdf</DependentUpon>
     </Content>
+    <Content Include="loginSelection.aspx" />
+    <Content Include="Private\About.aspx" />
     <Content Include="Private\Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
