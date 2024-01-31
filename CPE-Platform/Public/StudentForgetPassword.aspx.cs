@@ -47,7 +47,7 @@ namespace CPE_Platform
 							SendPasswordResetEmail(rdr["Email"].ToString(), rdr["StuName"].ToString(), rdr["UniqueId"].ToString());
 							string script = "alert('An email with instructions to reset your password is sent to your registered email');";
 							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
-
+							lblErrorMsg.ForeColor = System.Drawing.Color.White;
 							lblErrorMsg.Text = "An email with instructions to reset your password is sent to your registered email";
 						}
 						else
@@ -58,7 +58,7 @@ namespace CPE_Platform
 					}
 				}
 			}
-			
+
 		}
 
 		SmtpSection secObj = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
@@ -84,11 +84,11 @@ namespace CPE_Platform
 			smtp.UseDefaultCredentials = true;
 			smtp.Credentials = NetworkCred;
 			smtp.Port = 587; //---- SMTP Server port number. This varies from host to host. 
-			
+
 			mailMessage.Body = sbEmailBody.ToString();
 			mailMessage.Subject = "Reset Your Password";
-			
+
 			smtp.Send(mailMessage);
 		}
-		}
 	}
+}

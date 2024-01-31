@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 	<!DOCTYPE html>
 	<html xmlns="http://www.w3.org/1999/xhtml">
-	<head runat="server">
+	<head>
 		<link rel="stylesheet" href="css/StudentProfileManagement.css">
 		<style>
 			.custom-form-control {
@@ -44,7 +44,7 @@
 									<asp:Label runat="server" ID="lblErrorMsg"></asp:Label>
 								</p>
 
-								<asp:Button ID="btnConfirmStaffForgetPassword" class="btn btn-outline-light btn-lg px-5" runat="server" Text="Submit"></asp:Button>
+								<asp:Button ID="btnConfirmStaffForgetPassword" class="btn btn-outline-light btn-lg px-5" runat="server" Text="Submit" OnClick="btnConfirmStaffForgetPassword_Click"></asp:Button>
 
 							</div>
 
