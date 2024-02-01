@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login Selection" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="loginSelection.aspx.cs" Inherits="CPE_Platform.loginSelection" %>
+﻿<%@ Page Title="Login Selection" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="loginSelection.aspx.cs" Inherits="CPE_Platform.loginSelection" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 	<!DOCTYPE html>

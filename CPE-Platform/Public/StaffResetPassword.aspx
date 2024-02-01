@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Staff Reset Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StaffResetPassword.aspx.cs" Inherits="CPE_Platform.Public.StaffResetPassword" %>
+﻿<%@ Page Title="Staff Reset Password" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="StaffResetPassword.aspx.cs" Inherits="CPE_Platform.Public.StaffResetPassword" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 	<!DOCTYPE html>
