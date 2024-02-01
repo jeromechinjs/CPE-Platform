@@ -30,7 +30,7 @@
 
 							<div class="mb-md-5 mt-md-4 pb-2">
 								<h2 class="text-lg-center mb-4 text-uppercase">TAR UMT Student Intranet</h2>
-								<h3 class="mb-4 text-sm-center ">Login</h3>
+								<h3 class="mb-4 text-sm-center">Login</h3>
 								<p class="text-white-50 mb-5">Please enter your login and password!</p>
 								<div>
 									<div class="form-outline form-white mb-4">
