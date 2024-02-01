@@ -14,7 +14,7 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="icon" href="https://tarc.edu.my/images/tarIco.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -38,29 +38,40 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" runat="server" href="~/">Application name</a>
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container px-4 m-0">
+                <a class="navbar-brand text-white d-flex align-items-center" runat="server" href="#">
+                    <img src="src/tarucLogo.png" width="20" height="23.48" class="d-inline-block me-2" alt="">
+                    Student Intranet
+                </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/"></a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About"></a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact"></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
+
+        <div class="container-fluid body-content p-0">
+            <div class="row h-100">
+                <div class="col-3 flex-column">
+                    <section class="sidebar h-100"> </section>
+                </div>
+
+                <div class="col-9 flex-column d-flex justify-content-center">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+
+                    <footer>
+                        <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                    </footer>
+                </div>
+            </div>
         </div>
     </form>
     <asp:PlaceHolder runat="server">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title= "Student Registration" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegisterStudentInfo.aspx.cs" Inherits="CPE_Platform.RegisterStudentInfo" %>
+﻿<%@ Page Title= "Student Registration" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="RegisterStudentInfo.aspx.cs" Inherits="CPE_Platform.RegisterStudentInfo" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 	<div>

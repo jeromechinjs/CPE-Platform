@@ -4,7 +4,7 @@
 	<!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="css/StudentProfileManagement.css">
+	<link rel="stylesheet" href="css/style.css">
 	<style>
 		.px-6 {
 			padding-right: 4rem;

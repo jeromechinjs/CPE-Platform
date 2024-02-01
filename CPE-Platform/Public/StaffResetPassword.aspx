@@ -4,7 +4,7 @@
 	<!DOCTYPE html>
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<link rel="stylesheet" href="css/StudentProfileManagement.css">
+		<link rel="stylesheet" href="css/style.css">
 		<style>
 			.custom-form-control {
 				display: inline;
