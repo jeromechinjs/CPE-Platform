@@ -14,18 +14,21 @@
 	</ul>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-			<asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" /> <%--temporary for log out --%>
-
+			<asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" />
+			<%--temporary for log out --%>
 		</div>
 
 		<%--Rewards part --%>
 		<div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
 			<h3 class="mb-1 ms-5 text-sm">CPE Course Completed</h3>
+			<div>
+				<asp:Label ID="lblStudentID" runat="server"></asp:Label>
+			</div>
 
 			<div class="col-10 p-4 flex-column d-flex justify-content-center">
 				<%--<p class="my-3 fs-2 fw-bolder">Rewards</p>--%>
 				<div class="container">
-					<asp:GridView class="table table-bordered table-condensed table-responsive table-hover" ID="gvRewardsView" runat="server" AutoGenerateColumns="False" DataKeyNames="CompletionID"
+					<asp:GridView class="table table-bordered table-condensed table-responsive table-hover" ID="gvRewardsView" runat="server" AutoGenerateColumns="False" DataKeyNames="RewardID"
 						ShowHeaderWhenEmpty="True" AllowSorting="True">
 						<%-- Theme --%>
 
@@ -59,7 +62,7 @@
 
 							<%-- Progress --%>
 
-							<asp:TemplateField HeaderText="Progress">
+							<%--<asp:TemplateField HeaderText="Progress">
 								<ItemTemplate>
 									<asp:Label Text='<%# Eval("Progress") %>' runat="server" />
 								</ItemTemplate>
@@ -68,17 +71,28 @@
 									<asp:TextBox ID="txtProgress" Text='<%# Eval("Progress") %>' runat="server" />
 								</EditItemTemplate>
 
-							</asp:TemplateField>
+							</asp:TemplateField>--%>
 
 							<%-- Rewards --%>
 
 							<asp:TemplateField HeaderText="Rewards">
 								<ItemTemplate>
-									<asp:Label Text='<%# Eval("Rewards") %>' runat="server" />
+									<asp:Label Text='<%# Eval("RewardAwarded") %>' runat="server" />
 								</ItemTemplate>
 
 								<EditItemTemplate>
-									<asp:TextBox ID="txtRewards" Text='<%# Eval("Rewards") %>' runat="server" />
+									<asp:TextBox ID="txtRewards" Text='<%# Eval("RewardsAwarded") %>' runat="server" />
+								</EditItemTemplate>
+
+							</asp:TemplateField>
+
+							<asp:TemplateField HeaderText="StudentID">
+								<ItemTemplate>
+									<asp:Label Text='<%# Eval("StudentID") %>' runat="server" />
+								</ItemTemplate>
+
+								<EditItemTemplate>
+									<asp:TextBox ID="txtStudentID" Text='<%# Eval("StudentID") %>' runat="server" />
 								</EditItemTemplate>
 
 							</asp:TemplateField>

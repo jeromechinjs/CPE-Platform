@@ -31,7 +31,7 @@ namespace CPE_Platform
             con.Open();
             DataTable table = new DataTable();
 
-            dataAdapter = new SqlDataAdapter("SELECT * FROM CPE_Course, CPE_Completion", con);
+            dataAdapter = new SqlDataAdapter("SELECT * FROM CPE_Course, Rewards_Assign", con);
           
 
             dataAdapter.Fill(table);
@@ -39,20 +39,24 @@ namespace CPE_Platform
             if (table.Rows.Count > 0)
             {
                 if (Session["StudentID"] != null)
-                {
-                    gvRewardsView.DataSource = table;
+                { 
+                    string studentID = Session["StudentID"].ToString().Trim();
+                    lblStudentID.Text = studentID;
+                    lblStudentID.Text = Session["staffID"].ToString().Trim();
+             
+					gvRewardsView.DataSource = table;
 
                     string conString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-                    string query = "SELECT A.CPECode, A.CPEDesc, B.Progress, A.Rewards FROM A CPE_Course, B CPE_Completion, R CPE_Registration WHERE R.StudentID =" + Session["StudentID"] + " AND A.CPECode = R.CPECode AND R.RegistrationID = B.RegistrationID ";
-                    
+                    string query = "SELECT C.CPECode, C.CPEDesc, R.RewardAwarded, R.StudentID FROM C CPE_Course, S Student, R Rewards_Assign WHERE R.StudentID = @StudentID AND R.CPECode = C.CPECode";
 
                     using (SqlConnection con = new SqlConnection(conString))
                     {
                         using (SqlCommand cmd = new SqlCommand(query, con))
                         {
                             con.Open();
-                            cmd.Parameters.AddWithValue("@R." + Session["StudentID"] + "", Session["StudentID"]);
+							//cmd.Parameters.AddWithValue("@R." + Session["StudentID"] + "", Session["StudentID"].ToString());
+							cmd.Parameters.AddWithValue("@StudentID", studentID);
 
 							gvRewardsView.DataBind();
                             con.Close();
@@ -65,23 +69,24 @@ namespace CPE_Platform
                     Response.Redirect("~/StudentLogin.aspx");
                 }
             }
-                
-                //cmd.Parameters.AddWithValue("@P." + Session["PatientEmailAddress"] + "", !string.IsNullOrEmpty(this.Page.User.Identity.Name) ? this.Page.User.Identity.Name : (object)DBNull.Value);
-                //using (SqlConnection con = new SqlConnection(conString))
-                //{
-                //    using (SqlDataAdapter sda = new SqlDataAdapter())
-                //    {
-                //        cmd.Connection = con;
-                //        sda.SelectCommand = cmd;
-                //        using (DataTable dt = new DataTable())
-                //        {
-                //            sda.Fill(dt);
-                            
-                //        }
-                //    }
-                //}
-                
-            
+
+            //cmd.Parameters.AddWithValue("@P." + Session["PatientEmailAddress"] + "", !string.IsNullOrEmpty(this.Page.User.Identity.Name) ? this.Page.User.Identity.Name : (object)DBNull.Value);
+            //using (SqlConnection con = new SqlConnection(conString))
+            //{
+            //    using (SqlDataAdapter sda = new SqlDataAdapter())
+            //    {
+            //        cmd.Connection = con;
+            //        sda.SelectCommand = cmd;
+            //        using (DataTable dt = new DataTable())
+            //        {
+            //            sda.Fill(dt);
+
+            //        }
+            //    }
+            //}
+
+
+
             else
             {
                 table.Rows.Add(table.NewRow());
