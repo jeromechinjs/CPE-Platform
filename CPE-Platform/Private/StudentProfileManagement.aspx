@@ -48,7 +48,7 @@
 
 							<%-- Course Name --%>
 
-							<asp:TemplateField HeaderText="Course Name">
+							<%--<asp:TemplateField HeaderText="Course Name">
 								<ItemTemplate>
 									<asp:Label Text='<%# Eval("CPEDesc") %>' runat="server" />
 								</ItemTemplate>
@@ -57,7 +57,7 @@
 									<asp:TextBox ID="txtCPEDesc" Text='<%# Eval("CPEDesc") %>' runat="server" />
 								</EditItemTemplate>
 
-							</asp:TemplateField>
+							</asp:TemplateField>--%>
 
 
 							<%-- Progress --%>
