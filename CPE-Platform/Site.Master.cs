@@ -11,7 +11,6 @@ namespace CPE_Platform
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            name.Text = Session["Name"].ToString();
         }
-    }
 }
