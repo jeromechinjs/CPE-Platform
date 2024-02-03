@@ -32,7 +32,7 @@ namespace CPE_Platform
 					// studentID = Session["StudentID"].ToString();
 					SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
-					string query = "SELECT R.CPECode, C.CPEDesc, R.RewardAwarded FROM CPE_Course C, Rewards_Assign R WHERE R.StudentID =@StudentID AND R.CPECode =C.CPECode";
+					string query = "SELECT R.CPECode, C.CPEDesc, R.Progress, R.RewardAwarded FROM CPE_Course C, Rewards_Assign R WHERE R.StudentID =@StudentID AND R.CPECode =C.CPECode";
 
 
 					using (SqlCommand cmd = new SqlCommand(query, con))

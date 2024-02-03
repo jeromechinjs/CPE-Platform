@@ -62,7 +62,7 @@
 
 							<%-- Progress --%>
 
-							<%--<asp:TemplateField HeaderText="Progress">
+							<asp:TemplateField HeaderText="Progress">
 								<ItemTemplate>
 									<asp:Label Text='<%# Eval("Progress") %>' runat="server" />
 								</ItemTemplate>
@@ -71,7 +71,7 @@
 									<asp:TextBox ID="txtProgress" Text='<%# Eval("Progress") %>' runat="server" />
 								</EditItemTemplate>
 
-							</asp:TemplateField>--%>
+							</asp:TemplateField>
 
 							<%-- Rewards --%>
 
