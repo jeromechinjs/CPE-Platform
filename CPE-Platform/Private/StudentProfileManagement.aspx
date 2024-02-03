@@ -28,7 +28,7 @@
 			<div class="col-10 p-4 flex-column d-flex justify-content-center">
 				<%--<p class="my-3 fs-2 fw-bolder">Rewards</p>--%>
 				<div class="container">
-					<asp:GridView class="table table-bordered table-condensed table-responsive table-hover" ID="gvRewardsView" runat="server" AutoGenerateColumns="False" DataKeyNames="RewardID"
+					<asp:GridView class="table table-bordered table-condensed table-responsive table-hover" ID="gvRewardsView" runat="server" AutoGenerateColumns="False" DataKeyNames="CPECode"
 						ShowHeaderWhenEmpty="True" AllowSorting="True">
 						<%-- Theme --%>
 
@@ -48,7 +48,7 @@
 
 							<%-- Course Name --%>
 
-							<%--<asp:TemplateField HeaderText="Course Name">
+							<asp:TemplateField HeaderText="Course Name">
 								<ItemTemplate>
 									<asp:Label Text='<%# Eval("CPEDesc") %>' runat="server" />
 								</ItemTemplate>
@@ -57,12 +57,12 @@
 									<asp:TextBox ID="txtCPEDesc" Text='<%# Eval("CPEDesc") %>' runat="server" />
 								</EditItemTemplate>
 
-							</asp:TemplateField>--%>
+							</asp:TemplateField>
 
 
 							<%-- Progress --%>
 
-							<%--<asp:TemplateField HeaderText="Progress">
+							<asp:TemplateField HeaderText="Progress">
 								<ItemTemplate>
 									<asp:Label Text='<%# Eval("Progress") %>' runat="server" />
 								</ItemTemplate>
@@ -71,7 +71,7 @@
 									<asp:TextBox ID="txtProgress" Text='<%# Eval("Progress") %>' runat="server" />
 								</EditItemTemplate>
 
-							</asp:TemplateField>--%>
+							</asp:TemplateField>
 
 							<%-- Rewards --%>
 
@@ -86,16 +86,7 @@
 
 							</asp:TemplateField>
 
-							<asp:TemplateField HeaderText="StudentID">
-								<ItemTemplate>
-									<asp:Label Text='<%# Eval("StudentID") %>' runat="server" />
-								</ItemTemplate>
 
-								<EditItemTemplate>
-									<asp:TextBox ID="txtStudentID" Text='<%# Eval("StudentID") %>' runat="server" />
-								</EditItemTemplate>
-
-							</asp:TemplateField>
 
 						</Columns>
 					</asp:GridView>
