@@ -14,8 +14,7 @@
 	</ul>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-			<asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" />
-			<%--temporary for log out --%>
+			<%--add the content over here for profile page--%>
 		</div>
 
 		<%--Rewards part --%>

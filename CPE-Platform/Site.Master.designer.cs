@@ -11,16 +11,34 @@ namespace CPE_Platform
 {
 
 
-    public partial class SiteMaster
-    {
+	public partial class SiteMaster
+	{
 
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-    }
+		/// <summary>
+		/// ContentPlaceHolder1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+
+		/// <summary>
+		/// btn_logout control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.HyperLink btn_logout;
+
+		/// <summary>
+		/// MainContent control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,7 +12,11 @@ namespace CPE_Platform
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //name.Text = Session["Name"].ToString();
-        }
-    }
+			//name.Text = Session["Name"].ToString();
+		}
+		protected void Logout(object sender, EventArgs e)
+		{
+			FormsAuthentication.SignOut();
+		}
+	}
 }
