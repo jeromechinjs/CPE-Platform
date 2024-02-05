@@ -19,9 +19,11 @@
 		</style>
 	</head>
 	</html>
+	<asp:Label ID="lblCourseDropdown" runat="server" Text="Course"></asp:Label>
 	<asp:DropDownList ID="CPECourse_DropDown" runat="server" class="form-select" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="CPECourse_DropDown_SelectedIndexChanged">
 		<asp:ListItem Value="0">Select Course</asp:ListItem>
 	</asp:DropDownList>
+	<asp:Label ID="lblStudentList" runat="server" Text="Students"></asp:Label>
 	<asp:ListBox ID="lstStudent" runat="server" SelectionMode="Multiple" AutoPostBack="true" ></asp:ListBox>
 	<asp:Button Text="Submit" runat="server" OnClick="Submit" />
 
