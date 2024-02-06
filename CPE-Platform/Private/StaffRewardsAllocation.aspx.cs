@@ -49,13 +49,17 @@ namespace CPE_Platform.Private
 			}
 
 		}
-		protected void AssignRewards(object sender, EventArgs e)
+		protected void AssignRewards(object sender, EventArgs e)  // function for btn assign rewards
 		{
 			string message = "";
 			string errorMsg = "Please Select Valid Student Name";
+			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+			DateTime currentDateTime = DateTime.Now;
+			
+			// for loop to check whether the listed item is selected correctly
 			foreach (ListItem item in lstStudent.Items)
 			{
-				if (item.Text == " Select Students")
+				if (item.Text == " Select Students") // selected value 0 (by default)
 				{
 					ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + errorMsg + "');", true);
 				}
@@ -63,11 +67,36 @@ namespace CPE_Platform.Private
 				{
 					if (item.Selected)  // will change once bootstrap design template is found
 					{
-						message += item.Text + " " + "\\n";
+						SqlCommand cmd = new SqlCommand("INSERT INTO Rewards_Assign (RewardAwarded, rewardsDate, Progress, StudentID, CPECode) VALUES (@RewardAwarded, @rewardsDate, @Progress, @StudentID, @CPECode)", con);
+						cmd.Parameters.AddWithValue("@RewardAwarded", txtRewards.Text);
+						cmd.Parameters.AddWithValue("@rewardsDate", currentDateTime);
+						cmd.Parameters.AddWithValue("@Progress", "Completed");
+
+						// separate student id and name 
+						string[] separatedStudent = item.Value.Split(',');
+						string studentID = separatedStudent[0].Trim();
+						//txtStudentID.Text = studentID;
+						cmd.Parameters.AddWithValue("@StudentID", studentID);
+
+						// separate CPE code and description
+						string[] separatedCPECourse = CPECourse_DropDown.SelectedValue.ToString().Split(',');
+						string CPECode = separatedCPECourse[0].Trim();
+						//txtCPECode.Text = CPECode; 
+						cmd.Parameters.AddWithValue("@CPECode", CPECode.ToString());
+						con.Open();
+						cmd.ExecuteNonQuery();
+						con.Close();
+
+						// to be continued to delete data from CPE_Registration
+						
+
+
 					}
 				}
 
 			}
+			
+			message = "Successfully Assigned Rewards to the Students";
 			ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
 		}
 
@@ -84,7 +113,7 @@ namespace CPE_Platform.Private
 			// to fill up the drop down based on the db data
 			if (get_CPECode != "0")
 			{
-				query = "SELECT DISTINCT CONCAT(S.StudentID, ' ', S.StudentName) AS Student, StudentName, Rewards FROM CPE_Registration R, Student S, CPE_Course C WHERE C.CPECode ='" + get_CPECode.ToString() + "' AND S.StudentID = R.StudentID AND C.CPECode =R.CPECode";
+				query = "SELECT DISTINCT CONCAT(S.StudentID, ' ', S.StudentName) AS Student, S.StudentID, Rewards FROM CPE_Registration R, Student S, CPE_Course C WHERE C.CPECode ='" + get_CPECode.ToString() + "' AND S.StudentID = R.StudentID AND C.CPECode =R.CPECode";
 
 				// dataAdapter
 				dataAdapter = new SqlDataAdapter(query, con);
@@ -94,7 +123,7 @@ namespace CPE_Platform.Private
 				{
 					lstStudent.DataSource = ds;
 					lstStudent.DataTextField = "Student";
-					lstStudent.DataValueField = "StudentName";
+					lstStudent.DataValueField = "StudentID";
 					lstStudent.DataBind();
 					lstStudent.SelectedIndex = 0;
 

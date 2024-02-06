@@ -27,6 +27,8 @@
 	<asp:ListBox ID="lstStudent" runat="server" SelectionMode="Multiple" AutoPostBack="true" ></asp:ListBox>
 	<asp:Label ID="lblRewards" runat="server" Text="Rewards (Points)"></asp:Label>
 	<asp:TextBox ID="txtRewards" runat="server" placeholder="Points" AutoPostBack="True" ReadOnly="True"></asp:TextBox>
+	<%--<asp:TextBox ID="txtStudentID" runat="server" placeholder="StudentID" ReadOnly="True"></asp:TextBox>--%>
+	<%--<asp:TextBox ID="txtCPECode" runat="server" placeholder="CPECode" ReadOnly="True"></asp:TextBox>--%>
 	<asp:Button ID="btnAssignRewards" Text="Assign" runat="server" OnClick="AssignRewards" />
 
 </asp:Content>
