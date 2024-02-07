@@ -44,8 +44,6 @@ namespace CPE_Platform.Private
 				CPECourse_DropDown.DataValueField = "CPECode";
 				CPECourse_DropDown.DataBind();
 				CPECourse_DropDown.Items.Insert(0, new ListItem("Any Course", "0"));
-
-
 			}
 
 		}
@@ -59,7 +57,7 @@ namespace CPE_Platform.Private
 			// for loop to check whether the listed item is selected correctly
 			foreach (ListItem item in lstStudent.Items)
 			{
-				if (item.Text == " Select Students") // selected value 0 (by default)
+				if (item.Text == " Select Students" || item.Text == " There are no student completed " + CPECourse_DropDown.SelectedItem.Text) // selected value 0 (by default)
 				{
 					ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + errorMsg + "');", true);
 				}
@@ -75,27 +73,37 @@ namespace CPE_Platform.Private
 						// separate student id and name 
 						string[] separatedStudent = item.Value.Split(',');
 						string studentID = separatedStudent[0].Trim();
-						//txtStudentID.Text = studentID;
 						cmd.Parameters.AddWithValue("@StudentID", studentID);
 
 						// separate CPE code and description
 						string[] separatedCPECourse = CPECourse_DropDown.SelectedValue.ToString().Split(',');
 						string CPECode = separatedCPECourse[0].Trim();
-						//txtCPECode.Text = CPECode; 
 						cmd.Parameters.AddWithValue("@CPECode", CPECode.ToString());
+
 						con.Open();
 						cmd.ExecuteNonQuery();
 						con.Close();
 
-						// to be continued to delete data from CPE_Registration
-						
+						// Delete data from CPE_Registration
+						SqlCommand cmd2 = new SqlCommand("DELETE FROM CPE_Registration WHERE StudentID =@StudentID AND CPECode =@CPECode", con);
+						cmd2.Parameters.AddWithValue("@StudentID", studentID);
+						cmd2.Parameters.AddWithValue("@CPECode", CPECode);
 
-
+						con.Open();
+						cmd2.ExecuteNonQuery();
+						con.Close();
 					}
 				}
 
 			}
-			
+			// reset the value after the button is clicked
+			CPECourse_DropDown.SelectedValue = "0";
+			txtRewards.Text = string.Empty;
+			lstStudent.Items.Clear();
+			lstStudent.Items.Insert(0, " Select Students");
+
+
+			// execute this message when click the assign button when fulfill the condition
 			message = "Successfully Assigned Rewards to the Students";
 			ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
 		}
@@ -132,6 +140,8 @@ namespace CPE_Platform.Private
 				}
 				else  // execute only when the course selected doesn't have student registered
 				{
+					txtRewards.Text = string.Empty;
+					lstStudent.Items.Clear();
 					lstStudent.Items.Insert(0, " There are no student completed " + get_CPEName.ToString());
 				}
 
