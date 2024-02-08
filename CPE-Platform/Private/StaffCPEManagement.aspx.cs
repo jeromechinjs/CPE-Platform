@@ -33,22 +33,39 @@ namespace CPE_Platform.Private
 				if (!string.IsNullOrEmpty(txtCPECode.Text))
 				{
 					string id = txtCPECode.Text;
-					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmout=@CPESeatAmout,CPEPrice=@CPEPrice," +
+					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
 					"CPEDate=@CPEDate,Rewards=@Rewards where CPECode=@id", con);
 					cmd.Parameters.AddWithValue("@id", id);
+
+					// to be continued
 				}
 				else
 				{
-					cmd = new SqlCommand("INSERT INTO CPE_Course(CPECode,CPEDesc,CPESeatAmout,CPEPrice,CPEDate,Rewards)" +
-					" values(@CPECode,@CPEDesc,@CPESeatAmout,@CPEPrice,@CPEDate,@Rewards)", con);
+					cmd = new SqlCommand("INSERT INTO CPE_Course(CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards)" +
+					" values(@CPECode,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards)", con);
 				}
 				cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
 				cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
-				cmd.Parameters.AddWithValue("@CPESeatAmout", txtCPESeat.Text);
+
+				int cpeSeatAmount, cpeRewards;
+				if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
+				{
+					// Conversion successful, add the parameter
+					cmd.Parameters.AddWithValue("@CPESeatAmount", cpeSeatAmount);
+				}
+				
+				
 				cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
 				cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
-				cmd.Parameters.AddWithValue("@Rewards", txtCPERewards);
+				if (int.TryParse(txtCPERewards.Text, out cpeRewards))
+				{
+					// Conversion successful, add the parameter
+					cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
+				}
+				
+				
 				int rowsaffected = cmd.ExecuteNonQuery();
+				//cmd.ExecuteNonQuery();
 				con.Close();
 				if (rowsaffected > 0)
 				{
