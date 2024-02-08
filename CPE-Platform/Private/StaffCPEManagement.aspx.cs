@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace CPE_Platform.Private
 {
@@ -13,5 +16,92 @@ namespace CPE_Platform.Private
 		{
 
 		}
+
+		protected void modal_Click(object sender, EventArgs e)
+		{ 
+			string script = "$('#mymodal').modal('show');";
+			ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
+		}
+
+		protected void btnsave_Click(object sender, EventArgs e)
+		{
+			string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			using (SqlConnection con = new SqlConnection(connectionstring))
+			{
+				con.Open();
+				SqlCommand cmd;
+				if (!string.IsNullOrEmpty(txtCPECode.Text))
+				{
+					string id = txtCPECode.Text;
+					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmout=@CPESeatAmout,CPEPrice=@CPEPrice," +
+					"CPEDate=@CPEDate,Rewards=@Rewards where CPECode=@id", con);
+					cmd.Parameters.AddWithValue("@id", id);
+				}
+				else
+				{
+					cmd = new SqlCommand("INSERT INTO CPE_Course(CPECode,CPEDesc,CPESeatAmout,CPEPrice,CPEDate,Rewards)" +
+					" values(@CPECode,@CPEDesc,@CPESeatAmout,@CPEPrice,@CPEDate,@Rewards)", con);
+				}
+				cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
+				cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
+				cmd.Parameters.AddWithValue("@CPESeatAmout", txtCPESeat.Text);
+				cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
+				cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
+				cmd.Parameters.AddWithValue("@Rewards", txtCPERewards);
+				int rowsaffected = cmd.ExecuteNonQuery();
+				con.Close();
+				if (rowsaffected > 0)
+				{
+					lblmsg.Text = "Data Insert Successfully";
+				}
+				else
+				{
+					lblmsg.Text = "Error While inserting Data";
+				}
+				string script = "$('#mymodal').modal('show');";
+				ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
+				rptr1.DataBind();
+			}
+		}
+
+		protected void btndlt_Command(object sender, CommandEventArgs e)
+		{
+			string id = e.CommandArgument.ToString(); // command argument refer to the button eval name and pass the value into here
+			string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			using (SqlConnection conn = new SqlConnection(connectionstring))
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand("delete from CPE_Course where CPECourse=@id", conn);
+				cmd.Parameters.AddWithValue("@id", id);
+				cmd.ExecuteNonQuery();
+			}
+			rptr1.DataBind();
+		}
+
+		protected void btnupdate_Command(object sender, CommandEventArgs e)
+		{
+			string id = e.CommandArgument.ToString();
+			txtCPECode.Text = id;
+			string connectionstring = ConfigurationManager.ConnectionStrings["connection_"].ConnectionString;
+			using (SqlConnection conn = new SqlConnection(connectionstring))
+			{
+				conn.Open();
+				SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode=@id", conn);
+				cmd.Parameters.AddWithValue("@id", id);
+				SqlDataReader dataReader = cmd.ExecuteReader();
+				if (dataReader.Read())
+				{
+					txtCPECode.Text = dataReader["CPECode"].ToString();
+					txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
+					txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
+					txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
+					dllDate.SelectedValue = dataReader["CPEDate"].ToString();
+					txtCPERewards.Text = dataReader["Rewards"].ToString();
+				}
+				dataReader.Close();
+			}
+			ScriptManager.RegisterStartupScript(this, GetType(), "OpenModalScript", "$('#mymodal').modal('show');", true);
+		}
+
 	}
 }
