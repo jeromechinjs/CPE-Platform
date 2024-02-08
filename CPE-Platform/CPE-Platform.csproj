@@ -130,6 +130,7 @@
     <Content Include="Global.asax" />
     <Content Include="Private\Dashboard.aspx" />
     <Content Include="Private\src\tarucLogo.png" />
+    <Content Include="Private\StaffCPEManagement.aspx" />
     <Content Include="Private\StaffRewardsAllocation.aspx" />
     <Content Include="Public\RegisterStudentInfo.aspx" />
     <Content Include="Public\StaffForgetPassword.aspx" />
@@ -243,6 +244,13 @@
     </Compile>
     <Compile Include="Private\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\StaffCPEManagement.aspx.cs">
+      <DependentUpon>StaffCPEManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\StaffCPEManagement.aspx.designer.cs">
+      <DependentUpon>StaffCPEManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\StaffRewardsAllocation.aspx.cs">
       <DependentUpon>StaffRewardsAllocation.aspx</DependentUpon>
