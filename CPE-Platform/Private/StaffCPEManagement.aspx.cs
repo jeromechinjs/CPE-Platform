@@ -43,9 +43,9 @@ namespace CPE_Platform.Private
 				{
 					cmd = new SqlCommand("INSERT INTO CPE_Course(CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards)" +
 					" values(@CPECode,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards)", con);
-					cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
+					
 				}
-				
+				cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
 				cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
 				int cpeSeatAmount, cpeRewards;
@@ -100,7 +100,7 @@ namespace CPE_Platform.Private
 		{
 			string id = e.CommandArgument.ToString();
 			txtCPECode.Text = id;
-			string connectionstring = ConfigurationManager.ConnectionStrings["connection_"].ConnectionString;
+			string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 			using (SqlConnection conn = new SqlConnection(connectionstring))
 			{
 				conn.Open();

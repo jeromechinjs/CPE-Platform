@@ -86,10 +86,10 @@
 													<td><%# Eval("CPEDate") %></td>
 													<td><%# Eval("Rewards") %></td>
 													<td>
-														<asp:LinkButton ID="btnupdate" CommandName="Update" OnCommand="btnupdate_Command" CommandArgument='<%#Eval("CPECode") %>' CssClass="btn btn-sm brn-primary" runat="server"><i class="glyphicon glyphicon-pencil"></i></asp:LinkButton>
+														<asp:LinkButton ID="btnupdate" CommandName="Update" OnCommand="btnupdate_Command" CommandArgument='<%#Eval("CPECode") %>' CssClass="btn btn-sm btn-primary" runat="server"><i class="glyphicon glyphicon-pencil"></i></asp:LinkButton>
 														<asp:LinkButton CommandName="Delete" ID="btndlt" CommandArgument='<%#Eval("CPECode") %>'
 															OnClientClick="return confirm('Are you sure you want to delete this !');"
-															OnCommand="btndlt_Command" CssClass="btn btn-sm brn-danger" runat="server"><i class="glyphicon glyphicon-trash"></i></asp:LinkButton>
+															OnCommand="btndlt_Command" CssClass="btn btn-sm btn-danger" runat="server"><i class="glyphicon glyphicon-trash"></i></asp:LinkButton>
 													</td>
 												</tr>
 											</ItemTemplate>
