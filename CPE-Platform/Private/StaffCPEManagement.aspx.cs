@@ -43,8 +43,9 @@ namespace CPE_Platform.Private
 				{
 					cmd = new SqlCommand("INSERT INTO CPE_Course(CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards)" +
 					" values(@CPECode,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards)", con);
+					cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
 				}
-				cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
+				
 				cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
 				int cpeSeatAmount, cpeRewards;
