@@ -14,8 +14,9 @@ namespace CPE_Platform
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\DatabaseCPE.mdf\";Integrated Security=True");
+			SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\DatabaseCPE.mdf\";Integrated Security=True");
             SqlCommand cmd = new SqlCommand("Select StudentName from Student where StudentID = @StudentID", con);
+
             cmd.Parameters.AddWithValue("@StudentID", Session["StudentID"].ToString());
 
             con.Open();
