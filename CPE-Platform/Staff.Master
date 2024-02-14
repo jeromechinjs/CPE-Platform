@@ -44,7 +44,7 @@
 			<div class="container px-4 m-0">
 				<a class="navbar-brand text-white d-flex align-items-center flex-grow-1" runat="server" href="#">
 					<img src="src/tarucLogo.png" width="20" height="23.48" class="d-inline-block me-2" alt="">
-					Student Intranet
+					Staff Intranet
 				</a>
 				<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
 					aria-expanded="false" aria-label="Toggle navigation">
