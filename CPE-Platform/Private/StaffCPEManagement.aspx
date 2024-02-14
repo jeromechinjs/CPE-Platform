@@ -25,7 +25,8 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
-						<label>CPE Code</label>
+						<asp:Label ID="lblCPECode" runat="server" Text="CPE Code"></asp:Label>
+						<%--<label id ="lblCPECode">CPE Code</label>--%>
 						<asp:TextBox ID="txtCPECode" CssClass="form-control" placeholder="CPE Code" runat="server" />
 						<label>CPE Course Name</label>
 						<asp:TextBox ID="txtCPEDesc" CssClass="form-control" placeholder="CPE Course Name" runat="server" />
@@ -36,9 +37,9 @@
 						<%--<asp:HiddenField ID="CPECode" runat="server" />--%>
 						<label>CPE Start and End Date</label>
 						<asp:DropDownList ID="dllDate" CssClass="form-control" runat="server">
-							<asp:ListItem Value="">Select Status</asp:ListItem>
-							<asp:ListItem Text="01 Feb 2024 - 03 March 2024" />
-							<asp:ListItem Text="01 May 2024 - 01 June 2024" />
+							<asp:ListItem Value="">Select Date</asp:ListItem>
+							<asp:ListItem Value="01-Feb-2024">01 Feb 2024 - 03 March 2024</asp:ListItem>
+							<asp:ListItem Value="01-May-2024">01 May 2024 - 01 June 2024</asp:ListItem>
 						</asp:DropDownList>
 						<label>Rewards Of the Course</label>
 						<asp:TextBox ID="txtCPERewards" CssClass="form-control" placeholder="Points" runat="server" />
@@ -103,7 +104,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<asp:SqlDataSource ID="ds1"
 		ConnectionString="<%$ConnectionStrings:ConnectionString %>" runat="server"
 		SelectCommand="select * from CPE_Course" />
