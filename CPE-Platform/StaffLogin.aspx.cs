@@ -55,7 +55,7 @@ namespace CPE_Platform
 						Session["StaffID"] = txtStaffID.Text;
 						Session["userType"] = "staff";
 						FormsAuthentication.RedirectFromLoginPage(txtStaffID.Text, false);
-						Response.Redirect("~/Private/Dashboard.aspx");  // will redirect to home page once home page is created
+						Response.Redirect("~/Private/StaffCPEManagement.aspx");  // will redirect to home page once home page is created
 					}
 					else
 					{
