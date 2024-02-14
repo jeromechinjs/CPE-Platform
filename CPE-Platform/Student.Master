@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CPE_Platform.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student.Master.cs" Inherits="CPE_Platform.StudentMaster" %>
 
 <!DOCTYPE html>
 
@@ -69,10 +69,7 @@
 						<ul class="dropdown-menu form-select">
 							<li><a class="dropdown-item" href="StudentProfileManagement.aspx">Profile</a></li>
 							<li><a class="dropdown-item" href="#">Set Password</a></li>
-							<%--<li><a id="btn_logout" class="dropdown-item" href="~/loginSelection.aspx">Log Out</a></li>--%>
-							<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-								<li><asp:HyperLink ID="btn_logout" class="dropdown-item" NavigateUrl="~/LoginSelection.aspx" OnClick="Logout" runat="server">Log Out</asp:HyperLink></li>
-							</asp:ContentPlaceHolder>
+							<li><asp:HyperLink ID="btn_logout" class="dropdown-item" NavigateUrl="~/LoginSelection.aspx" OnClick="Logout" runat="server">Log Out</asp:HyperLink></li>
 						</ul>
 					</div>
 

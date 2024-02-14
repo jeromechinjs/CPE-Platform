@@ -54,9 +54,8 @@ namespace CPE_Platform
 					if(isValidUser)
 					{
 						Session["StudentID"] = txtStudentID.Text;
-                        Session["userType"] = "student";
                         FormsAuthentication.RedirectFromLoginPage(txtStudentID.Text, false);
-						Response.Redirect("~/Private/Dashboard.aspx");  // will redirect to home page once home page is created
+						Response.Redirect("~/Private/StudentDashboard.aspx");  // will redirect to home page once home page is created
 					}
 					else
 					{

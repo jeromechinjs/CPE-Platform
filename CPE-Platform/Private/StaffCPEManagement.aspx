@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Staff CPE Management" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StaffCPEManagement.aspx.cs" Inherits="CPE_Platform.Private.StaffCPEManagement" %>
+﻿<%@ Page Title="Staff CPE Management" Language="C#" MasterPageFile="~/Staff.Master" AutoEventWireup="true" CodeBehind="StaffCPEManagement.aspx.cs" Inherits="CPE_Platform.Private.StaffCPEManagement" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 	<!DOCTYPE html>
