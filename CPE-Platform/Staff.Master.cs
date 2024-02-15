@@ -14,10 +14,12 @@ namespace CPE_Platform
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\DatabaseCPE.mdf\";Integrated Security=True");
+            string staffID = Session["StaffID"].ToString();
+
+			SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\DatabaseCPE.mdf\";Integrated Security=True");
             SqlCommand cmd = new SqlCommand("Select StaffName from Staff where StaffID = @StaffID", con);
 
-            cmd.Parameters.AddWithValue("@StaffID", Session["StaffID"].ToString());
+            cmd.Parameters.AddWithValue("@StaffID", staffID);
 
             con.Open();
             cmd.ExecuteNonQuery();
