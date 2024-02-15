@@ -15,15 +15,6 @@ namespace CPE_Platform.Private
 	{
 
 		/// <summary>
-		/// lblmsg control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblmsg;
-
-		/// <summary>
 		/// lblCPECode control.
 		/// </summary>
 		/// <remarks>
@@ -85,6 +76,15 @@ namespace CPE_Platform.Private
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtCPERewards;
+
+		/// <summary>
+		/// lblmsg control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblmsg;
 
 		/// <summary>
 		/// btnsave control.

@@ -70,7 +70,7 @@ namespace CPE_Platform.Private
 					txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
 					txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
 					txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
-					dllDate.SelectedValue = dataReader["CPEDate"].ToString();
+					dllDate.SelectedValue = dataReader["CPEDate"].ToString().Trim();
 					txtCPERewards.Text = dataReader["Rewards"].ToString();
 				}
 				dataReader.Close();
@@ -103,7 +103,7 @@ namespace CPE_Platform.Private
 					if (existingCPECount == 0)
 					{
 
-						cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards)", con);
+						cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards,ModifiedDate) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards,@ModifiedDate)", con);
 						cmd.Parameters.AddWithValue("@id", txtCPECode.Text);
 						cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
@@ -120,6 +120,8 @@ namespace CPE_Platform.Private
 							// Conversion successful, add the parameter
 							cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
 						}
+						DateTime currentDateTime = DateTime.Now;
+						cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
 						int rowsaffected = cmd.ExecuteNonQuery();
 
 						if (rowsaffected > 0)
@@ -143,7 +145,7 @@ namespace CPE_Platform.Private
 					string id = txtCPECode.Text;
 
 					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
-				"CPEDate=@CPEDate,Rewards=@Rewards where CPECode=@id", con);
+				"CPEDate=@CPEDate,Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
 					cmd.Parameters.AddWithValue("@id", id);
 					cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
@@ -160,6 +162,9 @@ namespace CPE_Platform.Private
 						// Conversion successful, add the parameter
 						cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
 					}
+					DateTime currentDateTime = DateTime.Now;
+					cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
+
 					int rowsaffected = cmd.ExecuteNonQuery();
 
 					if (rowsaffected > 0)
