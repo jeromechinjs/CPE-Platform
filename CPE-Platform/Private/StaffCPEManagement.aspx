@@ -61,7 +61,7 @@
 					<div class="card-header">
 						<asp:Button Text="Open Modal" ID="modal" CssClass="btn btn-primary" OnClick="modal_Click" runat="server" />
 					</div>
-					<div class="card-content col-md-12 col-12">
+					<div class="card-content col-md-12">
 						<div class="card-body">
 							<div class="row-col-12">
 								<div class="col-md-12 col-12">

@@ -58,7 +58,10 @@ namespace CPE_Platform
 					}
 					else
 					{
-						lblErrorMsg.Text = "Invalid Staff ID or Password.";
+						string script = "alert('The Session is ended. Please Log in again');";
+						ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+						FormsAuthentication.SignOut();
 					}
 				}
 			}
