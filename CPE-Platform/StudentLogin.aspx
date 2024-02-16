@@ -14,9 +14,9 @@
 				text-decoration: none;
 			}
 
-			a.custom-link:hover {
-				text-decoration: underline;
-			}
+				a.custom-link:hover {
+					text-decoration: underline;
+				}
 		</style>
 	</head>
 	</html>
@@ -48,9 +48,9 @@
 									</div>
 								</div>
 
-								<p class="small mb-3 pb-lg-2">
+								<div id="lblErrorColor" class="alert alert-danger small mb-3 pb" role="alert" runat="server">
 									<asp:Label runat="server" ID="lblErrorMsg"></asp:Label>
-								</p>
+								</div>
 								<p class="small mb-3 pb-lg-2">
 									<asp:HyperLink class="text-white-50 custom-link" ID="navForgetPassword" NavigateUrl="~/Public/StudentForgetPassword.aspx" runat="server">Forgot password?</asp:HyperLink>
 								</p>

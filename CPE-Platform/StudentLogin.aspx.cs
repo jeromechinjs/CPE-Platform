@@ -26,8 +26,8 @@ namespace CPE_Platform
 
 		protected void Page_Load(object sender, EventArgs e)
         {
-			//FormsAuthentication.SignOut();
-        }
+			lblErrorColor.Visible = false;
+		}
 
 		protected void btnStudentLogin_Click(object sender, EventArgs e)
 		{
@@ -44,6 +44,7 @@ namespace CPE_Platform
 				{
 					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
 					String errorMsg = "Invalid Student ID or Password. Please Try again";
+					lblErrorColor.Visible = true;
 					lblErrorMsg.Text = errorMsg;
 					//Response.Write("<script>alert('Invalid Student ID or Password. Please Try again')</script>");
 				}

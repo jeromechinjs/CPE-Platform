@@ -24,7 +24,7 @@ namespace CPE_Platform
 		}
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			lblErrorColor.Visible = false;
 		}
 
 		protected void btnStaffLogin_Click(object sender, EventArgs e)
@@ -43,6 +43,7 @@ namespace CPE_Platform
 				{
 					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
 					String errorMsg = "Invalid Staff ID or Password. Please Try again";
+					lblErrorColor.Visible = true;
 					lblErrorMsg.Text = errorMsg;
 					//Response.Write("<script>alert('Invalid Staff ID or Password. Please Try again')</script>");
 				}
