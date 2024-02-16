@@ -105,6 +105,24 @@ namespace CPE_Platform.Private
 		protected global::System.Web.UI.WebControls.Button modal;
 
 		/// <summary>
+		/// txtSearch control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtSearch;
+
+		/// <summary>
+		/// btnSearch control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnSearch;
+
+		/// <summary>
 		/// rptr1 control.
 		/// </summary>
 		/// <remarks>
@@ -112,14 +130,5 @@ namespace CPE_Platform.Private
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Repeater rptr1;
-
-		/// <summary>
-		/// ds1 control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.SqlDataSource ds1;
 	}
 }

@@ -12,19 +12,27 @@ using System.Xml.Linq;
 
 namespace CPE_Platform.Private
 {
-	
+
 	public partial class StaffCPEManagement : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
+			if (!IsPostBack)
+			{
+
+				DataTable initialData = GetDataFromDatabase("");
+				rptr1.DataSource = initialData;
+				rptr1.DataBind();
+
+			}
+
 		}
 
 		protected void modal_Click(object sender, EventArgs e)
 		{
 			string script = "$('#mymodal').modal('show');";
 			ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
-			Session["IsUpdateFlag"] = false;	// session to set whether the user clicked which button
+			Session["IsUpdateFlag"] = false;    // session to set whether the user clicked which button
 			txtCPECode.Text = "";
 			txtCPECode.ReadOnly = false;
 			txtCPEDesc.Text = null;
@@ -35,7 +43,7 @@ namespace CPE_Platform.Private
 			lblmsg.Text = null;
 		}
 
-	
+
 
 		protected void btndlt_Command(object sender, CommandEventArgs e)
 		{
@@ -51,6 +59,9 @@ namespace CPE_Platform.Private
 			rptr1.DataBind();
 			string message = "Successfully Delete the record";
 			ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+			DataTable initialData = GetDataFromDatabase("");
+			rptr1.DataSource = initialData;
+			rptr1.DataBind();
 		}
 
 		protected void btnupdate_Command(object sender, CommandEventArgs e)
@@ -83,7 +94,7 @@ namespace CPE_Platform.Private
 
 		protected void btnsave_Click(object sender, EventArgs e)
 		{
-			
+
 			string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 			using (SqlConnection con = new SqlConnection(connectionstring))
 			{
@@ -92,7 +103,7 @@ namespace CPE_Platform.Private
 				con.Open();
 				bool isUpdateFlag = Session["IsUpdateFlag"] != null && (bool)Session["IsUpdateFlag"];
 				// check if the CPE code is exist
-				
+
 				if (!isUpdateFlag)
 				{
 					// to check whether the CPECode is exist
@@ -134,18 +145,18 @@ namespace CPE_Platform.Private
 						}
 					}
 					else
-					{ 
+					{
 						lblmsg.Text = "CPE Code is exist, cannot add into record";
 					}
 				}
-				
+
 				else
 				{
-					
+
 					string id = txtCPECode.Text;
 
 					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
-				"CPEDate=@CPEDate,Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
+					"CPEDate=@CPEDate,Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
 					cmd.Parameters.AddWithValue("@id", id);
 					cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
@@ -176,14 +187,57 @@ namespace CPE_Platform.Private
 						lblmsg.Text = "CPE Code is exist";
 					}
 				}
-				
+				//Response.Redirect("~/Private/StaffCPEManagement.aspx");
 				string script = "$('#mymodal').modal('show');";
 				ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
 				rptr1.DataBind();
 				con.Close();
 
+				DataTable initialData = GetDataFromDatabase("");
+				rptr1.DataSource = initialData;
+				rptr1.DataBind();
+
+
 			}
 		}
 
+		private DataTable GetDataFromDatabase(string searchKeyword)
+		{
+			// Define your SQL query to fetch data based on the search query
+			string query = "SELECT CONCAT(CPECode, ' ', CPEDesc) AS CPECourse, * FROM CPE_Course WHERE CONCAT(CPECode, ' ', CPEDesc) LIKE @DescKeywords";
+
+			// Execute the query using ADO.NET and fetch data into a DataTable
+			DataTable searchData = new DataTable();
+			using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+			{
+				using (SqlCommand cmd = new SqlCommand(query, con))
+				{
+					// Add parameter to the command for search query
+					cmd.Parameters.AddWithValue("@DescKeywords", "%" + searchKeyword + "%");
+					
+					// Open connection and execute command
+					con.Open();
+					SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+					adapter.Fill(searchData);
+					//con.Close();
+				}
+			}
+			return searchData;
+		}
+
+
+
+		protected void btnSearch_Click(object sender, EventArgs e)
+		{
+			// Get the search criteria from the text box txtSearch
+			string searchKeyword = txtSearch.Text.Trim();
+
+			// Fetch data from the database based on the search query
+			DataTable searchData = GetDataFromDatabase(searchKeyword); // Implement this method to fetch data
+
+			// Bind the search result to the repeater
+			rptr1.DataSource = searchData;
+			rptr1.DataBind();
+		}
 	}
 }
