@@ -12,6 +12,19 @@
 
 	</head>
 	<body>
+		<script type="text/javascript">
+			function handleKeyPress(e) {
+				// Check if the key pressed is "Enter"
+				if (e.keyCode === 13) {
+					// Prevent default behavior (form submission)
+					e.preventDefault();
+					// Trigger the click event of the search button
+					document.getElementById('<%= btnSearch.ClientID %>').click();
+					return false;
+				}
+				return true;
+			}
+		</script>
 	</body>
 	</html>
 
@@ -29,6 +42,7 @@
 						<asp:Label ID="lblCPECode" runat="server" Text="CPE Code"></asp:Label>
 						<%--<label id ="lblCPECode">CPE Code</label>--%>
 						<asp:TextBox ID="txtCPECode" CssClass="form-control" placeholder="CPE Code" runat="server" />
+						
 						<label>CPE Course Name</label>
 						<asp:TextBox ID="txtCPEDesc" CssClass="form-control" placeholder="CPE Course Name" runat="server" />
 						<label>CPE Seat Amount</label>
@@ -68,8 +82,8 @@
 
 							<div class="col-sm">
 								<div class="input-group justify-content-end">
-									<asp:TextBox ID="txtSearch" CssClass="form-control" placeholder="Search" runat="server" />
-									<asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" /><i class="fas fa-search"></i>
+									<asp:TextBox ID="txtSearch" CssClass="form-control" placeholder="Search" runat="server" onkeypress="return handleKeyPress(event)" />
+									<asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click"/><i class="fas fa-search"></i>
 								</div>
 							</div>
 						</div>

@@ -113,40 +113,54 @@ namespace CPE_Platform.Private
 
 					if (existingCPECount == 0)
 					{
-
-						cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards,ModifiedDate) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards,@ModifiedDate)", con);
-						cmd.Parameters.AddWithValue("@id", txtCPECode.Text);
-						cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
-
-						if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
+						if (string.IsNullOrEmpty(txtCPECode.Text) || string.IsNullOrEmpty(txtCPEDesc.Text) || string.IsNullOrEmpty(txtCPEPrice.Text) || string.IsNullOrEmpty(txtCPERewards.Text) || string.IsNullOrEmpty(txtCPESeat.Text))
 						{
-							// Conversion successful, add the parameter
-							cmd.Parameters.AddWithValue("@CPESeatAmount", cpeSeatAmount);
-						}
-
-						cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
-						cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
-						if (int.TryParse(txtCPERewards.Text, out cpeRewards))
-						{
-							// Conversion successful, add the parameter
-							cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
-						}
-						DateTime currentDateTime = DateTime.Now;
-						cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
-						int rowsaffected = cmd.ExecuteNonQuery();
-
-						if (rowsaffected > 0)
-						{
-							lblmsg.Text = "Data Insert Successfully";
+							lblmsg.Text = "Please fill up the information";
 						}
 						else
 						{
-							lblmsg.Text = "CPE Code is exist";
+							cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards,ModifiedDate) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards,@ModifiedDate)", con);
+							cmd.Parameters.AddWithValue("@id", txtCPECode.Text);
+							cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
+
+							if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
+							{
+								// Conversion successful, add the parameter
+								cmd.Parameters.AddWithValue("@CPESeatAmount", cpeSeatAmount);
+							}
+
+
+
+							cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
+							cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
+							if (int.TryParse(txtCPERewards.Text, out cpeRewards))
+							{
+								// Conversion successful, add the parameter
+								cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
+							}
+							else
+							{
+								cmd.Parameters.AddWithValue("@Rewards", DBNull.Value);
+							}
+
+							DateTime currentDateTime = DateTime.Now;
+							cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
+							int rowsaffected = cmd.ExecuteNonQuery();
+
+							if (rowsaffected > 0)
+							{
+								lblmsg.Text = "Data Insert Successfully";
+							}
+							else
+							{
+								lblmsg.Text = "CPE Code exists";
+
+							}
 						}
 					}
 					else
 					{
-						lblmsg.Text = "CPE Code is exist, cannot add into record";
+						lblmsg.Text = "Please Enter a valid Data";
 					}
 				}
 
@@ -214,7 +228,7 @@ namespace CPE_Platform.Private
 				{
 					// Add parameter to the command for search query
 					cmd.Parameters.AddWithValue("@DescKeywords", "%" + searchKeyword + "%");
-					
+
 					// Open connection and execute command
 					con.Open();
 					SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -225,19 +239,66 @@ namespace CPE_Platform.Private
 			return searchData;
 		}
 
-
-
 		protected void btnSearch_Click(object sender, EventArgs e)
 		{
 			// Get the search criteria from the text box txtSearch
 			string searchKeyword = txtSearch.Text.Trim();
-
 			// Fetch data from the database based on the search query
 			DataTable searchData = GetDataFromDatabase(searchKeyword); // Implement this method to fetch data
 
-			// Bind the search result to the repeater
-			rptr1.DataSource = searchData;
-			rptr1.DataBind();
+			// Check if search results are empty
+			if (searchData.Rows.Count == 0)
+			{
+				
+				// Clear any existing rows in the DataTable
+				searchData.Rows.Clear();
+				
+				// Bind the DataTable to the repeater to display the message
+				rptr1.DataSource = searchData;
+				rptr1.DataBind();
+				HideEditAndDeleteButtons();
+
+			}
+			else
+			{
+				// Bind the search result to the repeater
+				rptr1.DataSource = searchData;
+				rptr1.DataBind();
+
+				ShowEditAndDeleteButtons();
+			}
+
+			
+		}
+
+		// Method to hide the edit and delete buttons
+		private void HideEditAndDeleteButtons()
+		{
+			foreach (RepeaterItem item in rptr1.Items)
+			{
+				LinkButton btnUpdate = (LinkButton)item.FindControl("btnupdate");
+				LinkButton btnDelete = (LinkButton)item.FindControl("btndlt");
+				if (btnUpdate != null && btnDelete != null)
+				{
+					btnUpdate.Visible = false;
+					btnDelete.Visible = false;
+				}
+			}
+		}
+
+		// Method to show the edit and delete buttons
+		private void ShowEditAndDeleteButtons()
+		{
+			foreach (RepeaterItem item in rptr1.Items)
+			{
+				LinkButton btnUpdate = (LinkButton)item.FindControl("btnupdate");
+				LinkButton btnDelete = (LinkButton)item.FindControl("btndlt");
+				if (btnUpdate != null && btnDelete != null)
+				{
+					btnUpdate.Visible = true;
+					btnDelete.Visible = true;
+				}
+			}
 		}
 	}
 }
