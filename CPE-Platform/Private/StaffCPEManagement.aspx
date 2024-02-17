@@ -118,12 +118,12 @@
 													<td><%# Eval("Rewards") %></td>
 													<td><%# Eval("ModifiedDate") %></td>
 													<td>
-														<asp:LinkButton ID="btnupdate" CommandName="Update" OnCommand="btnupdate_Command" CommandArgument='<%#Eval("CPECode") %>' CssClass="btn btn-sm btn-primary" runat="server"><span class="glyphicon glyphicon-pencil"></span></asp:LinkButton>
+														<asp:LinkButton ID="btnupdate" CommandName="Update" OnCommand="btnupdate_Command" CommandArgument='<%#Eval("CPECode") %>' CssClass="btn btn-sm btn-primary" runat="server"><span class="fas fa-edit"></span></asp:LinkButton>
 													</td>
 													<td>
 														<asp:LinkButton CommandName="Delete" ID="btndlt" CommandArgument='<%#Eval("CPECode") %>'
 															OnClientClick="return confirm('Are you sure you want to delete this !');"
-															OnCommand="btndlt_Command" CssClass="btn btn-sm btn-danger" runat="server"><i class="glyphicon glyphicon-trash"></i></asp:LinkButton>
+															OnCommand="btndlt_Command" CssClass="btn btn-sm btn-danger" runat="server"><i class="delete_forever"></i></asp:LinkButton>
 													</td>
 												</tr>
 											</ItemTemplate>
