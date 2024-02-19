@@ -15,22 +15,22 @@ namespace CPE_Platform.Private
 	{
 
 		/// <summary>
-		/// lblCourseDropdown control.
+		/// rptrCPE control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblCourseDropdown;
+		protected global::System.Web.UI.WebControls.Repeater rptrCPE;
 
 		/// <summary>
-		/// CPECourse_DropDown control.
+		/// lblCPECourse control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList CPECourse_DropDown;
+		protected global::System.Web.UI.WebControls.Label lblCPECourse;
 
 		/// <summary>
 		/// lblStudentList control.
