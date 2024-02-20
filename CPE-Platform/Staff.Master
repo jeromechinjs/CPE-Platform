@@ -86,6 +86,10 @@
 				<div class="col-10 px-3 flex-column d-flex justify-content-center">
 					<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 
+					<%--these two are in the StaffRewardAllocation webpage--%>
+					<asp:ContentPlaceHolder ID="CPECard" runat="server"></asp:ContentPlaceHolder>
+					<asp:ContentPlaceHolder ID="DetailsContent" runat="server"></asp:ContentPlaceHolder>
+
 					<footer>
 						<p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
 					</footer>

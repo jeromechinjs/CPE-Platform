@@ -41,8 +41,16 @@ namespace CPE_Platform
 			}
 
 		}
-        
-        protected void Logout(object sender, EventArgs e)
+		public void ToggleCPECardVisibility(bool isVisible)
+		{
+			CPECard.Visible = isVisible;
+		}
+		public void ToggleCPEDetailsVisibility(bool isVisible)
+		{
+			DetailsContent.Visible = isVisible;
+		}
+
+		protected void Logout(object sender, EventArgs e)
 		{
 			FormsAuthentication.SignOut();
 		}

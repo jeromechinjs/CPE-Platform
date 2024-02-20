@@ -24,10 +24,13 @@ namespace CPE_Platform.Private
 		string query;
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			
 			if (!IsPostBack)
 			{
+				((StaffMaster)this.Master).ToggleCPECardVisibility(true);
+				((StaffMaster)this.Master).ToggleCPEDetailsVisibility(false);
 				//GetCPEName();
-				lstStudent.Items.Insert(0, " Select Students");
+				//lstStudent.Items.Insert(0, " Select Students");
 				BindCPEData();
 			}
 		}
@@ -47,6 +50,8 @@ namespace CPE_Platform.Private
 			{
 				// Retrieve the ID of the selected card
 				string selectedCPECourse = e.CommandArgument.ToString();
+				((StaffMaster)this.Master).ToggleCPECardVisibility(false);
+				((StaffMaster)this.Master).ToggleCPEDetailsVisibility(true);
 				string getRewards;
 				lblCPECourse.Text = selectedCPECourse;
 				string[] separatedCPE = selectedCPECourse.Trim().Split(new char[] { ' ' }, 2);
@@ -83,10 +88,6 @@ namespace CPE_Platform.Private
 						}
 					}
 				}
-
-				// Perform actions based on the selected card ID, such as retrieving details for editing
-				// You can redirect to another page or display the details on the same page for editing
-				//Response.Redirect($"EditCardDetails.aspx?CPECode={selectedCPECode}");
 			}
 		}
 		//private DataTable GetCPEDetailsFromDatabase(string CPECourse)
@@ -254,14 +255,18 @@ namespace CPE_Platform.Private
 			}
 			// reset the value after the button is clicked
 			//CPECourse_DropDown.SelectedValue = "0";
-			txtRewards.Text = string.Empty;
-			lstStudent.Items.Clear();
-			lstStudent.Items.Insert(0, " Select Students");
+			//txtRewards.Text = string.Empty;
+			//lstStudent.Items.Clear();
+			//lstStudent.Items.Insert(0, " Select Students");
 
 
 			// execute this message when click the assign button when fulfill the condition
-			message = "Successfully Assigned Rewards to the Students";
-			ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
+			string script = "alert('Successfully Assigned Rewards to the Students');";
+			ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+			string redirectScript = "setTimeout(function() { window.location.href = '../Private/StaffRewardsAllocation.aspx'; }, 100);"; // Redirect after 0.01 seconds (10 milliseconds)
+			ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+
 		}
 
 
