@@ -40,3 +40,12 @@ textarea {
 .font-11 {
     font-size: 11px;
 }
+
+.bg-maroon {
+    background-color: #892e65;
+}
+
+.dropdown-menu-right {
+    left: auto;
+    right: -5px;
+}
