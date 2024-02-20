@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -181,24 +182,32 @@ namespace CPE_Platform.Private
 					}
 
 					cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
-					cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
-					if (int.TryParse(txtCPERewards.Text, out cpeRewards))
+					if (dllDate.SelectedValue == "")
 					{
-						// Conversion successful, add the parameter
-						cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
-					}
-					DateTime currentDateTime = DateTime.Now;
-					cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
-
-					int rowsaffected = cmd.ExecuteNonQuery();
-
-					if (rowsaffected > 0)
-					{
-						lblmsg.Text = "Data Update Successfully";
+						lblmsg.Text = "Please select a valid date";
 					}
 					else
 					{
-						lblmsg.Text = "CPE Code is exist";
+						cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
+
+						if (int.TryParse(txtCPERewards.Text, out cpeRewards))
+						{
+							// Conversion successful, add the parameter
+							cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
+						}
+						DateTime currentDateTime = DateTime.Now;
+						cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
+
+						int rowsaffected = cmd.ExecuteNonQuery();
+
+						if (rowsaffected > 0)
+						{
+							lblmsg.Text = "Data Update Successfully";
+						}
+						else
+						{
+							lblmsg.Text = "CPE Code is exist";
+						}
 					}
 				}
 				//Response.Redirect("~/Private/StaffCPEManagement.aspx");
@@ -210,8 +219,6 @@ namespace CPE_Platform.Private
 				DataTable initialData = GetDataFromDatabase("");
 				rptr1.DataSource = initialData;
 				rptr1.DataBind();
-
-
 			}
 		}
 
