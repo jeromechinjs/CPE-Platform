@@ -10,8 +10,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
 	</head>
 	<body>
+		
 		<script type="text/javascript">
 			function handleKeyPress(e) {
 				// Check if the key pressed is "Enter"
@@ -42,7 +44,7 @@
 						<asp:Label ID="lblCPECode" runat="server" Text="CPE Code"></asp:Label>
 						<%--<label id ="lblCPECode">CPE Code</label>--%>
 						<asp:TextBox ID="txtCPECode" CssClass="form-control" placeholder="CPE Code" runat="server" />
-						
+
 						<label>CPE Course Name</label>
 						<asp:TextBox ID="txtCPEDesc" CssClass="form-control" placeholder="CPE Course Name" runat="server" />
 						<label>CPE Seat Amount</label>
@@ -77,13 +79,14 @@
 					<div class="card-header">
 						<div class="row">
 							<div class="col-sm">
-								<asp:Button Text="Open Modal" ID="modal" CssClass="btn btn-outline-info" OnClick="modal_Click" runat="server" />
+								<asp:Button Text="Add Record" ID="modal" CssClass="btn btn-outline-info" OnClick="modal_Click" runat="server" />
 							</div>
 
 							<div class="col-sm">
 								<div class="input-group justify-content-end">
-									<asp:TextBox ID="txtSearch" CssClass="form-control" placeholder="Search" runat="server" onkeypress="return handleKeyPress(event)" />
-									<asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click"/><i class="fas fa-search"></i>
+									<asp:TextBox ID="txtSearch" CssClass="form-control" placeholder="&#xF002; Search" style="font-family:FontAwesome" runat="server" onkeypress="return handleKeyPress(event)" />
+									<asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
+
 								</div>
 							</div>
 						</div>
@@ -105,7 +108,7 @@
 													<th>Modified Date</th>
 													<th>Edit</th>
 													<th>Delete</th>
-													
+
 												</tr>
 											</HeaderTemplate>
 											<ItemTemplate>
@@ -118,12 +121,12 @@
 													<td><%# Eval("Rewards") %></td>
 													<td><%# Eval("ModifiedDate") %></td>
 													<td>
-														<asp:LinkButton ID="btnupdate" CommandName="Update" OnCommand="btnupdate_Command" CommandArgument='<%#Eval("CPECode") %>' CssClass="btn btn-sm btn-primary" runat="server"><span class="fas fa-edit"></span></asp:LinkButton>
+														<asp:LinkButton ID="btnupdate" CommandName="Update" OnCommand="btnupdate_Command" CommandArgument='<%#Eval("CPECode") %>' runat="server"><span class="fa fa-edit"></span></asp:LinkButton>
 													</td>
 													<td>
 														<asp:LinkButton CommandName="Delete" ID="btndlt" CommandArgument='<%#Eval("CPECode") %>'
 															OnClientClick="return confirm('Are you sure you want to delete this !');"
-															OnCommand="btndlt_Command" CssClass="btn btn-sm btn-danger" runat="server"><i class="delete_forever"></i></asp:LinkButton>
+															OnCommand="btndlt_Command" runat="server"><i class="fa fa-trash text-danger"></i></asp:LinkButton>
 													</td>
 												</tr>
 											</ItemTemplate>
@@ -137,9 +140,4 @@
 			</div>
 		</div>
 	</section>
-
-	<%--<asp:SqlDataSource ID="ds1"
-		ConnectionString="<%$ConnectionStrings:ConnectionString %>" runat="server"
-		SelectCommand="select * from CPE_Course" />--%>
-
 </asp:Content>
