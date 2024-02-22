@@ -56,14 +56,16 @@
 						<li class="nav-item"><a class="nav-link" runat="server" href="~/"></a></li>
 						<li class="nav-item"><a class="nav-link" runat="server" href="~/About"></a></li>
 						<li class="nav-item p-2 bg-maroon">
-							<a data-bs-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
-								<i class="fa fa-bell text-white"></i>
-								<span class="badge badge-danger">41</span>
-							</a>
-							<ul class="dropdown-menu-right dropdown-menu">
-								<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
-								<li><a class="dropdown-item" href="#">Annoucements</a></li>
-							</ul>
+							<div class="dropdown">
+								<button class="btn btn-light dropdown-toggle d-flex rounded-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="fa fa-bell text-white"></i>								
+								</button>
+
+								<ul class="dropdown-menu form-select dropdown-menu-right">
+									<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
+									<li><a class="dropdown-item" href="#">Annoucements</a></li>
+								</ul>
+							</div>
 						</li>
 						
 					</ul>
