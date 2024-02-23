@@ -43,7 +43,7 @@
 
 		<nav class="navbar navbar-expand-lg ">
 			<div class="container px-4 m-0">
-				<a class="navbar-brand text-white d-flex align-items-center flex-grow-1" runat="server" href="#">
+				<a class="navbar-brand text-white d-flex align-items-center" runat="server" href="#">
 					<img src="src/tarucLogo.png" width="20" height="23.48" class="d-inline-block me-2" alt="">
 					Student Intranet
 				</a>
@@ -51,15 +51,16 @@
 					aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse d-sm-inline-flex">
-					<ul class="navbar-nav flex-grow-1">
+				<div class="collapse navbar-collapse justify-content-end d-sm-inline-flex">
+					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" runat="server" href="~/"></a></li>
 						<li class="nav-item"><a class="nav-link" runat="server" href="~/About"></a></li>
-						<li class="nav-item p-2 bg-maroon">
+						<!-- icon -->
+						<li class="nav-item p-2 bg-lightgreen">
 							<div class="dropdown">
-								<button class="btn btn-light dropdown-toggle d-flex rounded-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-bell text-white"></i>								
-								</button>
+								<span class="btn dropdown-toggle d-flex rounded-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="fa fa-tasks text-white"></i>								
+								</span>
 
 								<ul class="dropdown-menu form-select dropdown-menu-right">
 									<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
@@ -67,7 +68,19 @@
 								</ul>
 							</div>
 						</li>
-						
+						<!-- icon -->
+						<li class="nav-item p-2 bg-maroon">
+							<div class="dropdown">
+								<span class="btn dropdown-toggle d-flex rounded-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="fa fa-bell text-white"></i>								
+								</span>
+
+								<ul class="dropdown-menu form-select dropdown-menu-right">
+									<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
+									<li><a class="dropdown-item" href="#">Annoucements</a></li>
+								</ul>
+							</div>
+						</li>
 					</ul>
 
 					<div class="dropdown">

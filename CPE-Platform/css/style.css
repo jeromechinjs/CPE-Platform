@@ -45,6 +45,10 @@ textarea {
     background-color: #892e65;
 }
 
+.bg-lightgreen {
+    background-color: #9abc32;
+}
+
 .dropdown-menu-right {
     left: auto;
     right: -5px;
