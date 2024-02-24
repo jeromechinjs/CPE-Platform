@@ -42,7 +42,7 @@
 		</asp:ScriptManager>
 
 		<nav class="navbar navbar-expand-lg ">
-			<div class="container px-4 m-0">
+			<div class="container-fluid px-3 m-0">
 				<a class="navbar-brand text-white d-flex align-items-center" runat="server" href="#">
 					<img src="src/tarucLogo.png" width="20" height="23.48" class="d-inline-block me-2" alt="">
 					Student Intranet
