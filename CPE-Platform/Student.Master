@@ -103,14 +103,25 @@
 			</div>
 		</nav>
 
-		<div class="container-fluid h-100 p-0">
+		<div class="container-fluid body-content p-0">
 			<div class="row h-100">
 				<div class="col-2 flex-column">
 					<section class="sidebar h-100">
-						<div class="sidebar-shortcut">
+						<div class="sidebar-shortcut p-1">
 							<button class="btn btn-success rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="fa fa-home text-white"></i>			
 							</button>
+							<button class="btn btn-info rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-home text-white"></i>			
+							</button>
+							<button class="btn btn-success rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-home text-white"></i>			
+							</button>
+							<button class="btn btn-mail rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-home text-white"></i>			
+							</button>
+							intranet under maintenance, will cont tmr
+
 						</div>
 					</section>
 				</div>
@@ -119,7 +130,7 @@
 					<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 
 					<footer>
-						<p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+
 					</footer>
 				</div>
 			</div>
