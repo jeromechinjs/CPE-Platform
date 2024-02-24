@@ -78,7 +78,7 @@
 			</div>
 		</nav>
 
-		<div class="container-fluid body-content p-0">
+		<div class="container-fluid h-100 p-0">
 			<div class="row h-100">
 				<div class="col-2 flex-column">
 					<section class="sidebar h-100"></section>

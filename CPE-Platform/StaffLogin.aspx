@@ -32,18 +32,18 @@
         background-size: cover;
         background-position: center;
         width: 100%;
-        height: 90vh;
+        height: 100vh;
     }
 		
 		</style>
 	</head>
 	</html>
 
-	<section class="mh-50 background-img">
+	<section class="background-img">
 		
-		<div class="container py-3 h-50 ">
+		<div class="container py-3 ">
 			
-			<div class="row d-flex justify-content-center align-items-center h-50">
+			<div class="row d-flex justify-content-center align-items-center">
 				<div class="col-12 col-md-8 col-lg-6 col-xl-4">
 					<img class="img-fluid p-2 mx-5" style="max-width: 50%;" alt="tarumt logo" src="Resources/tarumt-logo.png" />
 					<h2 class="text-lg-center mb-3 mx-5-custom" style="color:antiquewhite;"><span style="color: palevioletred">TAR </span><span style="color: cornflowerblue">UMT</span> Staff Intranet</h2>

@@ -103,10 +103,16 @@
 			</div>
 		</nav>
 
-		<div class="container-fluid body-content p-0">
+		<div class="container-fluid h-100 p-0">
 			<div class="row h-100">
 				<div class="col-2 flex-column">
-					<section class="sidebar h-100"></section>
+					<section class="sidebar h-100">
+						<div class="sidebar-shortcut">
+							<button class="btn btn-success rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-home text-white"></i>			
+							</button>
+						</div>
+					</section>
 				</div>
 
 				<div class="col-10 px-3 flex-column d-flex justify-content-center">
