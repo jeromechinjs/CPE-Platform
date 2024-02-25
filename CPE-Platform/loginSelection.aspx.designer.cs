@@ -11,25 +11,25 @@ namespace CPE_Platform
 {
 
 
-    public partial class loginSelection
-    {
+	public partial class loginSelection
+	{
 
-        /// <summary>
-        /// btnStaffLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStaffLogin;
+		/// <summary>
+		/// btnStaffLogin control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnStaffLogin;
 
-        /// <summary>
-        /// btnStudentLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStudentLogin;
-    }
+		/// <summary>
+		/// btnStudentLogin control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnStudentLogin;
+	}
 }

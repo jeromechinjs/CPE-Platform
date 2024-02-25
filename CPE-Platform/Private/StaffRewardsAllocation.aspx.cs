@@ -78,7 +78,7 @@ namespace CPE_Platform.Private
 							lstStudent.SelectedIndex = 0;
 
 							getRewards = ds.Tables[0].Rows[0]["Rewards"].ToString();
-							txtRewards.Text = getRewards;
+							txtRewards.Text = getRewards + " Points";
 						}
 						else  // execute only when the course selected doesn't have student registered
 						{
