@@ -34,9 +34,29 @@ textarea {
     background: #fafafa;
 }
 
+.sidebar-shortcut button {
+    width: 41px;
+}
+
+
 .btn-success, .btn-success:focus {
     background: #87b87f !important;
     border-color: #87b87f;
+}
+
+.btn-info, .btn-info:focus {
+    background-color: #6fb3e0 !important;
+    border-color: #6fb3e0;
+}
+
+.btn-warning, .btn-warning:focus {
+    background-color: #ffb752 !important;
+    border-color: #ffb752;
+}
+
+.btn-danger, .btn-danger:focus {
+    background-color: #d15b47 !important;
+    border-color: #d15b47;
 }
 
 /* Main content */

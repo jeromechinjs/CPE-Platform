@@ -112,15 +112,14 @@
 								<i class="fa fa-home text-white"></i>			
 							</button>
 							<button class="btn btn-info rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-home text-white"></i>			
+								<i class="fa fa-info text-white"></i>			
 							</button>
-							<button class="btn btn-success rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-home text-white"></i>			
+							<button class="btn btn-warning rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-sitemap text-white"></i>			
 							</button>
-							<button class="btn btn-mail rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-home text-white"></i>			
+							<button class="btn btn-danger rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa fa-envelope  text-white"></i>			
 							</button>
-							intranet under maintenance, will cont tmr
 
 						</div>
 					</section>
