@@ -25,7 +25,7 @@ namespace CPE_Platform.Public
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			lblErrorColor.Visible = false;
+			//lblErrorColor.Visible = false;
 			if (!IsPostBack)
 			{
 				if (!IsPasswordResetLinkValid())
