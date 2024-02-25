@@ -60,7 +60,7 @@
 									<i class="fa fa-tasks text-white"></i>								
 								</span>
 
-								<ul class="dropdown-menu form-select dropdown-menu-right">
+								<ul class="dropdown-menu form-select dropdown-menu-end">
 									<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
 									<li><a class="dropdown-item" href="#">Annoucements</a></li>
 								</ul>
@@ -73,7 +73,7 @@
 									<i class="fa fa-bell text-white"></i>								
 								</span>
 
-								<ul class="dropdown-menu form-select dropdown-menu-right">
+								<ul class="dropdown-menu form-select dropdown-menu-end">
 									<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
 									<li><a class="dropdown-item" href="#">Annoucements</a></li>
 								</ul>
@@ -90,7 +90,7 @@
 							</small>
 						</button>
 
-						<ul class="dropdown-menu form-select">
+						<ul class="dropdown-menu form-select dropdown-menu-end">
 							<li><a class="dropdown-item" href="StudentProfileManagement.aspx">Profile</a></li>
 							<li><a class="dropdown-item" href="#">Set Password</a></li>
 							<li><asp:HyperLink ID="btn_logout" class="dropdown-item" NavigateUrl="~/LoginSelection.aspx" OnClick="Logout" runat="server">Log Out</asp:HyperLink></li>
@@ -103,7 +103,7 @@
 
 		<div class="container-fluid body-content p-0">
 			<div class="row h-100">
-				<div class="col-2 flex-column">
+				<div class="col-2 flex-column p-0">
 					<section class="sidebar">
 						<!-- sidebar shortcut buttons -->
 						<div class="sidebar-shortcut d-flex justify-content-evenly p-1">
@@ -164,8 +164,11 @@
 					</section>
 				</div>
 
-				<div class="col-10 px-3 flex-column d-flex justify-content-center">
-					<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+				<div class="col-10 p-0 flex-column d-flex justify-content-start">
+					<asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+					<div class="px-3">
+						<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+					</div>
 
 					<footer>
 

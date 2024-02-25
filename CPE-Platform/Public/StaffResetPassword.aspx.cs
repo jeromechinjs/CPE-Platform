@@ -108,15 +108,15 @@ namespace CPE_Platform.Public
 				}
 				else
 				{
-					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+					//lblErrorMsg.ForeColor = System.Drawing.Color.Red;
 					
-					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					//lblErrorMsg.Text = "Password Reset link has expired or is invalid";
 				}
 
 			}
 			else
 			{
-				lblErrorMsg.Text = "Invalid Password.";
+				//lblErrorMsg.Text = "Invalid Password.";
 			}
 		}
 	}

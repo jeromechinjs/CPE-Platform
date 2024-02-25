@@ -1,5 +1,9 @@
 ﻿/* Set some basic padding to keep content from hitting the edges */
 /* Set widths on the form inputs since otherwise they're 100% wide */
+body {
+    overflow-x: hidden; /* hide horizontal scrollbar */
+}
+    
 input,
 select,
 textarea {
@@ -22,7 +26,7 @@ textarea {
 }
 
 .sidebar {
-    width: 95%;
+   /* width: 95%;*/
     height: 100%;
     background: #f2f2f2;
     border-style: solid;
@@ -64,6 +68,14 @@ textarea {
 .btn-danger, .btn-danger:focus {
     background-color: #d15b47 !important;
     border-color: #d15b47;
+}
+
+.breadcrumb {
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
+    min-height: 41px;
+    line-height: 40px;
+    padding: 0 12px 0 0;
 }
 
 /* Main content */
