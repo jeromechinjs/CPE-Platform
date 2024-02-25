@@ -47,7 +47,7 @@
 				<div class="col-12 col-md-8 col-lg-6 col-xl-4">
 					<img class="img-fluid p-2 mx-5" style="max-width: 50%;" alt="tarumt logo" src="Resources/tarumt-logo.png" />
 					<h2 class="text-lg-center mb-3 mx-5-custom" style="color:antiquewhite;"><span style="color: palevioletred">TAR </span><span style="color: cornflowerblue">UMT</span> Staff Intranet</h2>
-					<div class="card bg-white text-black" style="border-radius: 1rem;">
+					<div class="card text-black" style="border-radius: 1rem; background-color: aliceblue">
 						<div class="card-body p-6 text-center">
 							<div class="mb-md-5 mt-md-4 pb-2">
 								<h5 class="text-black-70 mb-4 font-weight-light" style="color:dodgerblue;"><i class="ace-icon fa fa-leaf" style="font-family:FontAwesome; color:limegreen;"></i> Please Enter Your Information</h5>
