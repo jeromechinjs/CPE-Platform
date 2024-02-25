@@ -36,6 +36,13 @@ textarea {
 
 .sidebar-shortcut button {
     width: 41px;
+    line-height: 24px;
+    border-width: 4px;
+    padding: 0px;
+}
+
+.sidebar-shortcut .fa {
+    font-size: 14px;
 }
 
 
