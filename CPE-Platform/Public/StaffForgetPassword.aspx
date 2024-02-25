@@ -63,7 +63,7 @@
 									--%>
 								</div>
 
-								<div id="lblErrorColor" class="alert alert-danger small mb-3 pb" role="alert" runat="server">
+								<div ID="lblErrorColor" class="alert alert-danger small mb-3 pb" role="alert" runat="server">
 									<asp:Label runat="server" ID="lblErrorMsg"></asp:Label>
 								</div>
 
