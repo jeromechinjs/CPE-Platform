@@ -41,7 +41,7 @@
 
 	<section class="background-img">
 		
-		<div class="container py-3 ">
+		<div class="container py-3">
 			
 			<div class="row d-flex justify-content-center align-items-center">
 				<div class="col-12 col-md-8 col-lg-6 col-xl-4">
@@ -75,7 +75,7 @@
 									<asp:HyperLink class="text-blue-50 custom-link" ID="navForgetPassword" NavigateUrl="~/Public/StaffForgetPassword.aspx" runat="server">Forgot password?</asp:HyperLink>
 								</p>
 				
-								<asp:Button ID="btnStaffLogin" class="btn btn-primary btn-lg px-5" runat="server" Text="Login" OnClick="btnStaffLogin_Click"></asp:Button>
+								<asp:Button ID="btnStaffLogin" class="btn btn-primary btn-lg px-5 rounded-0" runat="server" Text="Login" OnClick="btnStaffLogin_Click"></asp:Button>
 
 							</div>
 

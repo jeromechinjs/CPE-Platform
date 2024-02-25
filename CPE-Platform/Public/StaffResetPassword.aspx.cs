@@ -25,6 +25,7 @@ namespace CPE_Platform.Public
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			lblErrorColor.Visible = false;
 			if (!IsPostBack)
 			{
 				if (!IsPasswordResetLinkValid())
@@ -36,6 +37,7 @@ namespace CPE_Platform.Public
 					ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 				}
 			}
+			
 		}
 
 		private bool IsPasswordResetLinkValid()
@@ -107,6 +109,7 @@ namespace CPE_Platform.Public
 				else
 				{
 					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+					
 					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
 				}
 

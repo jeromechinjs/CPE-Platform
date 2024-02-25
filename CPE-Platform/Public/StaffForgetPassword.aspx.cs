@@ -18,7 +18,7 @@ namespace CPE_Platform.Public
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			lblErrorColor.Visible = false;
 		}
 
 		protected void btnConfirmStaffForgetPassword_Click(object sender, EventArgs e)
@@ -52,6 +52,7 @@ namespace CPE_Platform.Public
 						else
 						{
 							lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+							lblErrorColor.Visible = true;
 							lblErrorMsg.Text = "IC Number not found!";
 						}
 					}
