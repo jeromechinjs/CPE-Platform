@@ -104,7 +104,7 @@
 		<div class="container-fluid body-content p-0">
 			<div class="row h-100">
 				<div class="col-2 flex-column">
-					<section class="sidebar h-100">
+					<section class="sidebar vh-100">
 						<!-- sidebar shortcut buttons -->
 						<div class="sidebar-shortcut d-flex justify-content-evenly p-1">
 							<button class="btn btn-success rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
