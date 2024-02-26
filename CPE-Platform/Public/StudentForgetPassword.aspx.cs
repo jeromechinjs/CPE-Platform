@@ -18,7 +18,7 @@ namespace CPE_Platform
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			lblErrorColor.Visible = false;
 		}
 
 
@@ -53,6 +53,7 @@ namespace CPE_Platform
 						else
 						{
 							lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+							lblErrorColor.Visible = true;
 							lblErrorMsg.Text = "IC Number not found!";
 						}
 					}

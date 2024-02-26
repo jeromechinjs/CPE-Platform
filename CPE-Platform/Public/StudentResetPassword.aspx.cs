@@ -38,6 +38,7 @@ namespace CPE_Platform
 					string redirectScript = "setTimeout(function() { window.location.href = '../StudentLogin.aspx'; }, 10);"; // Redirect after 0.01 seconds (10 milliseconds)
 					ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 				}
+				
 			}
 		}
 
@@ -97,7 +98,6 @@ namespace CPE_Platform
 		{
 			if (Page.IsValid)
 			{
-
 				if (ChangeUserPassword())
 				{
 					string script = "alert('Password Changed Successfully!');";
@@ -109,14 +109,10 @@ namespace CPE_Platform
 				}
 				else
 				{
-					lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-					lblErrorMsg.Text = "Password Reset link has expired or is invalid";
+					string script = "alert('Password Changed Failed, Please Try Again');";
+					ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
 				}
 
-			}
-			else
-			{
-				lblErrorMsg.Text = "Invalid Password.";
 			}
 
 		}

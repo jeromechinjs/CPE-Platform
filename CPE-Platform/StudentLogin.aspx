@@ -29,7 +29,7 @@
 			}
 
 			.background-img {
-				background-image: url('/Resources/empty-blackboard.jpg');
+				background-image: url('/Resources/student_bg.jpg');
 				background-size: cover;
 				background-position: center;
 				width: 100%;
