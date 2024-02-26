@@ -64,7 +64,7 @@
 						<div class="card-body p-6 text-center">
 
 							<div class="mb-md-5 mt-md-4 pb-2">
-								<h3 class="text-black-70 mb-4" style="color: indianred;"><i class="ace-icon fa fa-unlock-alt" style="font-family: FontAwesome; color: indianred;"></i>Reset Password</h3>
+								<h3 class="text-black-70 mb-4" style="color: indianred;"><i class="ace-icon fa fa-unlock-alt" style="font-family: FontAwesome; color: indianred;"></i> Reset Password</h3>
 								<p class="text-black-70 mb-4" style="color: indianred;">Please enter your New Password</p>
 								<div>
 									<div class="form-outline form-white mb-4">
@@ -84,7 +84,7 @@
 								<div id="lblErrorColor" class="small mb-3 pb" role="alert" runat="server">
 									<asp:ValidationSummary ID="ValidationSum" ForeColor="Red" DisplayMode="SingleParagraph" runat="server" />
 								</div>
-								
+
 
 								<asp:Button ID="btnConfirmStudentForgetPassword" class="btn btn-danger btn-lg px-5 rounded-0" runat="server" Text="Submit" OnClick="btnConfirmStudentForgetPassword_Click"></asp:Button>
 							</div>
@@ -95,7 +95,6 @@
 									<asp:HyperLink ID="navRetrieveStudentLogin" class="text-red-50 fw-bold custom-link" Style="color: indianred" NavigateUrl="~/StudentLogin.aspx" runat="server">Back To Login <i class="ace-icon fa fa-arrow-right" style="font-family: FontAwesome; color: indianred;"></i></asp:HyperLink>
 								</p>
 							</div>
-
 						</div>
 					</div>
 				</div>
