@@ -32,7 +32,7 @@ namespace CPE_Platform.Public
 					string script = "alert('Password Reset link has expired or is invalid');";
 					ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
 
-					string redirectScript = "setTimeout(function() { window.location.href = '../StaffLogin.aspx'; }, 10);"; // Redirect after 0.01 seconds (10 milliseconds)
+					string redirectScript = "setTimeout(function() { window.location.href = '../StaffLogin.aspx'; }, 1);"; // Redirect after 0.001 seconds (1 milliseconds)
 					ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 				}
 			}
