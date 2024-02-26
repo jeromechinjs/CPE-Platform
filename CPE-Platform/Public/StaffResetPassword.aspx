@@ -61,7 +61,7 @@
 						<div class="card-body p-6 text-center">
 
 							<div class="mb-md-5 mt-md-4 pb-2">
-								<h3 class="text-black-70 mb-4" style="color: indianred;"><i class="ace-icon fa fa-key" style="font-family: FontAwesome; color: indianred;"></i>Reset Password</h3>
+								<h3 class="text-black-70 mb-4" style="color: indianred;"><i class="ace-icon fa fa-unlock-alt" style="font-family: FontAwesome; color: indianred;"></i>Reset Password</h3>
 								<p class="text-black-70 mb-4" style="color: indianred;">Please enter your New Password</p>
 								<div>
 									<div class="form-outline form-black mb-4">
