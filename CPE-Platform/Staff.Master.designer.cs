@@ -30,7 +30,7 @@ namespace CPE_Platform
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink btn_logout;
+		protected global::System.Web.UI.WebControls.LinkButton btn_logout;
 
 		/// <summary>
 		/// MainContent control.

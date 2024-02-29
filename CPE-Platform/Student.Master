@@ -93,7 +93,7 @@
 						<ul class="dropdown-menu form-select dropdown-menu-end">
 							<li><a class="dropdown-item" href="StudentProfileManagement.aspx">Profile</a></li>
 							<li><a class="dropdown-item" href="#">Set Password</a></li>
-							<li><asp:HyperLink ID="btn_logout" class="dropdown-item" NavigateUrl="~/LoginSelection.aspx" OnClick="Logout" runat="server">Log Out</asp:HyperLink></li>
+							<li><asp:LinkButton ID="btn_logout" class="dropdown-item" Text="Log Out" OnClick="Logout" runat="server"></asp:LinkButton></li>
 						</ul>
 					</div>
 

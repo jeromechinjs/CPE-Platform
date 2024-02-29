@@ -36,9 +36,32 @@ namespace CPE_Platform
             else
             {
 				FormsAuthentication.SignOut();
+				Response.Redirect("~/LoginSelection.aspx", true);
 			}
 
 
         }
-    }
+
+		protected void Logout(object sender, EventArgs e)
+		{
+			FormsAuthentication.SignOut();
+
+			// Drop all the information held in the session
+			Session.Clear();
+			Session.Abandon();
+
+			// clear authentication cookie
+			HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+			cookie1.Expires = DateTime.Now.AddYears(-1);
+			Response.Cookies.Add(cookie1);
+
+			// clear session cookie
+			HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
+			cookie2.Expires = DateTime.Now.AddYears(-1);
+			Response.Cookies.Add(cookie2);
+
+			// Redirect the user to the login page
+			Response.Redirect("~/LoginSelection.aspx", true);
+		}
+	}
 }
