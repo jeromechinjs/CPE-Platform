@@ -68,7 +68,7 @@
 						</button>
 
 						<ul class="dropdown-menu form-select">
-							<li><a class="dropdown-item" href="StudentProfileManagement.aspx">Profile</a></li>
+							<li><a class="dropdown-item" href="">Profile</a></li>
 							<li><a class="dropdown-item" href="#">Set Password</a></li>
 							<li><asp:HyperLink ID="btn_logout" class="dropdown-item" NavigateUrl="~/LoginSelection.aspx" OnClick="Logout" runat="server">Log Out</asp:HyperLink></li>
 						</ul>
