@@ -29,7 +29,7 @@
                                             <asp:Label class="card-text" ID="Label7" runat="server" Text='<%# Eval("CPEPrice") %>'></asp:Label>
                                             &nbsp;
                                             <span>Quantity: </span>
-                                            <asp:Label class="card-text" ID="productQuantity" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
+                                            <asp:Label class="card-text" ID="CPESeatAmount" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
                                             <br />
                                             <div class="d-flex flex-row-reverse mt-3">
                                                 <asp:Button class="btn btn-sm btn-primary" ID="Button2" runat="server" Text="Add To Cart" CommandArgument='<%# Eval("CPECode") %>' CommandName="AddToCart" OnClick="CartBtn_Click" OnClientClick="javascript:alert('Item added to Cart')" />
@@ -46,7 +46,7 @@
 
             </div>
         </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Product] inner join ProductCategory on Product.CategoryID=ProductCategory.CategoryID and ProductCategory.CategoryID=@CategoryID">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [CPE_Course]">
             <SelectParameters>
                 <asp:ControlParameter ControlID="DropDownList2" Name="CategoryID" PropertyName="SelectedValue" />
             </SelectParameters>

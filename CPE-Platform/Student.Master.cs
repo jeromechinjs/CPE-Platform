@@ -63,5 +63,17 @@ namespace CPE_Platform
 			// Redirect the user to the login page
 			Response.Redirect("~/LoginSelection.aspx", true);
 		}
-	}
+
+        protected void goDashboard(object sender, EventArgs e)
+        {
+            // Redirect the user to the dashboard page
+            Response.Redirect("~/Private/StudentDashboard.aspx", true);
+        }
+
+        protected void goCourses(object sender, EventArgs e)
+        {
+            // Redirect the user to the courses page
+            Response.Redirect("~/Private/Courses.aspx", true);
+        }
+    }
 }
