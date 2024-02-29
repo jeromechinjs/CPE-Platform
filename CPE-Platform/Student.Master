@@ -107,7 +107,7 @@
 					<section class="sidebar">
 						<!-- sidebar shortcut buttons -->
 						<div class="sidebar-shortcut d-flex justify-content-evenly p-1">
-							<button class="btn btn-success rounded-0" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<button class="btn btn-success rounded-0 ms-2" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="fa fa-home fa-fw text-white"></i>			
 							</button>
 							<button class="btn btn-info rounded-0" title="Info" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,19 +122,16 @@
 						</div>
 
 						<!-- sidebar nav items -->
-						<div class="accordion" id="sidebarNavAccordian">
+
+						<div class="accordion accordion-flush" id="sidebarNavAccordian">
 						  <div class="accordion-item">
 							<h2 class="accordion-header" id="headingOne">
-							  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							  <button class="accordion-button collapsed" id="dashboard-caret" type="button">
 								Dashboard
 							  </button>
 							</h2>
-							<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#sidebarNavAccordian">
-							  <div class="accordion-body">
-								This is the first item's accordion body.
-							  </div>
-							</div>
 						  </div>
+
 						  <div class="accordion-item">
 							<h2 class="accordion-header" id="headingTwo">
 							  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -147,6 +144,7 @@
 							  </div>
 							</div>
 						  </div>
+
 						  <div class="accordion-item">
 							<h2 class="accordion-header" id="headingThree">
 							  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">

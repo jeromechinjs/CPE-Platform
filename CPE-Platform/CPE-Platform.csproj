@@ -136,6 +136,7 @@
     <Content Include="Private\StaffCPEManagement.aspx" />
     <Content Include="Private\StaffRewardsAllocation.aspx" />
     <Content Include="Private\StaffDashboard.aspx" />
+    <Content Include="Private\Courses.aspx" />
     <Content Include="Public\RegisterStudentInfo.aspx" />
     <Content Include="Public\StaffForgetPassword.aspx" />
     <Content Include="Public\StaffResetPassword.aspx" />
@@ -305,6 +306,13 @@
     </Compile>
     <Compile Include="Private\StaffDashboard.aspx.designer.cs">
       <DependentUpon>StaffDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Courses.aspx.cs">
+      <DependentUpon>Courses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Courses.aspx.designer.cs">
+      <DependentUpon>Courses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public\RegisterStudentInfo.aspx.cs">

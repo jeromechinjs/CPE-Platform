@@ -25,8 +25,12 @@ textarea {
     max-height: 7vh;
 }
 
+.navbar-nav .nav-item {
+    height: 7vh;
+}
+
 .sidebar {
-   /* width: 95%;*/
+    width: 88%;
     height: 100%;
     background: #f2f2f2;
     border-style: solid;
@@ -69,6 +73,21 @@ textarea {
     background-color: #d15b47 !important;
     border-color: #d15b47;
 }
+
+.accordion-button, .accordion-body {
+    font-size: 13px;
+    background: #f8f8f8;
+    padding: 10px 22px;
+}
+
+.accordion-button::after { /* Accordian caret arrow*/
+    background-size: 11.5px;
+}
+
+#dashboard-caret::after {
+    display: none;
+}
+
 
 .breadcrumb {
     border-bottom: 1px solid #e5e5e5;
