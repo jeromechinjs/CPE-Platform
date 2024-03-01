@@ -21,7 +21,7 @@
 				<ItemTemplate>
 					<div class="col mb-4">
 						<div class="card h-100" style="width: 18rem;" runat="server">
-							<img src="https://cdn.vox-cdn.com/thumbor/1wMWCITHsPv5xhwGd3Mwghsi3tE=/11x17:1898x1056/320x213/filters:focal(807x387:1113x693):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/72921759/vlcsnap_2023_12_01_10h37m31s394.0.jpg" class="card-img-top" alt="" />
+							<img src="https://img.freepik.com/free-photo/education-day-arrangement-table-with-copy-space_23-2148721266.jpg?size=626&ext=jpg" class="card-img-top" alt="" />
 							<div class="card-body">
 								<h5 class="card-title" style="height: 80px;"><%# Eval("CPECourse") %></h5>
 								<p class="card-text"><%# Eval("CPEDate") %></p>
