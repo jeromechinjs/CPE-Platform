@@ -25,15 +25,14 @@
                                             <br />
                                             <asp:Label class="card-text" ID="Label6" runat="server" Text='<%# Eval("CPEDate") %>'></asp:Label>
                                             <br />
-                                            <span>MYR </span>
+                                            <span>RM </span>
                                             <asp:Label class="card-text" ID="Label7" runat="server" Text='<%# Eval("CPEPrice") %>'></asp:Label>
                                             &nbsp;
-                                            <span>Quantity: </span>
+                                            <span>Available Seats Left: </span>
                                             <asp:Label class="card-text" ID="CPESeatAmount" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
                                             <br />
                                             <div class="d-flex flex-row-reverse mt-3">
                                                 <asp:Button class="btn btn-sm btn-primary" ID="Button2" runat="server" Text="Add To Cart" CommandArgument='<%# Eval("CPECode") %>' CommandName="AddToCart" OnClick="CartBtn_Click" OnClientClick="javascript:alert('Item added to Cart')" />
-                                                
                                             </div>
                                         </div>
                                     </div>
