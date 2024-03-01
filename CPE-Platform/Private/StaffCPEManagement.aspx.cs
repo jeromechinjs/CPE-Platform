@@ -39,7 +39,8 @@ namespace CPE_Platform.Private
 			txtCPEDesc.Text = null;
 			txtCPEPrice.Text = null;
 			txtCPERewards.Text = null;
-			dllDate.SelectedValue = null;
+			dllStartDate.SelectedValue = null;
+			dllEndDate.SelectedValue = null;
 			txtCPESeat.Text = null;
 			lblmsg.Text = null;
 		}
@@ -82,7 +83,8 @@ namespace CPE_Platform.Private
 					txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
 					txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
 					txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
-					dllDate.SelectedValue = dataReader["CPEDate"].ToString().Trim();
+					dllStartDate.SelectedValue = dataReader["CPEStartDate"].ToString().Trim();
+					dllEndDate.SelectedValue = dataReader["CPEEndDate"].ToString().Trim();
 					txtCPERewards.Text = dataReader["Rewards"].ToString();
 				}
 				dataReader.Close();
@@ -120,7 +122,7 @@ namespace CPE_Platform.Private
 						}
 						else
 						{
-							cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEDate,Rewards,ModifiedDate) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEDate,@Rewards,@ModifiedDate)", con);
+							cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEStartDate,CPEEndDate,Rewards,ModifiedDate) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEStartDate,@CPEEndDate,@Rewards,@ModifiedDate)", con);
 							cmd.Parameters.AddWithValue("@id", txtCPECode.Text);
 							cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
@@ -133,7 +135,8 @@ namespace CPE_Platform.Private
 
 
 							cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
-							cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
+							cmd.Parameters.AddWithValue("@CPEStartDate", dllStartDate.SelectedItem.ToString());
+							cmd.Parameters.AddWithValue("@CPEEndDate", dllEndDate.SelectedItem.ToString());
 							if (int.TryParse(txtCPERewards.Text, out cpeRewards))
 							{
 								// Conversion successful, add the parameter
@@ -171,7 +174,7 @@ namespace CPE_Platform.Private
 					string id = txtCPECode.Text;
 
 					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
-					"CPEDate=@CPEDate,Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
+					"CPEStartDate=@CPEStartDate,CPEEndDate=@CPEEndDate,Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
 					cmd.Parameters.AddWithValue("@id", id);
 					cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
 
@@ -182,13 +185,14 @@ namespace CPE_Platform.Private
 					}
 
 					cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
-					if (dllDate.SelectedValue == "")
+					if (dllStartDate.SelectedValue == "" || dllEndDate.SelectedValue == "")
 					{
 						lblmsg.Text = "Please select a valid date";
 					}
 					else
 					{
-						cmd.Parameters.AddWithValue("@CPEDate", dllDate.SelectedItem.ToString());
+						cmd.Parameters.AddWithValue("@CPEStartDate", dllStartDate.SelectedItem.ToString());
+						cmd.Parameters.AddWithValue("@CPEEndDate", dllEndDate.SelectedItem.ToString());
 
 						if (int.TryParse(txtCPERewards.Text, out cpeRewards))
 						{

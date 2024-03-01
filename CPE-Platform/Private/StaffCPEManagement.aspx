@@ -13,7 +13,7 @@
 
 	</head>
 	<body>
-		
+
 		<script type="text/javascript">
 			function handleKeyPress(e) {
 				// Check if the key pressed is "Enter"
@@ -52,11 +52,17 @@
 						<label>CPE Price</label>
 						<asp:TextBox ID="txtCPEPrice" CssClass="form-control" placeholder="Price" runat="server" />
 						<%--<asp:HiddenField ID="CPECode" runat="server" />--%>
-						<label>CPE Start and End Date</label>
-						<asp:DropDownList ID="dllDate" CssClass="form-control" runat="server">
+						<label>CPE Upcoming Start Date</label>
+						<asp:DropDownList ID="dllStartDate" CssClass="form-control" runat="server">
 							<asp:ListItem Value="">Select Date</asp:ListItem>
-							<asp:ListItem Value="01 Feb 2024 - 03 March 2024">01 Feb 2024 - 03 March 2024</asp:ListItem>
-							<asp:ListItem Value="01 May 2024 - 01 June 2024">01 May 2024 - 01 June 2024</asp:ListItem>
+							<asp:ListItem Value="03 Feb 2024">03 Feb 2024</asp:ListItem>
+							<asp:ListItem Value="01 May 2024">01 May 2024</asp:ListItem>
+						</asp:DropDownList>
+						<label>CPE Upcoming End Date</label>
+						<asp:DropDownList ID="dllEndDate" CssClass="form-control" runat="server">
+							<asp:ListItem Value="">Select Date</asp:ListItem>
+							<asp:ListItem Value="03 March 2024">03 March 2024</asp:ListItem>
+							<asp:ListItem Value="01 July 2024">03 July 2024</asp:ListItem>
 						</asp:DropDownList>
 						<label>Rewards Of the Course</label>
 						<asp:TextBox ID="txtCPERewards" CssClass="form-control" placeholder="Points" runat="server" />
@@ -84,7 +90,7 @@
 
 							<div class="col-sm">
 								<div class="input-group justify-content-end">
-									<asp:TextBox ID="txtSearch" CssClass="form-control" placeholder="&#xF002; Search" style="font-family:FontAwesome" runat="server" onkeypress="return handleKeyPress(event)" />
+									<asp:TextBox ID="txtSearch" CssClass="form-control" placeholder="&#xF002; Search" Style="font-family: FontAwesome" runat="server" onkeypress="return handleKeyPress(event)" />
 									<asp:Button ID="btnSearch" runat="server" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
 
 								</div>
@@ -103,7 +109,8 @@
 													<th>CPE Course Name</th>
 													<th>CPE Total Seat Number</th>
 													<th>Price</th>
-													<th>Start and End Date</th>
+													<th>Start Date</th>
+													<th>End Date</th>
 													<th>Reward</th>
 													<th>Modified Date</th>
 													<th>Edit</th>
@@ -117,7 +124,8 @@
 													<td><%# Eval("CPEDesc") %></td>
 													<td><%# Eval("CPESeatAmount") %></td>
 													<td><%# Eval("CPEPrice") %></td>
-													<td><%# Eval("CPEDate") %></td>
+													<td><%# Eval("CPEStartDate") %></td>
+													<td><%# Eval("CPEEndDate") %></td>
 													<td><%# Eval("Rewards") %></td>
 													<td><%# Eval("ModifiedDate") %></td>
 													<td>

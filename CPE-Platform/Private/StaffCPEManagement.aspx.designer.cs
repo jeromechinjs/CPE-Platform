@@ -60,13 +60,22 @@ namespace CPE_Platform.Private
 		protected global::System.Web.UI.WebControls.TextBox txtCPEPrice;
 
 		/// <summary>
-		/// dllDate control.
+		/// dllStartDate control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList dllDate;
+		protected global::System.Web.UI.WebControls.DropDownList dllStartDate;
+
+		/// <summary>
+		/// dllEndDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList dllEndDate;
 
 		/// <summary>
 		/// txtCPERewards control.
