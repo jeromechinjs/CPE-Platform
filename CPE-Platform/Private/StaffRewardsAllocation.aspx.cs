@@ -215,7 +215,17 @@ namespace CPE_Platform.Private
 					if (item.Selected)  // will change once bootstrap design template is found
 					{
 						SqlCommand cmd = new SqlCommand("INSERT INTO Rewards_Assign (RewardAwarded, rewardsDate, Progress, StudentID, CPECode) VALUES (@RewardAwarded, @rewardsDate, @Progress, @StudentID, @CPECode)", con);
-						cmd.Parameters.AddWithValue("@RewardAwarded", txtRewards.Text);
+						//cmd.Parameters.AddWithValue("@RewardAwarded", txtRewards.Text);
+						string rewardsText = txtRewards.Text;
+						int pointsIndex = rewardsText.IndexOf("Points");
+
+						if (pointsIndex != -1)
+						{
+							string rewardsValue = rewardsText.Substring(0, pointsIndex).Trim();
+
+							// Add the extracted value to the SQL parameter
+							cmd.Parameters.AddWithValue("@RewardAwarded", rewardsValue);
+						}
 						cmd.Parameters.AddWithValue("@rewardsDate", currentDateTime);
 						cmd.Parameters.AddWithValue("@Progress", "Completed");
 
@@ -248,6 +258,12 @@ namespace CPE_Platform.Private
 							cmd2.ExecuteNonQuery();
 							con.Close();
 						}
+						// execute this message when click the assign button when fulfill the condition
+						string script = "alert('Successfully Assigned Rewards to the Students');";
+						ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+						string redirectScript = "setTimeout(function() { window.location.href = '../Private/StaffRewardsAllocation.aspx'; }, 100);"; // Redirect after 0.01 seconds (10 milliseconds)
+						ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 
 					}
 				}
@@ -260,12 +276,7 @@ namespace CPE_Platform.Private
 			//lstStudent.Items.Insert(0, " Select Students");
 
 
-			// execute this message when click the assign button when fulfill the condition
-			string script = "alert('Successfully Assigned Rewards to the Students');";
-			ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
-
-			string redirectScript = "setTimeout(function() { window.location.href = '../Private/StaffRewardsAllocation.aspx'; }, 100);"; // Redirect after 0.01 seconds (10 milliseconds)
-			ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+			
 
 		}
 
