@@ -45,7 +45,7 @@
 								<h5 class="text-black-70 mb-5 font-weight-light" style="color:dodgerblue;"><i class="ace-icon fa fa-leaf" style="font-family:FontAwesome; color:limegreen;"></i> Please Select Login Options</h5>
 
 								<div class="mb-md-2 mt-md-2 pb-2">
-									<asp:Button ID="btnStaffLogin" class="btn btn-outline-dark btn-lg px-6" runat="server" Text="Login As Staff" OnClick="btnStaffLogin_Click" />
+									<asp:Button ID="btnStaffLogin" class="btn btn-outline-dark btn-lg px-6" runat="server" Text="Login As CPE Staff" OnClick="btnStaffLogin_Click" />
 									<br />
 								</div>
 								<div class="mb-md-4 mt-md-4">

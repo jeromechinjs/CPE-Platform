@@ -51,6 +51,42 @@ namespace CPE_Platform.Private
 		protected global::System.Web.UI.WebControls.ListBox lstStudent;
 
 		/// <summary>
+		/// btnAdd control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnAdd;
+
+		/// <summary>
+		/// btnRemove control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnRemove;
+
+		/// <summary>
+		/// lblStudentSelectedList control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblStudentSelectedList;
+
+		/// <summary>
+		/// lstSelectedStudents control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.ListBox lstSelectedStudents;
+
+		/// <summary>
 		/// lblRewards control.
 		/// </summary>
 		/// <remarks>
@@ -67,6 +103,15 @@ namespace CPE_Platform.Private
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtRewards;
+
+		/// <summary>
+		/// btnBack control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnBack;
 
 		/// <summary>
 		/// btnAssignRewards control.

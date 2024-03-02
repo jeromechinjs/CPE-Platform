@@ -44,6 +44,30 @@ namespace CPE_Platform.Private
 			rptrCPE.DataBind();
 		}
 
+		protected void btnAdd_Click(object sender, EventArgs e)
+		{
+			// Move selected items from AvailableStudents to SelectedStudents
+			MoveItems(lstStudent, lstSelectedStudents);
+		}
+		protected void btnRemove_Click(object sender, EventArgs e)
+		{
+			// Move selected items from SelectedStudents to AvailableStudents
+			MoveItems(lstSelectedStudents, lstStudent);
+		}
+		private void MoveItems(ListBox source, ListBox destination)
+		{
+			// Move selected items from source to destination
+			for (int i = source.Items.Count - 1; i >= 0; i--)
+			{
+				if (source.Items[i].Selected)
+				{
+					ListItem item = source.Items[i];
+					destination.Items.Add(item);
+					source.Items.Remove(item);
+				}
+			}
+
+		}
 		protected void CPESelected(object sender, RepeaterCommandEventArgs e)
 		{
 			if (e.CommandName == "Select")
@@ -159,7 +183,7 @@ namespace CPE_Platform.Private
 			// Implement your logic to fetch card data from the database
 			// Example:
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-			query = "SELECT CONCAT(CPECode, ' ', CPEDesc) AS CPECourse, CPEDate FROM CPE_Course";
+			query = "SELECT CONCAT(CPECode, ' ', CPEDesc) AS CPECourse, CPEStartDate, CPEEndDate FROM CPE_Course";
 			using (SqlCommand cmd = new SqlCommand(query, con))
 			{
 				con.Open();
@@ -197,13 +221,23 @@ namespace CPE_Platform.Private
 		//}
 		protected void AssignRewards(object sender, EventArgs e)  // function for btn assign rewards
 		{
-			string message = "";
+			string selectedWrongMsg = "Please select at least one student before assigning rewards.";
 			string errorMsg = "Please Select Valid Student Name";
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 			DateTime currentDateTime = DateTime.Now;
-
-			// for loop to check whether the listed item is selected correctly
+			
+			//to check if the user click the students in available student listbox
 			foreach (ListItem item in lstStudent.Items)
+			{
+				if (item.Selected)
+				{
+					string script = "alert('Please select the student in the selected list');";
+					ScriptManager.RegisterStartupScript(this, GetType(), "NoStudentSelected", script, true);
+				}
+			}
+
+			// check whether the listed item is selected correctly
+			foreach (ListItem item in lstSelectedStudents.Items)
 			{
 				//if (item.Text == " Select Students" || item.Text == " There are no student completed " + CPECourse_DropDown.SelectedItem.Text) // selected value 0 (by default)
 				if (item.Text == " Select Students" || item.Text == " There are no student completed " + lblCPECourse.Text) // selected value 0 (by default)
@@ -212,7 +246,7 @@ namespace CPE_Platform.Private
 				}
 				else
 				{
-					if (item.Selected)  // will change once bootstrap design template is found
+					if (item.Selected) // the student selected will execute this condition
 					{
 						SqlCommand cmd = new SqlCommand("INSERT INTO Rewards_Assign (RewardAwarded, rewardsDate, Progress, StudentID, CPECode) VALUES (@RewardAwarded, @rewardsDate, @Progress, @StudentID, @CPECode)", con);
 						//cmd.Parameters.AddWithValue("@RewardAwarded", txtRewards.Text);
@@ -274,14 +308,12 @@ namespace CPE_Platform.Private
 			//txtRewards.Text = string.Empty;
 			//lstStudent.Items.Clear();
 			//lstStudent.Items.Insert(0, " Select Students");
-
-
-			
-
 		}
 
-
-
+		protected void btnBack_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("~/Private/StaffRewardsAllocation.aspx");
+		}
 		//protected void CPECourse_DropDown_SelectedIndexChanged(object sender, EventArgs e)
 		//{
 		//	string get_CPECode, get_CPEName, getRewards;
