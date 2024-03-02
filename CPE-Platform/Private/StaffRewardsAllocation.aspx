@@ -48,36 +48,43 @@
 	</html>
 	<div class="container">
 		<div class="row d-flex justify-content-left mt-100">
-			<div class="col-md-7 mb-5">
-				
-				<h3><asp:Label ID="lblCPECourse" CssClass="ms-2 mt-3 col-md-1" runat="server"></asp:Label></h3>
-				<%--<asp:Label ID="lblCourseDropdown" runat="server" Text="Course"></asp:Label>
+			<div class="col-md-7 mb-2">
+
+				<h3>
+					<asp:Label ID="lblCPECourse" CssClass="mt-3 col-md-1" runat="server"></asp:Label></h3>
+				<div class="row">
+					<%--<asp:Label ID="lblCourseDropdown" runat="server" Text="Course"></asp:Label>
 <asp:DropDownList ID="CPECourse_DropDown" runat="server" class="form-select" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="CPECourse_DropDown_SelectedIndexChanged">
 	<asp:ListItem Value="0">Select Course</asp:ListItem>
 </asp:DropDownList>--%>
-				<div class="col-md-6 mb-4">
-					<%--<h6>
+					<div class="col-md-4 mb-4">
+						<%--<h6>
 						<asp:Label ID="lblStudentList" runat="server" Text="List Of Students:"></asp:Label></h6>
 					<asp:ListBox CssClass="list-group-item" Style="width: 100vh;" ID="lstStudent" runat="server" SelectionMode="Multiple" AutoPostBack="true" aria-describedby="listHelp"></asp:ListBox>
 					<div id="listHelp" class="form-text" style="color:indianred">*Press Ctrl key to multiselect*</div>--%>
 
-					 <h6><asp:Label ID="lblStudentList" runat="server" Text="Available Students:"></asp:Label></h6>
-                    <asp:ListBox CssClass="list-group-item" ID="lstStudent" runat="server" SelectionMode="Multiple"></asp:ListBox>
 
+						<h6>
+							<asp:Label ID="lblStudentList" runat="server" Text="Available Students:"></asp:Label></h6>
+						<asp:ListBox class="list-group-item list-group-item-action list-group-item-light" Style="width: 250px; height: 200px;" ID="lstStudent" runat="server" SelectionMode="Multiple" aria-describedby="listHelpleft"></asp:ListBox>
+						<div id="listHelpleft" class="form-text" style="color:indianred">*Press Ctrl key to multiselect*</div>
+					</div>
+					<!-- Controls for moving items between lists -->
+					<div class="col-md-4 mb-2 d-flex align-items-center justify-content-center flex-column">
+						<asp:Button ID="btnAdd" runat="server" Text="&gt;&gt;" CssClass="btn btn-outline-secondary" OnClick="btnAdd_Click" /></br>
+						<asp:Button ID="btnRemove" runat="server" Text="&lt;&lt;" CssClass="btn btn-outline-secondary" OnClick="btnRemove_Click" />
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<!-- Right Listbox -->
+						<h6>
+							<asp:Label ID="lblStudentSelectedList" runat="server" Text="Selected Students:"></asp:Label></h6>
+						<asp:ListBox CssClass="list-group-item list-group-item-action list-group-item-light" Style="width: 250px; height: 200px;" ID="lstSelectedStudents" runat="server" SelectionMode="Multiple" aria-describedby="listHelpright"></asp:ListBox>
+						<div id="listHelpright" class="form-text" style="color:indianred">*Press Ctrl key to multiselect*</div>
+					</div>
 				</div>
-				<!-- Controls for moving items between lists -->
-                <div class="col-md-2">
-                    <div class="d-grid gap-2">
-                        <asp:Button ID="btnAdd" runat="server" Text="&gt;&gt;" CssClass="btn btn-primary" OnClick="btnAdd_Click"/>
-						<asp:Button ID="btnRemove" runat="server" Text="&lt;&lt;" CssClass="btn btn-danger" OnClick="btnRemove_Click"/>
-                    </div>
-                </div>
-				<!-- Right Listbox -->
-                <div class="col-md-5">
-                    <h6><asp:Label ID="lblStudentSelectedList" runat="server" Text="Selected Students:"></asp:Label></h6>
-                    <asp:ListBox CssClass="list-group-item" ID="lstSelectedStudents" runat="server" SelectionMode="Multiple"></asp:ListBox>
-                </div>
-
+			</div>
+			<div class="row">
 
 				<div class="col-md-6 mb-4">
 					<h6>
@@ -86,11 +93,13 @@
 					<%--<asp:TextBox ID="txtStudentID" runat="server" placeholder="StudentID" ReadOnly="True"></asp:TextBox>--%>
 					<%--<asp:TextBox ID="txtCPECode" runat="server" placeholder="CPECode" ReadOnly="True"></asp:TextBox>--%>
 				</div>
-				<div class="col-md-6 mb-4">
-					<asp:Button ID="btnBack" CssClass="btn btn-danger" Text="Back" runat="server" OnClick="btnBack_Click" />
-					<asp:Button ID="btnAssignRewards" CssClass="btn btn-primary" Text="Assign" runat="server" OnClick="AssignRewards" />
+				<div class="row">
+					<div class="col-md-6 mb-4">
+						<asp:Button ID="btnBack" CssClass="btn btn-danger" Text="Back" runat="server" OnClick="btnBack_Click" />
+						<asp:Button ID="btnAssignRewards" CssClass="btn btn-success" Text="Assign" runat="server" OnClick="AssignRewards" />
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
+	</div>
 </asp:Content>
