@@ -23,7 +23,9 @@
                                         <div class="card-body">
                                             <asp:Label class="card-title fw-bold" ID="Label5" runat="server" Text='<%# Eval("CPEDesc") %>'></asp:Label>
                                             <br />
-                                            <asp:Label class="card-text" ID="Label6" runat="server" Text='<%# Eval("CPEDate") %>'></asp:Label>
+                                            <asp:Label class="card-text" ID="Label6" runat="server" Text='<%# Eval("CPEStartDate")%>'></asp:Label>
+                                            <span>to </span>
+                                            <asp:Label class="card-text" ID="Label1" runat="server" Text='<%# Eval("CPEEndDate")%>'></asp:Label>
                                             <br />
                                             <span>RM </span>
                                             <asp:Label class="card-text" ID="Label7" runat="server" Text='<%# Eval("CPEPrice") %>'></asp:Label>
