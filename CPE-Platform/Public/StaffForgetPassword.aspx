@@ -48,7 +48,7 @@
 			<div class="row d-flex justify-content-center align-items-center">
 				<div class="col-12 col-md-8 col-lg-6 col-xl-4">
 					<img class="img-fluid p-2 mx-5" style="max-width: 50%;" alt="tarumt logo" src="../Resources/tarumt-logo.png" />
-					<h2 class="text-lg-center mb-3 mx-5-custom" style="color: antiquewhite;"><span style="color: palevioletred">TAR </span><span style="color: cornflowerblue">UMT</span> Staff Intranet</h2>
+					<h2 class="text-lg-center mb-3 mx-5-custom" style="color: antiquewhite;"><span style="color: palevioletred">TAR </span><span style="color: cornflowerblue">UMT</span> CPE Staff Intranet</h2>
 					<div class="card text-black" style="border-radius: 1rem; background-color: aliceblue">
 						<div class="card-body p-6 text-center">
 
