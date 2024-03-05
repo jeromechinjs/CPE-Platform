@@ -77,7 +77,7 @@
 						</div>
 						<div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
 							<div class="p-2 me-3">
-								<h4>Order Recap</h4>
+								<h4>Recap</h4>
 							</div>
 							<div class="p-2 d-flex">
 								<div class="col-8">
