@@ -30,17 +30,14 @@ namespace CPE_Platform.Private
                 DataList1.DataBind();
             }
             
-
-            //if (DropDownList2.SelectedValue == "-1")
-            //{
-            //    SqlDataSource1.SelectCommand = "SELECT * FROM Product";
-            //}
-            //else
-            //{
-            //    SqlDataSource1.SelectCommand = "SELECT * FROM [Product] inner join ProductCategory on Product.CategoryID=ProductCategory.CategoryID and ProductCategory.CategoryID=@CategoryID";
-            //}
-
         }
+
+        protected void open_modal(object sender, EventArgs e)
+        {
+            string script = "$('#courseDetailsModal').modal('show');";
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
+        }
+
         protected void CartBtn_Click(object sender, EventArgs e)
         {
             //Button btn = (Button)sender;
