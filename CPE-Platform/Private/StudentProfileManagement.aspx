@@ -19,7 +19,7 @@
 
 		<%--Rewards part --%>
 		<div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
-			<h3 class="mb-1 ms-5 text-sm">CPE Course Completed</h3>
+			<h3 class="mb-1 ms-5 text-sm" style="color:cornflowerblue">CPE Course Completed</h3>
 			<div>
 				<asp:Label ID="lblStudentID" runat="server"></asp:Label>
 			</div>
