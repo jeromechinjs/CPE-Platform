@@ -62,7 +62,7 @@
 						<asp:DropDownList ID="dllEndDate" CssClass="form-control" runat="server">
 							<asp:ListItem Value="">Select Date</asp:ListItem>
 							<asp:ListItem Value="03 March 2024">03 March 2024</asp:ListItem>
-							<asp:ListItem Value="01 July 2024">03 July 2024</asp:ListItem>
+							<asp:ListItem Value="03 July 2024">03 July 2024</asp:ListItem>
 						</asp:DropDownList>
 						<label>Rewards Of the Course</label>
 						<asp:TextBox ID="txtCPERewards" CssClass="form-control" placeholder="Points" runat="server" />
