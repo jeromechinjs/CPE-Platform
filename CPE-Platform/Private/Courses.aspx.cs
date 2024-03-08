@@ -25,11 +25,24 @@ namespace CPE_Platform.Private
         {
             if (!Page.IsPostBack)
             {
-                SqlDataSource1.SelectCommand = "SELECT * FROM CPE_Course";
-                SqlDataSource1.DataBind();
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
+                allCourses.DataBind();
                 DataList1.DataBind();
             }
-            
+
+            // Filter CPE Course Types
+            if (courseTypes.SelectedValue == "-1")
+            {
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
+            }
+            else
+            {
+                //filter other categories (tbc)
+                //allCourses.SelectCommand = "SELECT * FROM [CPE_Course] WHERE CPE_Course.CPEType=@CPEType";
+            }
+
+
+
         }
 
         protected void open_modal(object sender, EventArgs e)
@@ -66,45 +79,44 @@ namespace CPE_Platform.Private
 
         protected void CartBtn_Click(object sender, EventArgs e)
         {
-            //Button btn = (Button)sender;
+            Button btn = (Button)sender;
+            string CPECode = btn.CommandArgument.ToString();
 
-            //string productID = btn.CommandArgument.ToString();
+            int seatsLeft = 0;
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand commandSelect = new SqlCommand("Select CPESeatAmount FROM CPE_Course Where CPECode= '" + CPECode + "'", con);
+            SqlDataReader readQuantity = commandSelect.ExecuteReader();
+            if (readQuantity.Read())
+            {
+                seatsLeft = readQuantity.GetInt32(0);
+            }
 
-            //int currentQuantity = 0;
-            //SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            //con.Open();
-            //SqlCommand commandSelect = new SqlCommand("Select ProductQuantity FROM Product Where ProductID= '" + productID + "'", con);
-            //SqlDataReader readQuantity = commandSelect.ExecuteReader();
-            //if (readQuantity.Read())
-            //{
-            //    currentQuantity = readQuantity.GetInt32(0);
-            //}
+            con.Close();
 
-            //con.Close();
+            if (seatsLeft == 0)
+            {
+                Response.Write("<script>alert('No more seats left');</script>");
+            }
+            else
+            {
 
-            //if (currentQuantity == 0)
-            //{
-            //    Response.Write("<script>alert('Item out of stock');</script>");
-            //}
-            //else
-            //{
-
-            //    if (Session["Cart"] != null)
-            //    {
-            //        if (Session["Cart"].ToString().Contains(productID))
-            //        {
-            //            Response.Write("<script>alert('Item already added in cart');</script>");
-            //        }
-            //        else
-            //        {
-            //            Session["Cart"] = Session["Cart"] + "," + productID;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Session["Cart"] = productID;
-            //    }
-            //}
+                if (Session["Cart"] != null)
+                {
+                    if (Session["Cart"].ToString().Contains(CPECode))
+                    {
+                        Response.Write("<script>alert('Course already added in cart');</script>");
+                    }
+                    else
+                    {
+                        Session["Cart"] = Session["Cart"] + "," + CPECode;
+                    }
+                }
+                else
+                {
+                    Session["Cart"] = CPECode;
+                }
+            }
 
         }
         protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)

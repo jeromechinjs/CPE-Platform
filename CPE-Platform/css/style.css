@@ -81,10 +81,10 @@ textarea {
 }
 
 .accordion-button::after { /* Accordian caret arrow*/
-    background-size: 11.5px;
+    background-size: 13px;
 }
 
-#dashboard-caret::after {
+.accordion-button.hide-accordion-caret::after {
     display: none;
 }
 

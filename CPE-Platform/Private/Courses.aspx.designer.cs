@@ -15,22 +15,22 @@ namespace CPE_Platform.Private
     {
 
         /// <summary>
-        /// DropDownList2 control.
+        /// courseTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList courseTypes;
 
         /// <summary>
-        /// SqlDataSource2 control.
+        /// courseTypesDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.SqlDataSource courseTypesDataSource;
 
         /// <summary>
         /// DataList1 control.
@@ -42,13 +42,13 @@ namespace CPE_Platform.Private
         protected global::System.Web.UI.WebControls.DataList DataList1;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// allCourses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource allCourses;
 
         /// <summary>
         /// txtCPECode control.
