@@ -38,6 +38,32 @@ namespace CPE_Platform.Private
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
         }
 
+        protected void view_course_info(object sender, CommandEventArgs e)
+        {
+            string id = e.CommandArgument.ToString();
+            txtCPECode.Text = id;
+            string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode=@id", conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    txtCPECode.Text = dataReader["CPECode"].ToString();
+                    txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
+                    txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
+                    txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
+                    dllStartDate.Text = dataReader["CPEStartDate"].ToString().Trim();
+                    dllEndDate.Text = dataReader["CPEEndDate"].ToString().Trim();
+                }
+                dataReader.Close();
+            }
+            Session["IsUpdateFlag"] = true;
+            ScriptManager.RegisterStartupScript(this, GetType(), "OpenModalScript", "$('#courseDetailsModal').modal('show');", true);
+        }
+
         protected void CartBtn_Click(object sender, EventArgs e)
         {
             //Button btn = (Button)sender;
