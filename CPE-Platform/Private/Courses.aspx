@@ -86,7 +86,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Close</button>
-                         <asp:Button class="btn btn-sm btn-primary" ID="Button2" runat="server" Text="Add To Cart" CommandArgument='<%# Eval("CPECode") %>' CommandName="AddToCart" OnClick="CartBtn_Click" OnClientClick="javascript:alert('Item added to Cart')" />
+                         <asp:LinkButton CssClass="btn btn-sm btn-primary" ID="addCart" CommandName="Add To Cart" OnCommand="CartBtn_Click" CommandArgument='<%#Eval("CPECode") %>' runat="server">Add To Cart</asp:LinkButton>
 					</div>
 				</div>
 			</div>

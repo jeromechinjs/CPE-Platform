@@ -79,6 +79,14 @@
 								</ul>
 							</div>
 						</li>
+						<!-- icon -->
+						<li class="nav-item p-2 bg-secondary">
+							<div class="dropdown">
+								<span class="btn dropdown-toggle d-flex rounded-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
+									<asp:LinkButton ID="LinkButton1" Text="Go To Cart" OnClick="goCart" runat="server"><i class="fa fa-shopping-cart fa-lg text-white"></i></asp:LinkButton>								
+								</span>
+							</div>
+						</li>
 					</ul>
 
 					<div class="dropdown">

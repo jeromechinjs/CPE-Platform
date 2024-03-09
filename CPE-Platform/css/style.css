@@ -84,7 +84,8 @@ textarea {
     background-size: 13px;
 }
 
-.accordion-button.hide-accordion-caret::after {
+.accordion-button.hide-accordion-caret::after,
+span.dropdown-toggle::after {
     display: none;
 }
 
@@ -108,6 +109,10 @@ textarea {
 
 .bg-maroon {
     background-color: #892e65;
+}
+
+.bg-lightgreen {
+    background-color: #9abc32;
 }
 
 .bg-lightgreen {

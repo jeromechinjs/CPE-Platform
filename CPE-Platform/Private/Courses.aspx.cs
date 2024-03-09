@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.Remoting.Contexts;
 using System.Web;
+using System.Web.Optimization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
@@ -53,16 +54,15 @@ namespace CPE_Platform.Private
 
         protected void view_course_info(object sender, CommandEventArgs e)
         {
-            string id = e.CommandArgument.ToString();
-            txtCPECode.Text = id;
+            string CPECode = e.CommandArgument.ToString();
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlConnection con = new SqlConnection(connectionstring))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode=@id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode=@CPECode", con);
+                cmd.Parameters.AddWithValue("@CPECode", CPECode);
                 SqlDataReader dataReader = cmd.ExecuteReader();
-                if (dataReader.Read())
+                if (dataReader.Read()) // returns true if have more rows to read, else false
                 {
                     txtCPECode.Text = dataReader["CPECode"].ToString();
                     txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
@@ -73,26 +73,32 @@ namespace CPE_Platform.Private
                 }
                 dataReader.Close();
             }
-            Session["IsUpdateFlag"] = true;
             ScriptManager.RegisterStartupScript(this, GetType(), "OpenModalScript", "$('#courseDetailsModal').modal('show');", true);
         }
 
-        protected void CartBtn_Click(object sender, EventArgs e)
+        protected void CartBtn_Click(object sender, CommandEventArgs e)
         {
-            Button btn = (Button)sender;
-            string CPECode = btn.CommandArgument.ToString();
-
             int seatsLeft = 0;
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand commandSelect = new SqlCommand("Select CPESeatAmount FROM CPE_Course Where CPECode= '" + CPECode + "'", con);
-            SqlDataReader readQuantity = commandSelect.ExecuteReader();
-            if (readQuantity.Read())
+            string CPECode = e.CommandArgument.ToString();
+            string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connectionstring))
             {
-                seatsLeft = readQuantity.GetInt32(0);
-            }
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode=@CPECode", con);
+                cmd.Parameters.AddWithValue("@CPECode", CPECode);
+                SqlDataReader dataReader = cmd.ExecuteReader();
 
-            con.Close();
+                // read number of seats left for selected course
+                // PROBLEM: this dataReader has not detected rows to read (couldn't pass through the if statement)
+                if (dataReader.Read())
+                {
+                    Response.Write("<script>alert('If this appears, means this if statement has passed through');</script>");
+                    seatsLeft = dataReader.GetInt32(0);
+                }
+
+                dataReader.Close();
+                con.Close();
+            }
 
             if (seatsLeft == 0)
             {
@@ -110,11 +116,15 @@ namespace CPE_Platform.Private
                     else
                     {
                         Session["Cart"] = Session["Cart"] + "," + CPECode;
+                        Response.Write("<script>alert('Item added to Cart');</script>");
+
                     }
                 }
                 else
                 {
                     Session["Cart"] = CPECode;
+                    Response.Write("<script>alert('Item added to Cart');</script>");
+
                 }
             }
 

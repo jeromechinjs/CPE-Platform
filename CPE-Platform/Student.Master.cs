@@ -63,6 +63,12 @@ namespace CPE_Platform
 			// Redirect the user to the login page
 			Response.Redirect("~/LoginSelection.aspx", true);
 		}
+        protected void goCart(object sender, EventArgs e)
+        {
+            // Redirect the user to the dashboard page
+            Response.Redirect("~/Private/Cart.aspx", true);
+        }
+
 
         protected void goDashboard(object sender, EventArgs e)
         {

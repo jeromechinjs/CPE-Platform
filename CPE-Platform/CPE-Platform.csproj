@@ -137,6 +137,7 @@
     <Content Include="Private\StaffRewardsAllocation.aspx" />
     <Content Include="Private\StaffDashboard.aspx" />
     <Content Include="Private\Courses.aspx" />
+    <Content Include="Private\Cart.aspx" />
     <Content Include="Public\RegisterStudentInfo.aspx" />
     <Content Include="Public\StaffForgetPassword.aspx" />
     <Content Include="Public\StaffResetPassword.aspx" />
@@ -313,6 +314,13 @@
     </Compile>
     <Compile Include="Private\Courses.aspx.designer.cs">
       <DependentUpon>Courses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public\RegisterStudentInfo.aspx.cs">
