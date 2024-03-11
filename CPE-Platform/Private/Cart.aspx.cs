@@ -48,8 +48,8 @@ namespace CPE_Platform.Private
                     {
 
                         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-
-                        SqlDataAdapter da = new SqlDataAdapter("SELECT * from Product where ProductID= '" + item + "'", con);
+                        string query = "SELECT * from Product where ProductID= '" + item + "'";
+						SqlDataAdapter da = new SqlDataAdapter("SELECT * from Product where ProductID= '" + item + "'", con);
                         DataSet ds = new DataSet();
 
                         da.Fill(ds);

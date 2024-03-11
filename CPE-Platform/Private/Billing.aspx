@@ -34,14 +34,16 @@
 								<div>
 									<p>
 										<b>CPE Points <span class="text-success">
-											<asp:Label ID="CPEPoints" Text="Points" runat="server"></asp:Label>
+											<asp:Label ID="lblCPEPoints" runat="server"></asp:Label>
 										</span>
 										</b>
 									</p>
 								</div>
 								<div class="ms-auto">
 									<p class="text-primary">
-										<asp:CheckBox ID="chkboxPoints" runat="server" />
+										<asp:Label ID="lblPointsChk" runat="server"></asp:Label>
+										<asp:CheckBox ID="chkboxPoints" runat="server" OnCheckedChanged="chkboxPoints_CheckedChanged" AutoPostBack="true" />
+										
 									</p>
 								</div>
 							</div>
@@ -73,7 +75,7 @@
 					<div class="col-md-5 col-xl-4 offset-xl-1">
 						<div class="py-4 d-flex justify-content-end">
 							<%-- will change after created cart webpage--%>
-							<h6><a href="#">Cancel and return to Cart</a></h6>
+							<h6><a href="Cart.aspx">Cancel and return to Cart</a></h6>
 						</div>
 						<div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
 							<div class="p-2 me-3">

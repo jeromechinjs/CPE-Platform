@@ -24,13 +24,22 @@ namespace CPE_Platform.Private
 		protected global::System.Web.UI.WebControls.Label lblTotalAmount;
 
 		/// <summary>
-		/// CPEPoints control.
+		/// lblCPEPoints control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label CPEPoints;
+		protected global::System.Web.UI.WebControls.Label lblCPEPoints;
+
+		/// <summary>
+		/// lblPointsChk control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblPointsChk;
 
 		/// <summary>
 		/// chkboxPoints control.
