@@ -17,8 +17,9 @@ namespace CPE_Platform
 			string staffID;
 			if (Session["StaffID"] == null)
 			{
-			// Redirect the user to the login page
-			Response.Redirect("~/LoginSelection.aspx", true);
+				// Redirect the user to the login page
+				FormsAuthentication.SignOut();
+				Response.Redirect("~/SessionEnd.aspx", true);
 			}
 			else
 			{

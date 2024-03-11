@@ -234,6 +234,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SessionEnd.aspx" />
     <Content Include="Staff.Master" />
     <Content Include="StaffLogin.aspx" />
     <Content Include="Public\StaffRegisterInfo.aspx" />
@@ -343,6 +344,13 @@
     </Compile>
     <Compile Include="Public\StaffResetPassword.aspx.designer.cs">
       <DependentUpon>StaffResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionEnd.aspx.cs">
+      <DependentUpon>SessionEnd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionEnd.aspx.designer.cs">
+      <DependentUpon>SessionEnd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Student.Master.cs">
       <DependentUpon>Student.Master</DependentUpon>

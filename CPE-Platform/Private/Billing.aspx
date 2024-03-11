@@ -97,7 +97,7 @@
 							</div>
 							<div class="border-top px-2 mx-2"></div>
 							<div class="p-2 d-flex pt-3">
-								<div class="col-8">Points Redeem <span class="fa fa-question-circle text-dark"></div>
+								<div class="col-8">Points Redeem <i class="fa fa-question-circle text-dark" ></i></div>
 								<div class="ms-auto">
 									<b>
 										<asp:Label ID="lblRewardsReedem" runat="server" Text="Rewards"></asp:Label></b>

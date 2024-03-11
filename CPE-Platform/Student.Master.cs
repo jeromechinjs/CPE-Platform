@@ -36,7 +36,7 @@ namespace CPE_Platform
             else
             {
 				FormsAuthentication.SignOut();
-				Response.Redirect("~/LoginSelection.aspx", true);
+				Response.Redirect("~/SessionEnd.aspx", true);
 			}
 
 
