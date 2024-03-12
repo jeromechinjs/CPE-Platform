@@ -26,7 +26,10 @@ namespace CPE_Platform.Private
         {
 			if (!IsPostBack)
 			{
-			}
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
+                allCourses.DataBind();
+                DataList1.DataBind();
+            }
 
             // Filter CPE Course Types
             if (courseTypes.SelectedValue == "-1")
