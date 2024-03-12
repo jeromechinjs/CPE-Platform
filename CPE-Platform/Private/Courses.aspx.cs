@@ -24,37 +24,24 @@ namespace CPE_Platform.Private
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
-                allCourses.DataBind();
-                DataList1.DataBind();
-            }
+			if (!IsPostBack)
+			{
+			}
 
             // Filter CPE Course Types
             if (courseTypes.SelectedValue == "-1")
             {
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
             }
             else
             {
                 //filter other categories (tbc)
                 //allCourses.SelectCommand = "SELECT * FROM [CPE_Course] WHERE CPE_Course.CPEType=@CPEType";
             }
-
-
-
         }
-
-        protected void open_modal(object sender, EventArgs e)
-        {
-            string script = "$('#courseDetailsModal').modal('show');";
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
-        }
-
         protected void view_course_info(object sender, CommandEventArgs e)
         {
             string CPECode = e.CommandArgument.ToString();
+            //Session["currentCPECode"] = CPECode;
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -78,27 +65,23 @@ namespace CPE_Platform.Private
 
         protected void CartBtn_Click(object sender, CommandEventArgs e)
         {
-            int seatsLeft = 0;
+            String[] cart = new String[100];
+            int seatsLeft = 0; // need to initialized to a value
             string CPECode = e.CommandArgument.ToString();
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            SqlConnection con = new SqlConnection(connectionstring);
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode=@CPECode", con);
+            //SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode='" + Session["currentCPECode"] + "'", con);
+            cmd.Parameters.AddWithValue("@CPECode", CPECode);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            testlbl.Text = CPECode;
+            if (dataReader.Read())
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode=@CPECode", con);
-                cmd.Parameters.AddWithValue("@CPECode", CPECode);
-                SqlDataReader dataReader = cmd.ExecuteReader();
-
-                // read number of seats left for selected course
-                // PROBLEM: this dataReader has not detected rows to read (couldn't pass through the if statement)
-                if (dataReader.Read())
-                {
-                    Response.Write("<script>alert('If this appears, means this if statement has passed through');</script>");
-                    seatsLeft = dataReader.GetInt32(0);
-                }
-
-                dataReader.Close();
-                con.Close();
+                seatsLeft = dataReader.GetInt32(0);
             }
+
 
             if (seatsLeft == 0)
             {
