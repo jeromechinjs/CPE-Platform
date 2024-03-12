@@ -9,27 +9,22 @@
 
     <div class="container">
         <div class="row">
-             <asp:Label class="card-title fw-bold" ID="testlbl" runat="server">'asdfsdfsfasfasdfasdfs</asp:Label>
-
             <div class="p-3 m-0">
                 <p>Search by</p>
-                <asp:DropDownList class="dropdown-center form-select" ID="courseTypes" runat="server" DataSourceID="courseTypesDataSource" DataTextField="CPEType" DataValueField="CPEType" AutoPostBack="True" AppendDataBoundItems="True">
+                <asp:DropDownList class="dropdown-center form-select" ID="dropdown_courseTypes" runat="server" DataSourceID="courseTypes" DataTextField="CPEType" DataValueField="CPEType" AutoPostBack="True" AppendDataBoundItems="True">
                     <asp:ListItem Value="-1">Show All</asp:ListItem>
                 </asp:DropDownList>
                 <!-- Remaining list items are derived from sql data source below-->
-                <asp:SqlDataSource ID="courseTypesDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT CPEType FROM [CPE_Course]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
             </div>
 
             <!-- Course Cards -->
             <div class="p-3 m-0">
-                <asp:DataList class="w-100" ID="DataList1" runat="server" DataSourceID="allCourses" OnSelectedIndexChanged="DataList1_SelectedIndexChanged">
+                <asp:DataList class="" ID="courseCards" runat="server" DataSourceID="allCourses">
                     <ItemTemplate>
                         <div class="card mb-3">
                             <div class="row g-0">
-                                <div class="col-md-4 d-flex justify-content-center align-items-center ">
-                                    <%--<asp:Image class="img-fluid rounded-start" ID="Image2" runat="server" ImageUrl='<%# Eval("ProductImage") %>' />--%>
-                                </div>
-                                <div class="col-md-8">
+                                <div class="">
                                     <div class="card-body">
                                         <asp:Label class="card-title fw-bold" ID="txtCPECode" runat="server" Text='<%# Eval("CPECode") %>'></asp:Label>
                                         <br />
@@ -57,7 +52,7 @@
             </div>
         </div>
     </div>
-    <asp:SqlDataSource ID="allCourses" runat="server"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="allCourses" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
 
     <%--modal popup--%>
 	<div class="container">

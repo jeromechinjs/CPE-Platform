@@ -24,27 +24,34 @@ namespace CPE_Platform.Private
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-			if (!IsPostBack)
+			if (!Page.IsPostBack)
 			{
                 allCourses.SelectCommand = "SELECT * FROM CPE_Course";
                 allCourses.DataBind();
-                DataList1.DataBind();
+
+                courseCards.DataBind();
+
+                // Dropdown course type selection filter
+                courseTypes.SelectCommand = "SELECT DISTINCT CPEType FROM [CPE_Course]";
+                courseTypes.DataBind();
+
             }
 
             // Filter CPE Course Types
-            if (courseTypes.SelectedValue == "-1")
+            if (dropdown_courseTypes.SelectedValue == "-1")
             {
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
             }
             else
             {
-                //filter other categories (tbc)
-                //allCourses.SelectCommand = "SELECT * FROM [CPE_Course] WHERE CPE_Course.CPEType=@CPEType";
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
             }
         }
         protected void view_course_info(object sender, CommandEventArgs e)
         {
             string CPECode = e.CommandArgument.ToString();
-            //Session["currentCPECode"] = CPECode;
+            Session["currentCPECode"] = CPECode;
+
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -68,23 +75,20 @@ namespace CPE_Platform.Private
 
         protected void CartBtn_Click(object sender, CommandEventArgs e)
         {
-            String[] cart = new String[100];
+            ArrayList cart = new ArrayList(); // array list to be assigned to the cart session for payment module
             int seatsLeft = 0; // need to initialized to a value
-            string CPECode = e.CommandArgument.ToString();
+            String CPECode = Session["currentCPECode"].ToString();
+           
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionstring);
-
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode=@CPECode", con);
-            //SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode='" + Session["currentCPECode"] + "'", con);
-            cmd.Parameters.AddWithValue("@CPECode", CPECode);
+            SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode='" + CPECode + "'", con);
             SqlDataReader dataReader = cmd.ExecuteReader();
-            testlbl.Text = CPECode;
+
             if (dataReader.Read())
             {
-                seatsLeft = dataReader.GetInt32(0);
+                seatsLeft = dataReader.GetInt32(0); // retrieve seats left for currently selected CPE Course
             }
-
 
             if (seatsLeft == 0)
             {
@@ -92,31 +96,31 @@ namespace CPE_Platform.Private
             }
             else
             {
-
                 if (Session["Cart"] != null)
                 {
-                    if (Session["Cart"].ToString().Contains(CPECode))
+                    foreach (String course in cart)
                     {
-                        Response.Write("<script>alert('Course already added in cart');</script>");
+                        if (course == CPECode)
+                        {
+                            Response.Write("<script>alert('Course already added in cart');</script>");
+                        } 
+                        else
+                        {
+                            cart.Add(CPECode);
+                            Session["Cart"] = cart;
+                            Response.Write("<script>alert('Item added to Cart');</script>");
+                        }
                     }
-                    else
-                    {
-                        Session["Cart"] = Session["Cart"] + "," + CPECode;
-                        Response.Write("<script>alert('Item added to Cart');</script>");
 
-                    }
                 }
                 else
                 {
-                    Session["Cart"] = CPECode;
+                    // cart is empty
+                    cart.Add(CPECode);
+                    Session["Cart"] = cart;
                     Response.Write("<script>alert('Item added to Cart');</script>");
-
                 }
             }
-
-        }
-        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
     }
