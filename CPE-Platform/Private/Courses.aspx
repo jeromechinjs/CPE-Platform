@@ -18,31 +18,31 @@
                 <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
             </div>
 
+            <asp:Label ID="testlbl" runat="server">doing some cart testing</asp:Label>
+
             <!-- Course Cards -->
             <div class="p-3 m-0">
-                <asp:DataList class="" ID="courseCards" runat="server" DataSourceID="allCourses">
+                <asp:DataList class="w-50" ID="courseCards" runat="server" DataSourceID="allCourses">
                     <ItemTemplate>
                         <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="">
-                                    <div class="card-body">
-                                        <asp:Label class="card-title fw-bold" ID="txtCPECode" runat="server" Text='<%# Eval("CPECode") %>'></asp:Label>
-                                        <br />
-                                        <asp:Label class="card-title fw-bold" ID="Label5" runat="server" Text='<%# Eval("CPEDesc") %>'></asp:Label>
-                                        <br />
-                                        <asp:Label class="card-text" ID="Label6" runat="server" Text='<%# Eval("CPEStartDate")%>'></asp:Label>
-                                        <span>to </span>
-                                        <asp:Label class="card-text" ID="Label1" runat="server" Text='<%# Eval("CPEEndDate")%>'></asp:Label>
-                                        <br />
-                                        <span>RM </span>
-                                        <asp:Label class="card-text" ID="Label7" runat="server" Text='<%# Eval("CPEPrice") %>'></asp:Label>
-                                        &nbsp;
-                                        <span>Available Seats Left: </span>
-                                        <asp:Label class="card-text" ID="CPESeatAmount" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
-                                        <br />
-                                        <div class="d-flex flex-row-reverse mt-3">
-										    <asp:LinkButton CssClass="btn btn-outline-info" ID="modal" CommandName="View More" OnCommand="view_course_info" CommandArgument='<%#Eval("CPECode") %>' runat="server">View More</asp:LinkButton>
-                                        </div>
+                            <div class="row g-0 w-100">
+                                <div class="card-body px-5 py-3">
+                                    <asp:Label class="card-title fw-bold" ID="txtCPECode" runat="server" Text='<%# Eval("CPECode") %>'></asp:Label>
+                                    <br />
+                                    <asp:Label class="card-title fw-bold" ID="Label5" runat="server" Text='<%# Eval("CPEDesc") %>'></asp:Label>
+                                    <br />
+                                    <asp:Label class="card-text" ID="Label6" runat="server" Text='<%# Eval("CPEStartDate")%>'></asp:Label>
+                                    <span>to </span>
+                                    <asp:Label class="card-text" ID="Label1" runat="server" Text='<%# Eval("CPEEndDate")%>'></asp:Label>
+                                    <br />
+                                    <span>RM </span>
+                                    <asp:Label class="card-text" ID="Label7" runat="server" Text='<%# Eval("CPEPrice") %>'></asp:Label>
+                                    &nbsp;
+                                    <span>Available Seats Left: </span>
+                                    <asp:Label class="card-text" ID="CPESeatAmount" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
+                                    <br />
+                                    <div class="d-flex flex-row-reverse mt-3">
+										<asp:LinkButton CssClass="btn btn-outline-info" ID="modal" CommandName="View More" OnCommand="view_course_info" CommandArgument='<%#Eval("CPECode") %>' runat="server">View More</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>

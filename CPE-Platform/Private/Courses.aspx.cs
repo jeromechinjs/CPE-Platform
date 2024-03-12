@@ -122,6 +122,16 @@ namespace CPE_Platform.Private
                 }
             }
 
+            // cart test
+            String allItems = "Courses added: ";
+            foreach (String course in cart)
+            {
+                allItems = allItems + "," + course;
+            }
+
+
+            testlbl.Text = allItems; 
+
         }
     }
 }
