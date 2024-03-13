@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace CPE_Platform.Private
 {
@@ -41,18 +42,20 @@ namespace CPE_Platform.Private
 
 					if (Session["Cart"] != null)
 					{
-						String[] cart = Session["Cart"].ToString().Split(',');
+						ArrayList cartList = (ArrayList)Session["Cart"];
+						//String[] cart = Session["Cart"].ToString().Split(',');
+						string[] cart = cartList.ToArray(typeof(string)) as string[];
 
 						cart = cart.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
-						System.Diagnostics.Debug.WriteLine(cart);
-
+						//System.Diagnostics.Debug.WriteLine(cart);
+						//lblTotalAmount.Text = string.Join(", ", cart);
 
 
 
 						// declare total Price to sum up the total amount of CPE Course
 						double totalPrice = 0;
-						int count = 0;
+						//int count = 0;
 						foreach (string item in cart)
 						{
 							SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
@@ -74,11 +77,15 @@ namespace CPE_Platform.Private
 										double price = Convert.ToDouble(reader["CPEPrice"]);
 										totalPrice += price;
 									}
-									lblTotalAmount.Text = totalPrice.ToString();
+									lblTotalAmount.Text = "RM " + totalPrice.ToString() + ".00";
 								}
 							}
 							con.Close();
 						}
+					}
+					else
+					{
+						lblTotalAmount.Text = "null";
 					}
 
 
