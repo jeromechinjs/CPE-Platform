@@ -18,7 +18,7 @@
                 <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
             </div>
 
-            <asp:Label ID="testlbl" runat="server">doing some cart testing</asp:Label>
+            <asp:Label ID="testlbl" runat="server">[doing some cart testing]</asp:Label>
 
             <!-- Course Cards -->
             <div class="p-3 m-0">

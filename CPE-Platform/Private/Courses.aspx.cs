@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,6 +35,8 @@ namespace CPE_Platform.Private
                 // Dropdown course type selection filter
                 courseTypes.SelectCommand = "SELECT DISTINCT CPEType FROM [CPE_Course]";
                 courseTypes.DataBind();
+
+                Session["Cart"] = new ArrayList();
 
             }
 
@@ -75,7 +78,6 @@ namespace CPE_Platform.Private
 
         protected void CartBtn_Click(object sender, CommandEventArgs e)
         {
-            ArrayList cart = new ArrayList(); // array list to be assigned to the cart session for payment module
             int seatsLeft = 0; // need to initialized to a value
             String CPECode = Session["currentCPECode"].ToString();
            
@@ -90,15 +92,20 @@ namespace CPE_Platform.Private
                 seatsLeft = dataReader.GetInt32(0); // retrieve seats left for currently selected CPE Course
             }
 
+            // cart is empty
+            addToCart(CPECode);
+            Response.Write("<script>alert('Item added to Cart');</script>");
+
+
             if (seatsLeft == 0)
             {
                 Response.Write("<script>alert('No more seats left');</script>");
             }
             else
             {
-                if (Session["Cart"] != null)
+                if ((ArrayList)Session["Cart"] != null)
                 {
-                    foreach (String course in cart)
+                    foreach (String course in (ArrayList)Session["Cart"])
                     {
                         if (course == CPECode)
                         {
@@ -106,32 +113,39 @@ namespace CPE_Platform.Private
                         } 
                         else
                         {
-                            cart.Add(CPECode);
-                            Session["Cart"] = cart;
+                            addToCart(CPECode);
                             Response.Write("<script>alert('Item added to Cart');</script>");
                         }
                     }
 
-                }
+                }   
                 else
                 {
                     // cart is empty
-                    cart.Add(CPECode);
-                    Session["Cart"] = cart;
+                    addToCart(CPECode);
                     Response.Write("<script>alert('Item added to Cart');</script>");
                 }
             }
 
             // cart test
             String allItems = "Courses added: ";
-            foreach (String course in cart)
+            foreach (String course in (ArrayList)Session["Cart"])
             {
                 allItems = allItems + "," + course;
             }
-
-
             testlbl.Text = allItems; 
 
+        }
+
+        private void addToCart(String CPECode)
+        {
+            ArrayList temp_cart = new ArrayList(); // temporary cart to be temporary clone of Session["Cart"]
+            foreach (String course in (ArrayList)Session["Cart"])
+            {
+                temp_cart.Add(course); // copy all items inside session["cart"] into temp_cart, clone all things
+            }
+            temp_cart.Add(CPECode); // push in newest course
+            Session["Cart"] = temp_cart; // update latest cart into session["cart"]
         }
     }
 }
