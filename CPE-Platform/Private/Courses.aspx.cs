@@ -52,7 +52,7 @@ namespace CPE_Platform.Private
         protected void view_course_info(object sender, CommandEventArgs e)
         {
             string CPECode = e.CommandArgument.ToString();
-            Session["currentCPECode"] = CPECode;
+            Session["currentCPECode"] = CPECode; // saving it for later use for cart
 
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionstring))
@@ -105,8 +105,8 @@ namespace CPE_Platform.Private
                     {
                         if (course == CPECode)
                         {
-                            Response.Write("<script>alert('Course already added in cart');</script>");
                             itemInsideCart = true;
+                            break;
                         } 
                         else
                         {
@@ -114,7 +114,10 @@ namespace CPE_Platform.Private
                         }
                     }
                     // item not in cart, proceed to add new item to cart
-                    if (!itemInsideCart)
+                    if (itemInsideCart)
+                    {
+                        Response.Write("<script>alert('Course already added in cart');</script>");
+                    } else
                     {
                         addToCart(CPECode);
                         Response.Write("<script>alert('Item added to Cart');</script>");
