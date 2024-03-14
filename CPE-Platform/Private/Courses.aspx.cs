@@ -37,7 +37,6 @@ namespace CPE_Platform.Private
                 courseTypes.DataBind();
 
                 Session["Cart"] = new ArrayList();
-
             }
 
             // Filter CPE Course Types
@@ -80,7 +79,8 @@ namespace CPE_Platform.Private
         {
             int seatsLeft = 0; // need to initialized to a value
             String CPECode = Session["currentCPECode"].ToString();
-           
+            Boolean itemInsideCart = false;
+
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionstring);
             con.Open();
@@ -92,11 +92,6 @@ namespace CPE_Platform.Private
                 seatsLeft = dataReader.GetInt32(0); // retrieve seats left for currently selected CPE Course
             }
 
-            // cart is empty
-            addToCart(CPECode);
-            Response.Write("<script>alert('Item added to Cart');</script>");
-
-
             if (seatsLeft == 0)
             {
                 Response.Write("<script>alert('No more seats left');</script>");
@@ -105,19 +100,25 @@ namespace CPE_Platform.Private
             {
                 if ((ArrayList)Session["Cart"] != null)
                 {
+                    // check if CPECode existed in cart
                     foreach (String course in (ArrayList)Session["Cart"])
                     {
                         if (course == CPECode)
                         {
                             Response.Write("<script>alert('Course already added in cart');</script>");
+                            itemInsideCart = true;
                         } 
                         else
                         {
-                            addToCart(CPECode);
-                            Response.Write("<script>alert('Item added to Cart');</script>");
+                            itemInsideCart = false;
                         }
                     }
-
+                    // item not in cart, proceed to add new item to cart
+                    if (!itemInsideCart)
+                    {
+                        addToCart(CPECode);
+                        Response.Write("<script>alert('Item added to Cart');</script>");
+                    }
                 }   
                 else
                 {
@@ -131,7 +132,7 @@ namespace CPE_Platform.Private
             String allItems = "Courses added: ";
             foreach (String course in (ArrayList)Session["Cart"])
             {
-                allItems = allItems + "," + course;
+                allItems += ", " + course;
             }
             testlbl.Text = allItems; 
 
