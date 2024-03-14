@@ -24,13 +24,13 @@ namespace CPE_Platform.Private
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// CartItem control.
+        /// cartItemCards control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CartItem;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartItemCards;
 
         /// <summary>
         /// GridView1 control.

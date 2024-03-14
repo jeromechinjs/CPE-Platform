@@ -81,11 +81,9 @@
 						</li>
 						<!-- icon -->
 						<li class="nav-item p-2 bg-secondary">
-							<div class="dropdown">
-								<span class="btn dropdown-toggle d-flex rounded-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
-									<asp:LinkButton ID="LinkButton1" Text="Go To Cart" OnClick="goCart" runat="server"><i class="fa fa-shopping-cart fa-lg text-white"></i></asp:LinkButton>								
-								</span>
-							</div>
+							<asp:LinkButton ID="LinkButton1" CssClass="btn d-flex rounded-0 border-0" Text="Go To Cart" OnClick="goCart" runat="server">
+								<i class="fa fa-shopping-cart fa-lg text-white"></i>
+							</asp:LinkButton>								
 						</li>
 					</ul>
 
@@ -114,21 +112,22 @@
 				<div class="col-2 flex-column p-0">
 					<section class="sidebar">
 						<!-- sidebar shortcut buttons -->
-						<div class="sidebar-shortcut d-flex justify-content-evenly p-1">
-							<button class="btn btn-success rounded-0 ms-2" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<a href="~/StudentDashboard.aspx">
-									<i class="fa fa-home fa-fw text-white"></i>
-								</a>
-							</button>
-							<button class="btn btn-info rounded-0" title="Info" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-info fa-fw text-white"></i>			
-							</button>
-							<button class="btn btn-warning rounded-0" title="E-Learning" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-sitemap fa-fw text-white"></i>			
-							</button>
-							<button class="btn btn-danger rounded-0" title="UC Email" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-envelope fa-fw text-white"></i>			
-							</button>
+						<div class="sidebar-shortcut d-flex justify-content-evenly py-1 px-2">
+							<asp:LinkButton ID="LinkButton2" class="btn btn-success rounded-0 ms-2" Text="Home" OnClick="goDashboard" runat="server">
+								<i class="fa fa-home fa-fw text-white"></i>
+							</asp:LinkButton>
+
+							<asp:LinkButton ID="LinkButton4" class="btn btn-info rounded-0 ms-2" Text="Info" OnClick="goDashboard" runat="server">
+								<i class="fa fa-info fa-fw text-white"></i>
+							</asp:LinkButton>
+
+							<asp:LinkButton ID="LinkButton5" class="btn btn-warning rounded-0 ms-2" Text="E-Learning" OnClick="goDashboard" runat="server">
+								<i class="fa fa-sitemap fa-fw text-white"></i>
+							</asp:LinkButton>
+
+							<asp:LinkButton ID="LinkButton6" class="btn btn-danger rounded-0 ms-2" Text="UC Email" OnClick="goDashboard" runat="server">
+								<i class="fa fa-envelope fa-fw text-white"></i>
+							</asp:LinkButton>
 						</div>
 
 						<!-- sidebar nav items -->
@@ -152,6 +151,7 @@
 							  </div>
 							</div>
 						  </div>
+						</div>
 
 
 					</section>

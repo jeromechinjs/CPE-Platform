@@ -18,8 +18,6 @@
                 <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
             </div>
 
-            <asp:Label ID="testlbl" runat="server">[doing some cart testing]</asp:Label>
-
             <!-- Course Cards -->
             <div class="p-3 m-0">
                 <asp:DataList class="w-50" ID="courseCards" runat="server" DataSourceID="allCourses">

@@ -130,15 +130,6 @@ namespace CPE_Platform.Private
                     Response.Write("<script>alert('Item added to Cart');</script>");
                 }
             }
-
-            // cart test
-            String allItems = "Courses added: ";
-            foreach (String course in (ArrayList)Session["Cart"])
-            {
-                allItems += ", " + course;
-            }
-            testlbl.Text = allItems; 
-
         }
 
         private void addToCart(String CPECode)

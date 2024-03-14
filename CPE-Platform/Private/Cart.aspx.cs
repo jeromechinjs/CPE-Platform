@@ -26,17 +26,12 @@ namespace CPE_Platform.Private
 
             if (!IsPostBack)
             {
-
-                if (Session["Cart"] != null)
+                ArrayList cart = (ArrayList)Session["Cart"];
+                if (cart != null)
                 {
-                    String[] cart = Session["Cart"].ToString().Split(',');
-
-                    cart = cart.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
                     DataTable dt = new DataTable();
                     DataRow dr;
                     dt.Columns.Add("productName");
-                    dt.Columns.Add("productImage");
                     dt.Columns.Add("productPrice");
                     dt.Columns.Add("productTotal");
 
@@ -144,7 +139,7 @@ namespace CPE_Platform.Private
                 {
                     string emptyCart = "<div class=\"card w-100 my-5 p-3\">\r\n    <h2>No Items in Cart</h2>\r\n</div>";
                     Button2.Visible = false;
-                    CartItem.Controls.Add(new LiteralControl(emptyCart));
+                    cartItemCards.Controls.Add(new LiteralControl(emptyCart));
                 }
             }
         }

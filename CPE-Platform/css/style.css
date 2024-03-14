@@ -40,9 +40,10 @@ textarea {
 
 .sidebar-shortcut {
     background: #fafafa;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-.sidebar-shortcut button {
+.sidebar-shortcut .btn {
     width: 41px;
     line-height: 24px;
     border-width: 4px;
@@ -52,7 +53,6 @@ textarea {
 .sidebar-shortcut .fa {
     font-size: 14px;
 }
-
 
 .btn-success, .btn-success:focus {
     background: #87b87f !important;
@@ -88,7 +88,6 @@ textarea {
 span.dropdown-toggle::after {
     display: none;
 }
-
 
 .breadcrumb {
     border-bottom: 1px solid #e5e5e5;
