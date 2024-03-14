@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
+using System.Text;
+using System.Web.UI.WebControls.WebParts;
 
 namespace CPE_Platform.Private
 {
@@ -42,22 +44,14 @@ namespace CPE_Platform.Private
 
 					if (Session["Cart"] != null)
 					{
-						ArrayList cartList = (ArrayList)Session["Cart"];
-						//String[] cart = Session["Cart"].ToString().Split(',');
-						string[] cart = cartList.ToArray(typeof(string)) as string[];
-
-						cart = cart.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-						//System.Diagnostics.Debug.WriteLine(cart);
-						//lblTotalAmount.Text = string.Join(", ", cart);
-
-
-
 						// declare total Price to sum up the total amount of CPE Course
-						double totalPrice = 0;
+						double totalPrice = 0, totalSST = 0;
 						//int count = 0;
-						foreach (string item in cart)
+						StringBuilder courseDetails = new StringBuilder();
+						StringBuilder courseDetailsPrice = new StringBuilder();
+						foreach (string item in (ArrayList)Session["Cart"])
 						{
+							//lblTotalAmount.Text = string.Join(", ", item);
 							SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
 							string query = "SELECT * from CPE_Course where CPECode= '" + item + "'";
@@ -76,16 +70,34 @@ namespace CPE_Platform.Private
 										// calculate the total amount of all the CPE Course
 										double price = Convert.ToDouble(reader["CPEPrice"]);
 										totalPrice += price;
+										double priceWithoutSST = price * 0.94;
+
+										// display the cpe code and price individually
+										string itemDetails = reader["CPECode"].ToString() + "<br/>";
+										courseDetails.AppendLine(itemDetails);
+										string itemDetailsPrice = " RM " + priceWithoutSST.ToString("F2") + "<br/>";
+										courseDetailsPrice.AppendLine(itemDetailsPrice);
+
 									}
-									lblTotalAmount.Text = "RM " + totalPrice.ToString() + ".00";
-								}
+									Session["FinalPrice"] = totalPrice;
+									//lblCourse.Text = reader["CPECode"].ToString() + reader["CPEName"].ToString();
+									lblTotalAmount.Text = "RM " + totalPrice.ToString("F2");
+									lblTotalCPEPrice.Text = "RM " + totalPrice.ToString("F2");
+									totalSST = totalPrice * 0.06;
+									lblSST.Text = "RM " + totalSST.ToString("F2");								}
 							}
 							con.Close();
 						}
+						lblCourse.Text = courseDetails.ToString();
+						lblCPEPrice.Text = courseDetailsPrice.ToString();
 					}
 					else
 					{
-						lblTotalAmount.Text = "null";
+						string script = "alert('Cart is empty');";
+						ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+						string redirectScript = "setTimeout(function() { window.location.href = '../Private/Courses.aspx'; }, 0.1);"; // Redirect after 0.001 seconds (1 milliseconds)
+						ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 					}
 
 
@@ -153,17 +165,21 @@ namespace CPE_Platform.Private
 				int rewardsAmount = Convert.ToInt32(result);
 				if (chkboxPoints.Checked)
 				{
-					
 					rewardsAmount = rewardsAmount / 10;
-					lblPointsChk.Text = "- RM " + rewardsAmount.ToString() + ".00";
-					lblRewardsReedem.Text = "- RM " + rewardsAmount.ToString() + ".00";
+					double totalPrice = Convert.ToDouble(Session["FinalPrice"]) - rewardsAmount;
+					lblPointsChk.Text = "- RM " + rewardsAmount.ToString("F2");
+					lblRewardsReedem.Text = "- RM " + rewardsAmount.ToString("F2");
 					lblCPEPoints.Text = "0 Points";
+					lblTotalCPEPrice.Text = "RM " + totalPrice.ToString("F2");
 				}
 				else
 				{
+					Session["RewardsAmount"] = 0;
 					lblPointsChk.Text = null;
 					lblRewardsReedem.Text = "- RM 0.00";
 					lblCPEPoints.Text = rewardsAmount.ToString() + " Points";
+					double totalPrice = Convert.ToDouble(Session["FinalPrice"]);
+					lblTotalCPEPrice.Text = "RM " + totalPrice.ToString("F2");
 				}
 			}
 			con.Close();

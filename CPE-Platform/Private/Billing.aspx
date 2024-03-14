@@ -21,7 +21,7 @@
 							<b><span class="ps-2" style="color: dodgerblue">Pay</span></b>
 						</div>
 						<h4 class="text-success">
-							<asp:Label ID="lblTotalAmount" Text="Total Amount" runat="server"></asp:Label>
+							<asp:Label ID="lblTotalAmount" runat="server"></asp:Label>
 						</h4>
 						<h4>CPE Courses</h4>
 
@@ -83,10 +83,10 @@
 							</div>
 							<div class="p-2 d-flex">
 								<div class="col-8">
-									<asp:Label ID="lblCourse" runat="server" Text="CPE Course"></asp:Label>
+									<asp:Label ID="lblCourse" runat="server"></asp:Label>
 								</div>
 								<div class="ms-auto">
-									<asp:Label ID="lblCPEPrice" runat="server" Text="Price"></asp:Label>
+									<asp:Label ID="lblCPEPrice" runat="server"></asp:Label>
 								</div>
 							</div>
 
