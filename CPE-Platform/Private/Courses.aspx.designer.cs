@@ -60,6 +60,15 @@ namespace CPE_Platform.Private
         protected global::System.Web.UI.WebControls.Label txtCPECode;
 
         /// <summary>
+        /// txtCPEName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtCPEName;
+
+        /// <summary>
         /// txtCPEDesc control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,60 @@ namespace CPE_Platform.Private
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtCPEDesc;
+
+        /// <summary>
+        /// txtCPEVenue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtCPEVenue;
+
+        /// <summary>
+        /// txtCPETrainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtCPETrainer;
+
+        /// <summary>
+        /// txtStartTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtStartTime;
+
+        /// <summary>
+        /// txtEndTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtEndTime;
+
+        /// <summary>
+        /// txtContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtContact;
+
+        /// <summary>
+        /// txtEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtEmail;
 
         /// <summary>
         /// dllStartDate control.

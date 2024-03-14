@@ -27,15 +27,11 @@
                                 <div class="card-body px-5 py-3">
                                     <asp:Label class="card-title fw-bold" ID="txtCPECode" runat="server" Text='<%# Eval("CPECode") %>'></asp:Label>
                                     <br />
-                                    <asp:Label class="card-title fw-bold" ID="Label5" runat="server" Text='<%# Eval("CPEDesc") %>'></asp:Label>
-                                    <br />
                                     <asp:Label class="card-text" ID="Label6" runat="server" Text='<%# Eval("CPEStartDate")%>'></asp:Label>
                                     <span>to </span>
                                     <asp:Label class="card-text" ID="Label1" runat="server" Text='<%# Eval("CPEEndDate")%>'></asp:Label>
                                     <br />
                                     <span>RM </span>
-                                    <asp:Label class="card-text" ID="Label7" runat="server" Text='<%# Eval("CPEPrice") %>'></asp:Label>
-                                    &nbsp;
                                     <span>Available Seats Left: </span>
                                     <asp:Label class="card-text" ID="CPESeatAmount" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
                                     <br />
@@ -65,8 +61,23 @@
 					<div class="modal-body">
                         <asp:Label class="card-title fw-bold" ID="txtCPECode" runat="server" Text='<%# Eval("CPECode") %>'></asp:Label>
                         <br />
+                        <asp:Label class="card-title fw-bold" ID="txtCPEName" runat="server" Text='<%# Eval("CPEName") %>'></asp:Label>
+                        <br />
                         <asp:Label class="card-title fw-bold" ID="txtCPEDesc" runat="server" Text='<%# Eval("CPEDesc") %>'></asp:Label>
                         <br />
+                        <asp:Label class="card-title fw-bold" ID="txtCPEVenue" runat="server" Text='<%# Eval("CPEVenue") %>'></asp:Label>
+                        <br />
+                         <asp:Label class="card-title fw-bold" ID="txtCPETrainer" runat="server" Text='<%# Eval("CPETrainer") %>'></asp:Label>
+                        <br />
+                        <asp:Label class="card-title fw-bold" ID="txtStartTime" runat="server" Text='<%# Eval("CPEStartTime") %>'></asp:Label>
+                        <br />
+                         <asp:Label class="card-title fw-bold" ID="txtEndTime" runat="server" Text='<%# Eval("CPEEndTime") %>'></asp:Label>
+                        <br />
+                        <asp:Label class="card-title fw-bold" ID="txtContact" runat="server" Text='<%# Eval("CPEContact") %>'></asp:Label>
+                        <br />
+                         <asp:Label class="card-title fw-bold" ID="txtEmail" runat="server" Text='<%# Eval("CPEEmail") %>'></asp:Label>
+                        <br />
+
                         <asp:Label class="card-text" ID="dllStartDate" runat="server" Text='<%# Eval("CPEStartDate")%>'></asp:Label>
                         <span>to </span>
                         <asp:Label class="card-text" ID="dllEndDate" runat="server" Text='<%# Eval("CPEEndDate")%>'></asp:Label>

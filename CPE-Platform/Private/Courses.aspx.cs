@@ -64,9 +64,16 @@ namespace CPE_Platform.Private
                 if (dataReader.Read()) // returns true if have more rows to read, else false
                 {
                     txtCPECode.Text = dataReader["CPECode"].ToString();
+                    txtCPEName.Text = dataReader["CPEName"].ToString();
                     txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
+                    txtCPEVenue.Text = dataReader["CPEVenue"].ToString();
+                    txtCPETrainer.Text = dataReader["CPETrainer"].ToString();
                     txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
                     txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
+                    txtContact.Text = dataReader["CPEContact"].ToString();
+                    txtEmail.Text = dataReader["CPEEmail"].ToString();
+                    txtStartTime.Text = dataReader["CPEStartTime"].ToString();
+                    txtEndTime.Text = dataReader["CPEEndTime"].ToString();
                     dllStartDate.Text = dataReader["CPEStartDate"].ToString().Trim();
                     dllEndDate.Text = dataReader["CPEEndDate"].ToString().Trim();
                 }
