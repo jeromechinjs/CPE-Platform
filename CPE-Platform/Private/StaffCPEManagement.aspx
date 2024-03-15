@@ -46,7 +46,7 @@
 						<asp:TextBox ID="txtCPECode" CssClass="form-control" placeholder="CPE Code" runat="server" />
 
 						<label>CPE Course Name</label>
-						<asp:TextBox ID="txtCPEDesc" CssClass="form-control" placeholder="CPE Course Name" runat="server" />
+						<asp:TextBox ID="txtCPEName" CssClass="form-control" placeholder="CPE Course Name" runat="server" />
 						<label>CPE Seat Amount</label>
 						<asp:TextBox ID="txtCPESeat" CssClass="form-control" placeholder="CPE Course Seat Amount" runat="server" />
 						<label>CPE Price</label>
@@ -55,14 +55,50 @@
 						<label>CPE Upcoming Start Date</label>
 						<asp:DropDownList ID="dllStartDate" CssClass="form-control" runat="server">
 							<asp:ListItem Value="">Select Date</asp:ListItem>
-							<asp:ListItem Value="03 Feb 2024">03 Feb 2024</asp:ListItem>
+							<asp:ListItem Value="23 February 2024">23 February 2024</asp:ListItem>
+							<asp:ListItem Value="11 March 2024">11 March 2024</asp:ListItem>
+							<asp:ListItem Value="16 March 2024">16 March 2024</asp:ListItem>
+							<asp:ListItem Value="12 April 2024">12 April 2024</asp:ListItem>
 							<asp:ListItem Value="01 May 2024">01 May 2024</asp:ListItem>
+							<asp:ListItem Value="02 May 2024">02 May 2024</asp:ListItem>
+							<asp:ListItem Value="15 May 2024">15 May 2024</asp:ListItem>
+							<asp:ListItem Value="07 June 2024">07 June 2024</asp:ListItem>
+							<asp:ListItem Value="13 June 2024">13 June 2024</asp:ListItem>
+							<asp:ListItem Value="16 June 2024">16 June 2024</asp:ListItem>
+							<asp:ListItem Value="27 July 2024">27 July 2024</asp:ListItem>
+							<asp:ListItem Value="05 August 2024">05 August 2024</asp:ListItem>
+							<asp:ListItem Value="10 September 2024">10 September 2024</asp:ListItem>
+							<asp:ListItem Value="04 November 2024">04 November 2024</asp:ListItem>
+							<asp:ListItem Value="11 November 2024">11 November 2024</asp:ListItem>
+							<asp:ListItem Value="02 December 2024">02 December 2024</asp:ListItem>
+							<asp:ListItem Value="06 December 2024">06 December 2024</asp:ListItem>
+							<asp:ListItem Value="15 December 2024">15 December 2024</asp:ListItem>
+							
+							
 						</asp:DropDownList>
 						<label>CPE Upcoming End Date</label>
 						<asp:DropDownList ID="dllEndDate" CssClass="form-control" runat="server">
 							<asp:ListItem Value="">Select Date</asp:ListItem>
+							<asp:ListItem Value="03 February 2024">03 February 2024</asp:ListItem>
+							<asp:ListItem Value="24 February 2024">24 February 2024</asp:ListItem>
 							<asp:ListItem Value="03 March 2024">03 March 2024</asp:ListItem>
+							<asp:ListItem Value="26 March 2024">26 March 2024</asp:ListItem>
+							<asp:ListItem Value="13 April 2024">13 April 2024</asp:ListItem>
+							<asp:ListItem Value="02 May 2024">02 May 2024</asp:ListItem>
+							<asp:ListItem Value="19 May 2024">19 May 2024</asp:ListItem>
+							<asp:ListItem Value="08 June 2024">08 June 2024</asp:ListItem>
+							<asp:ListItem Value="15 June 2024">15 June 2024</asp:ListItem>
+							<asp:ListItem Value="25 June 2024">25 June 2024</asp:ListItem>
 							<asp:ListItem Value="03 July 2024">03 July 2024</asp:ListItem>
+							<asp:ListItem Value="28 July 2024">28 July 2024</asp:ListItem>
+							<asp:ListItem Value="10 August 2024">10 August 2024</asp:ListItem>
+							<asp:ListItem Value="14 October 2024">14 October 2024</asp:ListItem>
+							<asp:ListItem Value="11 November 2024">11 November 2024</asp:ListItem>
+							<asp:ListItem Value="20 November 2024">20 November 2024</asp:ListItem>
+							<asp:ListItem Value="26 November 2024">26 November 2024</asp:ListItem>
+							<asp:ListItem Value="07 December 2024">07 December 2024</asp:ListItem>
+							<asp:ListItem Value="15 December 2024">15 December 2024</asp:ListItem>
+							
 						</asp:DropDownList>
 						<label>Rewards Of the Course</label>
 						<asp:TextBox ID="txtCPERewards" CssClass="form-control" placeholder="Points" runat="server" />
@@ -121,7 +157,7 @@
 											<ItemTemplate>
 												<tr class="separator">
 													<td><%# Eval("CPECode") %></td>
-													<td><%# Eval("CPEDesc") %></td>
+													<td><%# Eval("CPEName") %></td>
 													<td><%# Eval("CPESeatAmount") %></td>
 													<td><%# Eval("CPEPrice") %></td>
 													<td><%# Eval("CPEStartDate") %></td>

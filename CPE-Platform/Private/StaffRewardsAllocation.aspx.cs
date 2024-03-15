@@ -183,7 +183,7 @@ namespace CPE_Platform.Private
 			// Implement your logic to fetch card data from the database
 			// Example:
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-			query = "SELECT CONCAT(CPECode, ' ', CPEDesc) AS CPECourse, CPEStartDate, CPEEndDate FROM CPE_Course";
+			query = "SELECT CONCAT(CPECode, ' ', CPEName) AS CPECourse, CPEStartDate, CPEEndDate FROM CPE_Course";
 			using (SqlCommand cmd = new SqlCommand(query, con))
 			{
 				con.Open();
@@ -221,7 +221,7 @@ namespace CPE_Platform.Private
 		//}
 		protected void AssignRewards(object sender, EventArgs e)  // function for btn assign rewards
 		{
-			string selectedWrongMsg = "Please select at least one student before assigning rewards.";
+			//string selectedWrongMsg = "Please select at least one student before assigning rewards.";
 			string errorMsg = "Please Select Valid Student Name";
 			SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 			DateTime currentDateTime = DateTime.Now;

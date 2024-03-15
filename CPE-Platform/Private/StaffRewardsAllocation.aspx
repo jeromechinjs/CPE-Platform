@@ -22,8 +22,8 @@
 						<div class="card h-100" style="width: 18rem;" runat="server">
 							<img src="https://img.freepik.com/free-photo/education-day-arrangement-table-with-copy-space_23-2148721266.jpg?size=626&ext=jpg" class="card-img-top" alt="" />
 							<div class="card-body">
-								<h5 class="card-title" style="height: 80px;"><%# Eval("CPECourse") %></h5>
-								<p class="card-text"><%# Eval("CPEStartDate") %> - <%# Eval("CPEEndDate") %></p>
+								<h5 class="card-title" style="height: 140px;"><%# Eval("CPECourse") %></h5>
+								<p class="card-text" style="height: 50px;"><%# Eval("CPEStartDate") %> - <%# Eval("CPEEndDate") %></p>
 								<asp:Button runat="server" ID="btnClickHere" CssClass="btn btn-primary btn-block" CommandName="Select" CommandArgument='<%# Eval("CPECourse") %>' Text="Click Here" />
 							</div>
 						</div>

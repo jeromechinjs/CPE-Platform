@@ -36,7 +36,7 @@ namespace CPE_Platform.Private
 			Session["IsUpdateFlag"] = false;    // session to set whether the user clicked which button
 			txtCPECode.Text = "";
 			txtCPECode.ReadOnly = false;
-			txtCPEDesc.Text = null;
+			txtCPEName.Text = null;
 			txtCPEPrice.Text = null;
 			txtCPERewards.Text = null;
 			dllStartDate.SelectedValue = null;
@@ -80,7 +80,7 @@ namespace CPE_Platform.Private
 				if (dataReader.Read())
 				{
 					txtCPECode.Text = dataReader["CPECode"].ToString();
-					txtCPEDesc.Text = dataReader["CPEDesc"].ToString();
+					txtCPEName.Text = dataReader["CPEName"].ToString();
 					txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
 					txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
 					dllStartDate.SelectedValue = dataReader["CPEStartDate"].ToString().Trim();
@@ -116,15 +116,15 @@ namespace CPE_Platform.Private
 
 					if (existingCPECount == 0)
 					{
-						if (string.IsNullOrEmpty(txtCPECode.Text) || string.IsNullOrEmpty(txtCPEDesc.Text) || string.IsNullOrEmpty(txtCPEPrice.Text) || string.IsNullOrEmpty(txtCPERewards.Text) || string.IsNullOrEmpty(txtCPESeat.Text))
+						if (string.IsNullOrEmpty(txtCPECode.Text) || string.IsNullOrEmpty(txtCPEName.Text) || string.IsNullOrEmpty(txtCPEPrice.Text) || string.IsNullOrEmpty(txtCPERewards.Text) || string.IsNullOrEmpty(txtCPESeat.Text))
 						{
 							lblmsg.Text = "Please fill up the information";
 						}
 						else
 						{
-							cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEDesc,CPESeatAmount,CPEPrice,CPEStartDate,CPEEndDate,Rewards,ModifiedDate) VALUES (@id,@CPEDesc,@CPESeatAmount,@CPEPrice,@CPEStartDate,@CPEEndDate,@Rewards,@ModifiedDate)", con);
+							cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEName,CPESeatAmount,CPEPrice,CPEStartDate,CPEEndDate,Rewards,ModifiedDate) VALUES (@id,@CPEName,@CPESeatAmount,@CPEPrice,@CPEStartDate,@CPEEndDate,@Rewards,@ModifiedDate)", con);
 							cmd.Parameters.AddWithValue("@id", txtCPECode.Text);
-							cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
+							cmd.Parameters.AddWithValue("@CPEName", txtCPEName.Text);
 
 							if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
 							{
@@ -173,10 +173,10 @@ namespace CPE_Platform.Private
 
 					string id = txtCPECode.Text;
 
-					cmd = new SqlCommand("UPDATE CPE_Course SET CPEDesc=@CPEDesc, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
+					cmd = new SqlCommand("UPDATE CPE_Course SET CPEName=@CPEName, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
 					"CPEStartDate=@CPEStartDate,CPEEndDate=@CPEEndDate,Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
 					cmd.Parameters.AddWithValue("@id", id);
-					cmd.Parameters.AddWithValue("@CPEDesc", txtCPEDesc.Text);
+					cmd.Parameters.AddWithValue("@CPEName", txtCPEName.Text);
 
 					if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
 					{
@@ -229,7 +229,7 @@ namespace CPE_Platform.Private
 		private DataTable GetDataFromDatabase(string searchKeyword)
 		{
 			// Define your SQL query to fetch data based on the search query
-			string query = "SELECT CONCAT(CPECode, ' ', CPEDesc) AS CPECourse, * FROM CPE_Course WHERE CONCAT(CPECode, ' ', CPEDesc) LIKE @DescKeywords";
+			string query = "SELECT CONCAT(CPECode, ' ', CPEName) AS CPECourse, * FROM CPE_Course WHERE CONCAT(CPECode, ' ', CPEName) LIKE @DescKeywords";
 
 			// Execute the query using ADO.NET and fetch data into a DataTable
 			DataTable searchData = new DataTable();
