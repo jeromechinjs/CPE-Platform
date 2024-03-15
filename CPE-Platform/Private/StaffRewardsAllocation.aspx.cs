@@ -249,24 +249,44 @@ namespace CPE_Platform.Private
 					if (item.Selected) // the student selected will execute this condition
 					{
 						SqlCommand cmd = new SqlCommand("INSERT INTO Rewards_Assign (RewardAwarded, rewardsDate, Progress, StudentID, CPECode) VALUES (@RewardAwarded, @rewardsDate, @Progress, @StudentID, @CPECode)", con);
+						con.Open();
+						SqlCommand cmdRewardsStud = new SqlCommand("UPDATE Student SET RewardsAmount=@RewardsAmount where StudentID = @id", con);
+						SqlCommand cmdSelecStud = new SqlCommand("SELECT RewardsAmount FROM Student WHERE StudentID =@id", con);
 						//cmd.Parameters.AddWithValue("@RewardAwarded", txtRewards.Text);
 						string rewardsText = txtRewards.Text;
 						int pointsIndex = rewardsText.IndexOf("Points");
-
-						if (pointsIndex != -1)
-						{
-							string rewardsValue = rewardsText.Substring(0, pointsIndex).Trim();
-
-							// Add the extracted value to the SQL parameter
-							cmd.Parameters.AddWithValue("@RewardAwarded", rewardsValue);
-						}
-						cmd.Parameters.AddWithValue("@rewardsDate", currentDateTime);
-						cmd.Parameters.AddWithValue("@Progress", "Completed");
 
 						// separate student id and name 
 						string[] separatedStudent = item.Value.Split(',');
 						string studentID = separatedStudent[0].Trim();
 						cmd.Parameters.AddWithValue("@StudentID", studentID);
+						cmdSelecStud.Parameters.AddWithValue("@id", studentID);
+						object rewardsAmountResult = cmdSelecStud.ExecuteScalar(); // retrieve rewards amount from the selected student acc
+						int rewardsAmount = Convert.ToInt32(rewardsAmountResult); // convert to int
+
+						if (pointsIndex != -1)
+						{
+							string rewardsValue = rewardsText.Substring(0, pointsIndex).Trim();
+							if (int.TryParse(rewardsValue, out int rewardsAssign))
+							{
+								// sum the rewards and add into student db
+								rewardsAmount += rewardsAssign;
+
+							}
+								
+							// Add the extracted value to the SQL parameter
+							cmd.Parameters.AddWithValue("@RewardAwarded", rewardsValue);
+							cmdRewardsStud.Parameters.AddWithValue("@id", studentID);
+
+							
+							cmdRewardsStud.Parameters.AddWithValue("@RewardsAmount", rewardsAmount);
+							int rowsAffected = cmdRewardsStud.ExecuteNonQuery();
+							con.Close();
+						}
+						cmd.Parameters.AddWithValue("@rewardsDate", currentDateTime);
+						cmd.Parameters.AddWithValue("@Progress", "Completed");
+
+						
 
 						// separate CPE code and description
 						// string[] separatedCPECourse = CPECourse_DropDown.SelectedValue.ToString().Split(',');

@@ -50,7 +50,7 @@
 		<div class="row d-flex justify-content-left mt-100">
 			<div class="col-md-7 mb-2">
 
-				<h3>
+				<h3 style="height: 70px;">
 					<asp:Label ID="lblCPECourse" CssClass="mt-3 col-md-1" runat="server"></asp:Label></h3>
 				<div class="row">
 					<%--<asp:Label ID="lblCourseDropdown" runat="server" Text="Course"></asp:Label>

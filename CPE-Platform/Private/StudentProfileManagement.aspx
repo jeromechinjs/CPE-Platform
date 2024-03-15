@@ -49,11 +49,11 @@
 
 							<asp:TemplateField HeaderText="Course Name">
 								<ItemTemplate>
-									<asp:Label Text='<%# Eval("CPEDesc") %>' runat="server" />
+									<asp:Label Text='<%# Eval("CPEName") %>' runat="server" />
 								</ItemTemplate>
 
 								<EditItemTemplate>
-									<asp:TextBox ID="txtCPEDesc" Text='<%# Eval("CPEDesc") %>' runat="server" />
+									<asp:TextBox ID="txtCPEDesc" Text='<%# Eval("CPEName") %>' runat="server" />
 								</EditItemTemplate>
 
 							</asp:TemplateField>
