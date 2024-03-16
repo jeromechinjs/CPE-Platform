@@ -170,6 +170,7 @@
 			</div>
 		</div>
 	</form>
+
 	<!-- Link to Bootstrap Javascript library-->
 	<script src="Scripts/bootstrap.bundle.min.js"></script>
 	<script src="Scripts/bootstrap.min.js"></script>

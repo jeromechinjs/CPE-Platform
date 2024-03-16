@@ -31,20 +31,20 @@ namespace CPE_Platform.Private
                 {
                     DataTable dt = new DataTable();
                     DataRow dr;
-                    dt.Columns.Add("productName");
-                    dt.Columns.Add("productPrice");
-                    dt.Columns.Add("productTotal");
+                    dt.Columns.Add("CPECode");
+                    dt.Columns.Add("CPEName");
+                    dt.Columns.Add("CPEPrice");
 
                     dr = dt.NewRow();
 
                     int sum = 0;
                     int count = 0;
-                    foreach (string item in cart)
+                    foreach (string CPECode in (ArrayList)Session["Cart"])
                     {
 
-                        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-                        string query = "SELECT * from Product where ProductID= '" + item + "'";
-						SqlDataAdapter da = new SqlDataAdapter("SELECT * from Product where ProductID= '" + item + "'", con);
+                        string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                        SqlConnection con = new SqlConnection(connectionstring);
+                        SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
                         DataSet ds = new DataSet();
 
                         da.Fill(ds);
@@ -59,108 +59,106 @@ namespace CPE_Platform.Private
 
                             if (count == total.Length)
                             {
-                                dt.Rows.Add(ds.Tables[0].Rows[0]["ProductName"].ToString(), ds.Tables[0].Rows[0]["ProductImage"].ToString(), ds.Tables[0].Rows[0]["ProductPrice"].ToString(), ds.Tables[0].Rows[0]["ProductPrice"].ToString());
+                                dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
 
-                                newTotal = newTotal + "," + ds.Tables[0].Rows[0]["ProductPrice"].ToString();
+                                newTotal = newTotal + "," + ds.Tables[0].Rows[0]["CPEPrice"].ToString();
                                 Session["Total"] = newTotal;
                             }
                             else
                             {
-                                dt.Rows.Add(ds.Tables[0].Rows[0]["ProductName"].ToString(), ds.Tables[0].Rows[0]["ProductImage"].ToString(), ds.Tables[0].Rows[0]["ProductPrice"].ToString(), total[count]);
-
+                                dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
                             }
                         }
                         else
                         {
-                            dt.Rows.Add(ds.Tables[0].Rows[0]["ProductName"].ToString(), ds.Tables[0].Rows[0]["ProductImage"].ToString(), ds.Tables[0].Rows[0]["ProductPrice"].ToString(), ds.Tables[0].Rows[0]["ProductPrice"].ToString());
+                            dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
                         }
 
-                        sum = sum + Convert.ToInt32(ds.Tables[0].Rows[0]["ProductPrice"].ToString());
+                        //sum = sum + Convert.ToInt32(ds.Tables[0].Rows[0]["CPEPrice"].ToString());
 
-                        GridView1.DataSource = dt;
-                        GridView1.DataBind();
+                        //cartItemCards.DataSource = dt;
+                        //cartItemCards.DataBind();
 
-                        GridView1.FooterRow.Cells[4].Text = sum.ToString();
-                        Session["Sum"] = sum.ToString();
+                        //cartItemCards.FooterRow.Cells[4].Text = sum.ToString();
+                        //Session["Sum"] = sum.ToString();
 
-                        GridView1.FooterRow.Cells[3].HorizontalAlign = HorizontalAlign.Center;
-                        GridView1.FooterRow.Cells[4].HorizontalAlign = HorizontalAlign.Center;
+                        //cartItemCards.FooterRow.Cells[3].HorizontalAlign = HorizontalAlign.Center;
+                        //cartItemCards.FooterRow.Cells[4].HorizontalAlign = HorizontalAlign.Center;
 
                         count++;
                     }
 
 
-                    if (Session["Quantity"] != null)
-                    {
-                        string newQuantity = Session["Quantity"].ToString();
-                        String[] quantity = Session["Quantity"].ToString().Split(',');
-                        quantity = quantity.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-                        int countQuantity = 0;
-                        foreach (GridViewRow row in GridView1.Rows)
-                        {
-                            TextBox rowQuantity = (TextBox)row.FindControl("TextBox1");
+                    //if (Session["Quantity"] != null)
+                    //{
+                    //    string newQuantity = Session["Quantity"].ToString();
+                    //    String[] quantity = Session["Quantity"].ToString().Split(',');
+                    //    quantity = quantity.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+                    //    int countQuantity = 0;
+                    //    foreach (GridViewRow row in cartItemCards.Rows)
+                    //    {
+                    //        TextBox rowQuantity = (TextBox)row.FindControl("TextBox1");
 
-                            if (countQuantity == quantity.Length)
-                            {
-                                rowQuantity.Text = "1";
-                                newQuantity = newQuantity + "," + 1;
-                            }
-                            else
-                            {
-                                rowQuantity.Text = quantity[countQuantity++];
-                            }
-                        }
+                    //        if (countQuantity == quantity.Length)
+                    //        {
+                    //            rowQuantity.Text = "1";
+                    //            newQuantity = newQuantity + "," + 1;
+                    //        }
+                    //        else
+                    //        {
+                    //            rowQuantity.Text = quantity[countQuantity++];
+                    //        }
+                    //    }
 
-                        Session["Quantity"] = newQuantity;
-                    }
+                    //    Session["Quantity"] = newQuantity;
+                    //}
 
-                    if (Session["total"] != null)
-                    {
-                        String[] total = Session["Total"].ToString().Split(',');
-                        total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+                    //if (Session["total"] != null)
+                    //{
+                    //    String[] total = Session["Total"].ToString().Split(',');
+                    //    total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
-                        sum = 0;
-                        for (int i = 0; i < total.Length; i++)
-                        {
-                            sum = sum + Convert.ToInt32(total[i]);
-                        }
+                    //    sum = 0;
+                    //    for (int i = 0; i < total.Length; i++)
+                    //    {
+                    //        sum = sum + Convert.ToInt32(total[i]);
+                    //    }
 
-                        if (GridView1.DataSource != null)
-                        {
-                            GridView1.FooterRow.Cells[4].Text = sum.ToString();
-                        }
-                    }
+                    //    if (cartItemCards.DataSource != null)
+                    //    {
+                    //        cartItemCards.FooterRow.Cells[4].Text = sum.ToString();
+                    //    }
+                    //}
 
 
                 }
 
 
-                if (GridView1.DataSource == null)
+                if (cartItemCards.DataSource == null)
                 {
                     string emptyCart = "<div class=\"card w-100 my-5 p-3\">\r\n    <h2>No Items in Cart</h2>\r\n</div>";
                     Button2.Visible = false;
-                    cartItemCards.Controls.Add(new LiteralControl(emptyCart));
+                    cartContainer.Controls.Add(new LiteralControl(emptyCart));
                 }
             }
         }
         protected void removeItem(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            string productName = btn.CommandArgument.ToString();
-            string productID = "";
+            string CPECode = btn.CommandArgument.ToString();
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-
-            SqlCommand command = new SqlCommand("SELECT ProductID from Product where ProductName= '" + productName + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
 
             con.Open();
-            SqlDataReader read = command.ExecuteReader();
-            if (read.Read())
-            {
-                productID = read.GetString(0);
-            }
-            con.Close();
-            Session["Cart"] = Session["Cart"].ToString().Replace(productID, "");
+            SqlDataReader read = cmd.ExecuteReader();
+
+            //if (read.Read())
+            //{
+            //    productID = read.GetString(0);
+            //}
+            //con.Close();
+            //Session["Cart"] = Session["Cart"].ToString().Replace(productID, "");
 
             if (Session["Cart"] != null)
             {
@@ -201,7 +199,7 @@ namespace CPE_Platform.Private
                 String[] quantity = Session["Quantity"].ToString().Split(',');
                 System.Diagnostics.Debug.WriteLine(rowIndex + " row index");
 
-                if (GridView1.Rows.Count == 1 || rowIndex == 1)
+                if (cartItemCards.Rows.Count == 1 || rowIndex == 1)
                 {
                     quantity[rowIndex] = null;
                 }
@@ -238,47 +236,47 @@ namespace CPE_Platform.Private
                 System.Diagnostics.Debug.WriteLine(Session["Quantity"].ToString() + " Total Session");
             }
 
-            if (Session["Total"] != null)
-            {
-                String[] total = Session["Total"].ToString().Split(',');
+            //if (Session["Total"] != null)
+            //{
+            //    String[] total = Session["Total"].ToString().Split(',');
 
-                if (GridView1.Rows.Count == 1)
-                {
-                    total[rowIndex] = null;
-                }
-                else
-                {
-                    total[rowIndex + 1] = null;
-                }
+            //    if (cartItemCards.Rows.Count == 1)
+            //    {
+            //        total[rowIndex] = null;
+            //    }
+            //    else
+            //    {
+            //        total[rowIndex + 1] = null;
+            //    }
 
-                string newTotal = "";
-                total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            //    string newTotal = "";
+            //    total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
-                Boolean checkFirst = true;
-                for (int i = 0; i < total.Length; i++)
-                {
-                    if (total[i] == null)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        if (checkFirst == true)
-                        {
-                            newTotal = total[i];
-                            checkFirst = false;
-                        }
-                        else
-                        {
-                            newTotal = newTotal + "," + total[i];
-                        }
-                    }
-                }
+            //    Boolean checkFirst = true;
+            //    for (int i = 0; i < total.Length; i++)
+            //    {
+            //        if (total[i] == null)
+            //        {
+            //            break;
+            //        }
+            //        else
+            //        {
+            //            if (checkFirst == true)
+            //            {
+            //                newTotal = total[i];
+            //                checkFirst = false;
+            //            }
+            //            else
+            //            {
+            //                newTotal = newTotal + "," + total[i];
+            //            }
+            //        }
+            //    }
 
-                Session["Total"] = newTotal;
+            //    Session["Total"] = newTotal;
 
-                System.Diagnostics.Debug.WriteLine(Session["Total"].ToString() + " Total Session");
-            }
+            //    System.Diagnostics.Debug.WriteLine(Session["Total"].ToString() + " Total Session");
+            //}
 
             Response.Redirect("Cart.aspx");
         }
@@ -300,17 +298,17 @@ namespace CPE_Platform.Private
             int quantity = Convert.ToInt32(quantityTB.Text);
 
 
-            GridViewRow rowTest = GridView1.Rows[rowIndex];
+            GridViewRow rowTest = cartItemCards.Rows[rowIndex];
 
             //Restrict if more than inventory number
 
-            string rowName = GridView1.Rows[rowIndex].Cells[1].Text;
+            string rowName = cartItemCards.Rows[rowIndex].Cells[1].Text;
             string productID = "";
             int currentQuantity = 0;
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
-            SqlCommand command = new SqlCommand("SELECT ProductID from Product where ProductName= '" + rowName + "'", con);
+            SqlCommand command = new SqlCommand("SELECT ProductID from Product where CPEName= '" + rowName + "'", con);
 
             con.Open();
             SqlDataReader read = command.ExecuteReader();
@@ -338,7 +336,7 @@ namespace CPE_Platform.Private
             }
 
             //Change price when quantity change
-            string rowPrice = GridView1.Rows[rowIndex].Cells[2].Text;
+            string rowPrice = cartItemCards.Rows[rowIndex].Cells[2].Text;
 
             int price = Convert.ToInt32(rowPrice);
 
@@ -346,13 +344,13 @@ namespace CPE_Platform.Private
             int total = 0;
             total = quantity * price;
 
-            GridView1.Rows[rowIndex].Cells[4].Text = total.ToString();
+            cartItemCards.Rows[rowIndex].Cells[4].Text = total.ToString();
 
             string totalPriceList = "";
             string quantityList = "";
 
             int sum = 0;
-            foreach (GridViewRow row in GridView1.Rows)
+            foreach (GridViewRow row in cartItemCards.Rows)
             {
                 TextBox rowQuantity = (TextBox)row.FindControl("TextBox1");
 
@@ -366,7 +364,7 @@ namespace CPE_Platform.Private
             Session["Total"] = totalPriceList;
 
 
-            GridView1.FooterRow.Cells[4].Text = sum.ToString();
+            cartItemCards.FooterRow.Cells[4].Text = sum.ToString();
 
             Session["Sum"] = sum.ToString();
 

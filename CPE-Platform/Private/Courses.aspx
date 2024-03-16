@@ -33,7 +33,6 @@
                                     <span>to </span>
                                     <asp:Label class="card-text" ID="Label1" runat="server" Text='<%# Eval("CPEEndDate")%>'></asp:Label>
                                     <br />
-                                    <span>RM </span>
                                     <span>Available Seats Left: </span>
                                     <asp:Label class="card-text" ID="CPESeatAmount" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
                                     <br />
