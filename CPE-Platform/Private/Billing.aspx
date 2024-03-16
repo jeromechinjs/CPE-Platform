@@ -67,7 +67,8 @@
 							</div>
 
 							<%-- </form>--%>
-							<asp:Button ID="btnProceedPayment" class="btn btn-primary btn-block btn-lg" runat="server" Text="Proceed to payment" />
+							<asp:Button ID="btnProceedPayment" class="btn btn-primary btn-block btn-lg" runat="server" Text="Proceed to payment" OnClick="btnProceedPayment_Click" />
+							<asp:Label ID ="lblResult" Text="..." ForeColor="IndianRed" runat="server"></asp:Label>
 						</div>
 					</div>
 
