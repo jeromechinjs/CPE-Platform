@@ -114,64 +114,82 @@ namespace CPE_Platform.Private
 						ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 					}
 
-					//HandlePaymentProcess();
+					
 					
 				}
 			}
+			string approvalToken = Request.QueryString["token"];
 			if (Request.QueryString != null && Request.QueryString.Count != 0)
 			{
-				string approvalToken = Request.QueryString["token"];
-				var response = Task.Run(async () => await captureOrder(approvalToken));  // Use .Result since Page_Load is not asynchronous
+				HandlePaymentProcess(approvalToken);
 
-				// Process the response or handle errors as needed
-				if (response.Result != null)
-				{
-					Order result = response.Result.Result<Order>();
-					lblResult.Text = result.Status;
-					// Process the response or handle errors
-				}
-				else
-				{
-					// Handle null response (error handling)
-				}
+				//string approvalToken = Request.QueryString["token"];
+				//var response = Task.Run(async () => await captureOrder(approvalToken));  // Use .Result since Page_Load is not asynchronous
+
+				//// Process the response or handle errors as needed
+				//if (response.Result != null)
+				//{
+				//	Order result = response.Result.Result<Order>();
+				//	lblResult.Text = result.Status;
+				//	// Process the response or handle errors
+				//}
+				//else
+				//{
+				//	// Handle null response (error handling)
+				//}
 
 
 			}
 		}
-		private void HandlePaymentProcess()
+		private void HandlePaymentProcess(string approvalToken)
 		{
+			try
+			{
+				var response = Task.Run(async () => await captureOrder(approvalToken)).Result;
 
-			//try
-			//{
-			//	string approvalToken = Request.QueryString["token"];
-			//	var response = Task.Run(async () => await captureOrder(approvalToken));  // Use .Result since Page_Load is not asynchronous
-			//	if (response.Result != null)
-			//	{
-			//		Order result = response.Result.Result<Order>();
-			//		Response.Redirect("../Private/billing.aspx");
-			//		lblResult.Text = result.Status;
-			//	}
-			//	else
-			//	{
-			//		// Response is null, indicating cancellation or error during payment process
-			//		Response.Redirect("../Private/billing.aspx");
-			//		lblResult.Text = "Payment process was canceled or encountered an error.";
-			//	}
-			//}
-			//catch (PayPal.HttpException ex)
-			//{
-			//	// Handle PayPal API exceptions
-			//	lblResult.Text = "An error occurred while processing your payment. Please try again later.";
-			//	// Log the exception for further investigation
-			//	Console.WriteLine("PayPal API Exception: " + ex.ToString());
-			//}
-			//catch (Exception ex)
-			//{
-			//	// Handle other exceptions
-			//	lblResult.Text = "An unexpected error occurred. Please try again later.";
-			//	// Log the exception for further investigation
-			//	Console.WriteLine("Exception: " + ex.ToString());
-			//}
+				if (response != null)
+				{
+					Order result = response.Result<Order>();
+					if (result.Status.ToLower() == "completed")
+					{
+						// Show a pop-up message
+						string script = "alert('Payment successful! You will be redirected to the Courses page.');";
+						ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+						// Redirect to Courses.aspx after a short delay
+						string redirectScript = "setTimeout(function() { window.location.href = '../Private/Courses.aspx'; }, 10);"; // Redirect after 2 seconds
+						ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+					}
+					else
+					{
+						string script = "alert('Payment process was not completed successfully.');";
+						ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+					}
+				}
+				else
+				{
+					// Response is null, indicating cancellation or error during payment process
+					Response.Redirect("../Private/billing.aspx");
+					string script = "alert('Payment process was canceled or encountered an error.');";
+					ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+				}
+			}
+			catch (PayPal.HttpException ex)
+			{
+				// Handle PayPal API exceptions
+				string script = "alert('An error occurred while processing your payment. Please try again later.');";
+				ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+				// Log the exception for further investigation
+				Console.WriteLine("PayPal API Exception: " + ex.ToString());
+			}
+			catch (Exception ex)
+			{
+				// Handle other exceptions
+				string script = "alert('An unexpected error occurred. Please try again later.');";
+				ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+				// Log the exception for further investigation
+				Console.WriteLine("Exception: " + ex.ToString());
+			}
 		}
 
 
@@ -255,8 +273,19 @@ namespace CPE_Platform.Private
 		}
 		protected void btnProceedPayment_Click(object sender, EventArgs e)
 		{
-			var response = Task.Run(async () => await createOrder(Session));
-			Response.Redirect(response.Result);
+			if (lblTotalCPEPrice.Text == "Total Price")
+			{
+				string script = "alert('The current Cart is empty');";
+				ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+				string redirectScript = "setTimeout(function() { window.location.href = '../Private/Courses.aspx'; }, 10);"; // Redirect after 2 seconds
+				ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+			}
+			else
+			{
+				var response = Task.Run(async () => await createOrder(Session));
+				Response.Redirect(response.Result);
+			}
+			
 		}
 
 		protected void chkboxPoints_CheckedChanged(object sender, EventArgs e)
