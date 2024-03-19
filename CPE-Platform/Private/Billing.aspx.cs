@@ -19,6 +19,10 @@ using System.Web.Services.Description;
 using System.Net;
 using System.Web.SessionState;
 using System.Reflection.Emit;
+using System.Diagnostics;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 
 namespace CPE_Platform.Private
@@ -114,30 +118,14 @@ namespace CPE_Platform.Private
 						ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 					}
 
-					
-					
+
+
 				}
 			}
 			string approvalToken = Request.QueryString["token"];
 			if (Request.QueryString != null && Request.QueryString.Count != 0)
 			{
 				HandlePaymentProcess(approvalToken);
-
-				//string approvalToken = Request.QueryString["token"];
-				//var response = Task.Run(async () => await captureOrder(approvalToken));  // Use .Result since Page_Load is not asynchronous
-
-				//// Process the response or handle errors as needed
-				//if (response.Result != null)
-				//{
-				//	Order result = response.Result.Result<Order>();
-				//	lblResult.Text = result.Status;
-				//	// Process the response or handle errors
-				//}
-				//else
-				//{
-				//	// Handle null response (error handling)
-				//}
-
 
 			}
 		}
@@ -152,13 +140,38 @@ namespace CPE_Platform.Private
 					Order result = response.Result<Order>();
 					if (result.Status.ToLower() == "completed")
 					{
-						// Show a pop-up message
-						string script = "alert('Payment successful! You will be redirected to the Courses page.');";
-						ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+						double totalPrice = Convert.ToDouble(Session["FinalPrice"]);
 
-						// Redirect to Courses.aspx after a short delay
-						string redirectScript = "setTimeout(function() { window.location.href = '../Private/Courses.aspx'; }, 10);"; // Redirect after 2 seconds
-						ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+						// Generate PDF invoice
+						try
+						{
+							byte[] pdfInvoice = GeneratePDFInvoice(result);
+							// Store Payment and invoice as pdf into database
+							StorePaymentInDatabase(pdfInvoice, result);
+							UpdateStudentInDatabase();
+
+							// Show a pop-up message
+							string script = "alert('Payment successful! You will be redirected to the Courses page.');";
+							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+
+							// Redirect to Courses.aspx after a short delay
+							string redirectScript = "setTimeout(function() { window.location.href = '../Private/Courses.aspx'; }, 10);"; // Redirect after 2 seconds
+							ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
+
+						}
+						catch (Exception ex)
+						{
+							// Handle the exception
+							Console.WriteLine("Error generating PDF invoice: " + ex.Message);
+							// Log the exception for further investigation
+						}
+
+						//tbc to display invoice
+						//testing purpose
+						//int paymentId = 7; // Replace with the actual payment ID
+						//string filePath = Path.Combine(Server.MapPath("~/Invoices"), $"invoice_{paymentId}.pdf");
+						//RetrieveAndWritePDFToFile(paymentId, filePath);
+
 					}
 					else
 					{
@@ -191,7 +204,167 @@ namespace CPE_Platform.Private
 				Console.WriteLine("Exception: " + ex.ToString());
 			}
 		}
+		// insert payment details into database
+		public void StorePaymentInDatabase(byte[] pdfContent, Order order)
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			string query = "INSERT INTO Payment (BillRefNo, Description, TotalPrice, Invoice, PaymentDate) VALUES (@BillRefNo, @Description, @TotalPrice, @Invoice, @PaymentDate)";
+			double totalPrice = Convert.ToDouble(Session["FinalPrice"]);
+			try
+			{
+				using (SqlConnection connection = new SqlConnection(connectionString))
+				{
+					connection.Open();
 
+
+					using (SqlCommand command = new SqlCommand(query, connection))
+					{
+						DateTime currentDate = DateTime.Now.Date;
+						command.Parameters.AddWithValue("@BillRefNo", order.Id);
+						command.Parameters.AddWithValue("@Description", "CPE Course Bill");
+						command.Parameters.AddWithValue("@TotalPrice", totalPrice);
+						command.Parameters.AddWithValue("@Invoice", pdfContent);
+						command.Parameters.AddWithValue("@PaymentDate", currentDate);
+
+
+						command.ExecuteNonQuery();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Log the exception for further investigation
+				Console.WriteLine("Error storing payment in database: " + ex.Message);
+				Console.WriteLine(ex.StackTrace);
+			}
+		}
+
+		// update Student Rewards used and total amount of rewards
+		public void UpdateStudentInDatabase()
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			string query = "UPDATE Student SET RewardsAmount=@RewardsAmount, RewardsUsed = @RewardsUsed where StudentID = @StudentID";
+			try
+			{
+				using (SqlConnection connection = new SqlConnection(connectionString))
+				{
+					connection.Open();
+
+
+					using (SqlCommand command = new SqlCommand(query, connection))
+					{
+						DateTime currentDate = DateTime.Now.Date;
+						command.Parameters.AddWithValue("RewardsAmount", Session["RewardsAmount"]);
+						command.Parameters.AddWithValue("@RewardsUsed", Session["RewardsUsed"]);
+						command.Parameters.AddWithValue("@StudentID", Session["StudentID"].ToString());
+						command.ExecuteNonQuery();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Log the exception for further investigation
+				Console.WriteLine("Error update Student details in database: " + ex.Message);
+				Console.WriteLine(ex.StackTrace);
+			}
+		}
+
+		// update CPE Course seats number (tbc)
+
+		//insert CPE_Registration info into database (tbc)
+
+		// function to generate pdf for invoice
+		public byte[] GeneratePDFInvoice(Order order)
+		{
+			// Get the total amount from the order
+			//string totalAmount = order.PurchaseUnits[0].AmountWithBreakdown.Value;
+			double totalPrice = Convert.ToDouble(Session["FinalPrice"]);
+
+			// Create a new PDF document
+			MemoryStream msOutput = new MemoryStream();
+			Document document = new Document();
+			PdfWriter writer = PdfWriter.GetInstance(document, msOutput);
+			document.Open();
+
+			// Add content to the PDF document
+			document.Add(new Paragraph("Invoice"));
+			document.Add(new Paragraph($"Order ID: {order.Id}"));
+			document.Add(new Paragraph($"Student ID: {Session["StudentID"]}"));
+			document.Add(new Paragraph($"Status: {order.Status}"));
+			document.Add(new Paragraph($"Total Amount: {totalPrice}"));
+			// Add more details as needed
+
+			document.Close();
+
+			// Return the PDF content as a byte array
+			return msOutput.ToArray();
+		}
+		// testing purpose
+		public void RetrieveAndWritePDFToFile(int paymentId, string filePath)
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			string query = "SELECT Invoice FROM Payment WHERE PaymentId = @PaymentId";
+
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				connection.Open();
+
+				using (SqlCommand command = new SqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@PaymentId", paymentId);
+
+					byte[] pdfContent = (byte[])command.ExecuteScalar();
+
+					if (pdfContent != null)
+					{
+						File.WriteAllBytes(filePath, pdfContent);
+						// You can now open the file using a PDF viewer
+					}
+				}
+			}
+		}
+		public void DisplayPDFInBrowser(int paymentId)
+		{
+			try
+			{
+				string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+				string query = "SELECT Invoice FROM Payment WHERE PaymentId = @PaymentId";
+
+				using (SqlConnection connection = new SqlConnection(connectionString))
+				{
+					connection.Open();
+
+					using (SqlCommand command = new SqlCommand(query, connection))
+					{
+						command.Parameters.AddWithValue("@PaymentId", paymentId);
+
+						byte[] pdfContent = (byte[])command.ExecuteScalar();
+
+						if (pdfContent != null)
+						{
+							Response.ContentType = "application/pdf";
+							Response.AddHeader("Content-Disposition", "inline; filename=invoice.pdf");
+							Response.BinaryWrite(pdfContent);
+							Response.End();
+						}
+						else
+						{
+							// Handle the case where pdfContent is null
+							string script = "alert('Invoice not found for the payment.');";
+							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle exceptions
+				string script = "alert('An error occurred while retrieving the invoice.');";
+				ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
+				// Log the exception for further investigation
+				Console.WriteLine("Exception: " + ex.ToString());
+			}
+		}
 
 		public async static Task<string> createOrder(HttpSessionState Session)
 		{
@@ -285,7 +458,7 @@ namespace CPE_Platform.Private
 				var response = Task.Run(async () => await createOrder(Session));
 				Response.Redirect(response.Result);
 			}
-			
+
 		}
 
 		protected void chkboxPoints_CheckedChanged(object sender, EventArgs e)
@@ -301,9 +474,11 @@ namespace CPE_Platform.Private
 			{
 				// Convert the result to an integer and assign it to lblCPEPoints.Text
 				int rewardsAmount = Convert.ToInt32(result);
-				
+
 				if (chkboxPoints.Checked)
 				{
+					Session["RewardsAmount"] = 0;
+					Session["RewardsUsed"] = rewardsAmount;
 					rewardsAmount = rewardsAmount / 10;
 					totalPrice = Convert.ToDouble(Session["FinalPrice"]) - rewardsAmount;
 					lblPointsChk.Text = "- RM " + rewardsAmount.ToString("F2");
@@ -314,7 +489,8 @@ namespace CPE_Platform.Private
 				}
 				else
 				{
-					Session["RewardsAmount"] = 0;
+					Session["RewardsAmount"] = rewardsAmount;
+					Session["RewardsUsed"] = 0;
 					lblPointsChk.Text = null;
 					lblRewardsReedem.Text = "- RM 0.00";
 					lblCPEPoints.Text = rewardsAmount.ToString() + " Points";
@@ -323,7 +499,7 @@ namespace CPE_Platform.Private
 					lblTotalCPEPrice.Text = "RM " + totalPrice.ToString("F2");
 					lblTotalAmount.Text = "RM " + totalPrice.ToString("F2");
 				}
-				
+
 			}
 			Session["FinalPrice"] = totalPrice;
 			con.Close();
