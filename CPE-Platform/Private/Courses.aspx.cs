@@ -28,7 +28,7 @@ namespace CPE_Platform.Private
 			if (!Page.IsPostBack)
 			{
                 allCourses.SelectCommand = "SELECT * FROM CPE_Course";
-                allCourses.DataBind();
+                allCourses.DataBind(); // when need to retrieve data and display in frontend inside ASP control template, need bind (if backend oerations only, no ned bind, just read)
 
                 courseCards.DataBind();
 

@@ -26,8 +26,7 @@ namespace CPE_Platform.Private
 
             if (!IsPostBack)
             {
-                ArrayList cart = (ArrayList)Session["Cart"];
-                if (cart != null)
+                if ((ArrayList)Session["Cart"] != null)
                 {
                     DataTable dt = new DataTable();
                     DataRow dr;
@@ -35,44 +34,50 @@ namespace CPE_Platform.Private
                     dt.Columns.Add("CPEName");
                     dt.Columns.Add("CPEPrice");
 
-                    dr = dt.NewRow();
+                    dr = dt.NewRow(); // create a new row for each item in cart
 
                     int sum = 0;
                     int count = 0;
-                    foreach (string CPECode in (ArrayList)Session["Cart"])
+                    foreach (String CPECode in (ArrayList)Session["Cart"])
                     {
 
                         string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                         SqlConnection con = new SqlConnection(connectionstring);
-                        SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
-                        DataSet ds = new DataSet();
+                        con.Open();
 
-                        da.Fill(ds);
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        //DataSet ds = new DataSet();
+
+                        da.Fill(dt);
+
+                        cartItemCards.DataSource = dt;
+                        cartItemCards.DataBind();
 
 
-                        if (Session["Total"] != null)
-                        {
-                            string newTotal = Session["Total"].ToString();
-                            String[] total = Session["Total"].ToString().Split(',');
-                            total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+                        //if (Session["Total"] != null)
+                        //{
+                        //    string newTotal = Session["Total"].ToString();
+                        //    String[] total = Session["Total"].ToString().Split(',');
+                        //    total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
 
-                            if (count == total.Length)
-                            {
-                                dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
+                        //    if (count == total.Length)
+                        //    {
+                        //        dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
 
-                                newTotal = newTotal + "," + ds.Tables[0].Rows[0]["CPEPrice"].ToString();
-                                Session["Total"] = newTotal;
-                            }
-                            else
-                            {
-                                dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
-                            }
-                        }
-                        else
-                        {
-                            dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
-                        }
+                        //        newTotal = newTotal + "," + ds.Tables[0].Rows[0]["CPEPrice"].ToString();
+                        //        Session["Total"] = newTotal;
+                        //    }
+                        //    else
+                        //    {
+                        //        dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
+                        //}
 
                         //sum = sum + Convert.ToInt32(ds.Tables[0].Rows[0]["CPEPrice"].ToString());
 
@@ -85,7 +90,7 @@ namespace CPE_Platform.Private
                         //cartItemCards.FooterRow.Cells[3].HorizontalAlign = HorizontalAlign.Center;
                         //cartItemCards.FooterRow.Cells[4].HorizontalAlign = HorizontalAlign.Center;
 
-                        count++;
+                        //count++;
                     }
 
 
@@ -151,13 +156,13 @@ namespace CPE_Platform.Private
             SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
 
             con.Open();
-            SqlDataReader read = cmd.ExecuteReader();
+            SqlDataReader dataReader = cmd.ExecuteReader();
 
-            //if (read.Read())
-            //{
-            //    productID = read.GetString(0);
-            //}
-            //con.Close();
+            if (dataReader.Read())
+            {
+                CPECode = dataReader.GetString(0);
+            }
+            con.Close();
             //Session["Cart"] = Session["Cart"].ToString().Replace(productID, "");
 
             if (Session["Cart"] != null)
@@ -194,47 +199,6 @@ namespace CPE_Platform.Private
             int rowIndex = gridRow.RowIndex;
 
 
-            if (Session["Quantity"] != null)
-            {
-                String[] quantity = Session["Quantity"].ToString().Split(',');
-                System.Diagnostics.Debug.WriteLine(rowIndex + " row index");
-
-                if (cartItemCards.Rows.Count == 1 || rowIndex == 1)
-                {
-                    quantity[rowIndex] = null;
-                }
-                else
-                {
-                    quantity[rowIndex + 1] = null;
-                }
-
-                string newQuantity = "";
-                quantity = quantity.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-                Boolean checkFirst = true;
-                for (int i = 0; i < quantity.Length; i++)
-                {
-                    if (quantity[i] == null)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        if (checkFirst == true)
-                        {
-                            newQuantity = quantity[i];
-                            checkFirst = false;
-                        }
-                        else
-                        {
-                            newQuantity = newQuantity + "," + quantity[i];
-                        }
-                    }
-                }
-
-                Session["Quantity"] = newQuantity;
-                System.Diagnostics.Debug.WriteLine(Session["Quantity"].ToString() + " Total Session");
-            }
 
             //if (Session["Total"] != null)
             //{
@@ -283,91 +247,8 @@ namespace CPE_Platform.Private
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Checkout.aspx");
+            Response.Redirect("Billing.aspx");
         }
 
-        protected void txt_OnTextChanged(object sender, EventArgs e)
-        {
-
-            TextBox quantityTB = (TextBox)sender;
-
-
-            GridViewRow gridRow = (GridViewRow)((TextBox)sender).NamingContainer;
-            int rowIndex = gridRow.RowIndex;
-
-            int quantity = Convert.ToInt32(quantityTB.Text);
-
-
-            GridViewRow rowTest = cartItemCards.Rows[rowIndex];
-
-            //Restrict if more than inventory number
-
-            string rowName = cartItemCards.Rows[rowIndex].Cells[1].Text;
-            string productID = "";
-            int currentQuantity = 0;
-
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-
-            SqlCommand command = new SqlCommand("SELECT ProductID from Product where CPEName= '" + rowName + "'", con);
-
-            con.Open();
-            SqlDataReader read = command.ExecuteReader();
-            if (read.Read())
-            {
-                productID = read.GetString(0);
-            }
-            con.Close();
-
-            con.Open();
-            SqlCommand commandSelect = new SqlCommand("Select ProductQuantity FROM Product Where ProductID= '" + productID + "'", con);
-            SqlDataReader readQuantity = commandSelect.ExecuteReader();
-            if (readQuantity.Read())
-            {
-                currentQuantity = readQuantity.GetInt32(0);
-            }
-
-            con.Close();
-
-            if (currentQuantity < quantity)
-            {
-
-                quantityTB.Text = currentQuantity.ToString();
-                quantity = currentQuantity;
-            }
-
-            //Change price when quantity change
-            string rowPrice = cartItemCards.Rows[rowIndex].Cells[2].Text;
-
-            int price = Convert.ToInt32(rowPrice);
-
-
-            int total = 0;
-            total = quantity * price;
-
-            cartItemCards.Rows[rowIndex].Cells[4].Text = total.ToString();
-
-            string totalPriceList = "";
-            string quantityList = "";
-
-            int sum = 0;
-            foreach (GridViewRow row in cartItemCards.Rows)
-            {
-                TextBox rowQuantity = (TextBox)row.FindControl("TextBox1");
-
-                quantityList = quantityList + "," + rowQuantity.Text;
-                totalPriceList = totalPriceList + "," + row.Cells[4].Text;
-
-                sum = sum + Convert.ToInt32(row.Cells[4].Text);
-            }
-
-            Session["Quantity"] = quantityList;
-            Session["Total"] = totalPriceList;
-
-
-            cartItemCards.FooterRow.Cells[4].Text = sum.ToString();
-
-            Session["Sum"] = sum.ToString();
-
-        }
     }
 }
