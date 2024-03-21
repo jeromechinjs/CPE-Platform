@@ -23,6 +23,11 @@ using System.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using Org.BouncyCastle.Utilities.Collections;
+using static iTextSharp.text.pdf.AcroFields;
+using System.Drawing;
+using Org.BouncyCastle.Asn1.X509;
+
 
 
 namespace CPE_Platform.Private
@@ -149,6 +154,8 @@ namespace CPE_Platform.Private
 							// Store Payment and invoice as pdf into database
 							StorePaymentInDatabase(pdfInvoice, result);
 							UpdateStudentInDatabase();
+							UpdateCPECourseSeats();
+							StoreIntoCPERegistration(result);
 
 							// Show a pop-up message
 							string script = "alert('Payment successful! You will be redirected to the Courses page.');";
@@ -225,8 +232,6 @@ namespace CPE_Platform.Private
 						command.Parameters.AddWithValue("@TotalPrice", totalPrice);
 						command.Parameters.AddWithValue("@Invoice", pdfContent);
 						command.Parameters.AddWithValue("@PaymentDate", currentDate);
-
-
 						command.ExecuteNonQuery();
 					}
 				}
@@ -270,8 +275,62 @@ namespace CPE_Platform.Private
 		}
 
 		// update CPE Course seats number (tbc)
+		public void UpdateCPECourseSeats()
+		{
+			if (Session["Cart"] != null)
+			{
+				foreach (string item in (ArrayList)Session["Cart"])
+				{
+					int SeatNum = 0;
+					SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+					string query = "UPDATE CPE_Course SET CPESeatAmount = @CPESeat where CPECode= '" + item + "'";
+					SqlCommand cmd2 = new SqlCommand("SELECT CPESeatAmount from CPE_Course where CPECode= '" + item + "'", con);
+					con.Open();
+					using (SqlCommand cmd = new SqlCommand(query, con))
+					{
+						using (SqlDataReader reader = cmd2.ExecuteReader())
+						{
+							while (reader.Read())
+							{
+								// calculate the total amount of all the CPE Course
+								SeatNum = Convert.ToInt32(reader["CPESeatAmount"]);
+								SeatNum -= 1;
 
-		//insert CPE_Registration info into database (tbc)
+							}
+							Session["CPESeats"] = SeatNum;
+						}
+						cmd.Parameters.AddWithValue("@CPESeat", Session["CPESeats"]);
+						cmd.ExecuteNonQuery();
+					}
+					con.Close();
+				}
+			}
+		}
+
+		//insert CPE_Registration info into database
+		public void StoreIntoCPERegistration(Order order)
+		{
+			if (Session["Cart"] != null)
+			{
+				foreach (string item in (ArrayList)Session["Cart"])
+				{
+					SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+					string query = "INSERT INTO CPE_Registration(RegistrationDateTime, CPECode, StudentID, BillRefNo) VALUES(@RegistrationDateTime, @CPECode, @StudentID, @BillRefNo)";
+					con.Open();
+					using (SqlCommand cmd = new SqlCommand(query, con))
+					{
+						DateTime currentDateTime = DateTime.Now;
+						cmd.Parameters.AddWithValue("@RegistrationDateTime", currentDateTime);
+						cmd.Parameters.AddWithValue("@CPECode", item);
+						cmd.Parameters.AddWithValue("@StudentID", Session["StudentID"]);
+						cmd.Parameters.AddWithValue("@BillRefNo", order.Id);
+							
+						cmd.ExecuteNonQuery();
+					}
+					con.Close();
+				}
+			}
+		}
 
 		// function to generate pdf for invoice
 		public byte[] GeneratePDFInvoice(Order order)
