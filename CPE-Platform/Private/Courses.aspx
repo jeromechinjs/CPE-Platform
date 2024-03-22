@@ -18,6 +18,22 @@
                 <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
             </div>
 
+        <asp:LinkButton CssClass="btn btn-primary" ID="liveToastBtn" onCommand="show_toast" runat="server">Show live toast</asp:LinkButton>
+
+
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+             <asp:Panel ID="liveToast" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+                <div class="toast-header">
+                  <img src="..." class="rounded me-2" alt="...">
+                  <strong class="me-auto">Bootstrap</strong>
+                  <small>11 mins ago</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                  Hello, world! This is a toast message.
+                </div>
+             </asp:Panel>
+            </div>
             <!-- Course Cards -->
             <div class="p-3 m-0">
                 <asp:DataList class="w-50" ID="courseCards" runat="server" DataSourceID="allCourses">

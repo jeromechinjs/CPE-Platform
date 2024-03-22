@@ -33,6 +33,24 @@ namespace CPE_Platform.Private
         protected global::System.Web.UI.WebControls.SqlDataSource courseTypes;
 
         /// <summary>
+        /// liveToastBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton liveToastBtn;
+
+        /// <summary>
+        /// liveToast control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel liveToast;
+
+        /// <summary>
         /// courseCards control.
         /// </summary>
         /// <remarks>

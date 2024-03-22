@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Security;
+using System.Collections;
 
 namespace CPE_Platform
 {
@@ -55,6 +56,8 @@ namespace CPE_Platform
 					if(isValidUser)
 					{
 						Session["StudentID"] = txtStudentID.Text;
+                        Session["Cart"] = new ArrayList(); // create cart session for every user login
+						Session["numOfItems"] = 0; // for cart badge number (shows number of items inside cart)
                         FormsAuthentication.RedirectFromLoginPage(txtStudentID.Text, false);
 						Response.Redirect("~/Private/StudentDashboard.aspx");  // will redirect to home page once home page is created
 					}

@@ -36,7 +36,6 @@ namespace CPE_Platform.Private
                 courseTypes.SelectCommand = "SELECT DISTINCT CPEType FROM [CPE_Course]";
                 courseTypes.DataBind();
 
-                Session["Cart"] = new ArrayList();
             }
 
             // Filter CPE Course Types
@@ -85,6 +84,7 @@ namespace CPE_Platform.Private
         protected void CartBtn_Click(object sender, CommandEventArgs e)
         {
             int seatsLeft = 0; // need to initialized to a value
+            int numOfItems = Convert.ToInt32(Session["numOfItems"]); // for cart number badge
             String CPECode = Session["currentCPECode"].ToString();
             Boolean itemInsideCart = false;
 
@@ -127,6 +127,7 @@ namespace CPE_Platform.Private
                     } else
                     {
                         addToCart(CPECode);
+                        numOfItems++;
                         Response.Write("<script>alert('Item added to Cart');</script>");
                     }
                 }   
@@ -134,9 +135,14 @@ namespace CPE_Platform.Private
                 {
                     // cart is empty
                     addToCart(CPECode);
+                    numOfItems++;
                     Response.Write("<script>alert('Item added to Cart');</script>");
+
                 }
             }
+            Session["numOfItems"] = numOfItems;
+            Response.Redirect(Page.Request.Url.ToString(), true); // initiate postback (refresh page so master page navbar cart item numbers can display
+
         }
 
         private void addToCart(String CPECode)
@@ -148,6 +154,12 @@ namespace CPE_Platform.Private
             }
             temp_cart.Add(CPECode); // push in newest course
             Session["Cart"] = temp_cart; // update latest cart into session["cart"]
+        }
+
+        protected void show_toast(object sender, CommandEventArgs e)
+        {
+            liveToast.CssClass = liveToast.CssClass.Replace("hide", "show");
+
         }
     }
 }

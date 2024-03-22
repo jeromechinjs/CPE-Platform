@@ -36,8 +36,6 @@ namespace CPE_Platform.Private
 
                     dr = dt.NewRow(); // create a new row for each item in cart
 
-                    int sum = 0;
-                    int count = 0;
                     foreach (String CPECode in (ArrayList)Session["Cart"])
                     {
 
