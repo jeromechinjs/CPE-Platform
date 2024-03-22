@@ -27,6 +27,7 @@ using Org.BouncyCastle.Utilities.Collections;
 using static iTextSharp.text.pdf.AcroFields;
 using System.Drawing;
 using Org.BouncyCastle.Asn1.X509;
+using Font = iTextSharp.text.Font;
 
 
 
@@ -336,7 +337,6 @@ namespace CPE_Platform.Private
 		public byte[] GeneratePDFInvoice(Order order)
 		{
 			// Get the total amount from the order
-			//string totalAmount = order.PurchaseUnits[0].AmountWithBreakdown.Value;
 			double totalPrice = Convert.ToDouble(Session["FinalPrice"]);
 
 			// Create a new PDF document
@@ -346,83 +346,35 @@ namespace CPE_Platform.Private
 			document.Open();
 
 			// Add content to the PDF document
-			document.Add(new Paragraph("Invoice"));
-			document.Add(new Paragraph($"Order ID: {order.Id}"));
-			document.Add(new Paragraph($"Student ID: {Session["StudentID"]}"));
-			document.Add(new Paragraph($"Status: {order.Status}"));
-			document.Add(new Paragraph($"Total Amount: {totalPrice}"));
+			// Invoice Title
+			Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
+			Paragraph title = new Paragraph("Invoice", titleFont);
+			title.Alignment = Element.ALIGN_CENTER;
+			document.Add(title);
+
+			// Order ID
+			Font orderFont = FontFactory.GetFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
+			Paragraph orderID = new Paragraph($"Bill Ref No: {order.Id}", orderFont);
+			document.Add(orderID);
+
+			// Student ID
+			Paragraph studentID = new Paragraph($"Student ID: {Session["StudentID"]}", orderFont);
+			document.Add(studentID);
+
+			// Status
+			Paragraph status = new Paragraph($"Payment Status: {order.Status}", orderFont);
+			document.Add(status);
+
+			// Total Amount
+			Paragraph totalAmount = new Paragraph($"Total Amount: RM {totalPrice:F2}", orderFont);
+			document.Add(totalAmount);
+
 			// Add more details as needed
 
 			document.Close();
 
 			// Return the PDF content as a byte array
 			return msOutput.ToArray();
-		}
-		// testing purpose
-		public void RetrieveAndWritePDFToFile(int paymentId, string filePath)
-		{
-			string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-			string query = "SELECT Invoice FROM Payment WHERE PaymentId = @PaymentId";
-
-			using (SqlConnection connection = new SqlConnection(connectionString))
-			{
-				connection.Open();
-
-				using (SqlCommand command = new SqlCommand(query, connection))
-				{
-					command.Parameters.AddWithValue("@PaymentId", paymentId);
-
-					byte[] pdfContent = (byte[])command.ExecuteScalar();
-
-					if (pdfContent != null)
-					{
-						File.WriteAllBytes(filePath, pdfContent);
-						// You can now open the file using a PDF viewer
-					}
-				}
-			}
-		}
-		public void DisplayPDFInBrowser(int paymentId)
-		{
-			try
-			{
-				string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-				string query = "SELECT Invoice FROM Payment WHERE PaymentId = @PaymentId";
-
-				using (SqlConnection connection = new SqlConnection(connectionString))
-				{
-					connection.Open();
-
-					using (SqlCommand command = new SqlCommand(query, connection))
-					{
-						command.Parameters.AddWithValue("@PaymentId", paymentId);
-
-						byte[] pdfContent = (byte[])command.ExecuteScalar();
-
-						if (pdfContent != null)
-						{
-							Response.ContentType = "application/pdf";
-							Response.AddHeader("Content-Disposition", "inline; filename=invoice.pdf");
-							Response.BinaryWrite(pdfContent);
-							Response.End();
-						}
-						else
-						{
-							// Handle the case where pdfContent is null
-							string script = "alert('Invoice not found for the payment.');";
-							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
-						}
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				// Handle exceptions
-				string script = "alert('An error occurred while retrieving the invoice.');";
-				ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
-				// Log the exception for further investigation
-				Console.WriteLine("Exception: " + ex.ToString());
-			}
 		}
 
 		public async static Task<string> createOrder(HttpSessionState Session)

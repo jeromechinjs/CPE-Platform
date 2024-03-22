@@ -65,8 +65,6 @@ namespace CPE_Platform
 							gvRewardsView.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
 						}
 
-
-
 					}
 
 				}

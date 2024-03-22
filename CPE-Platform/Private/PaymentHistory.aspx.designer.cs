@@ -15,30 +15,21 @@ namespace CPE_Platform.Private
 	{
 
 		/// <summary>
-		/// txtSearch control.
+		/// gvPaymentHistory control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtSearch;
+		protected global::System.Web.UI.WebControls.GridView gvPaymentHistory;
 
 		/// <summary>
-		/// btnSearch control.
+		/// lblErrorText control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnSearch;
-
-		/// <summary>
-		/// rptr1 control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Repeater rptr1;
+		protected global::System.Web.UI.WebControls.Label lblErrorText;
 	}
 }
