@@ -29,7 +29,7 @@ namespace CPE_Platform.Private
 
 		}
 
-		protected void modal_Click(object sender, EventArgs e)
+		protected void modal_Click(object sender, EventArgs e) //tbc
 		{
 			string script = "$('#mymodal').modal('show');";
 			ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);

@@ -82,7 +82,7 @@
 
 									<asp:TemplateField HeaderText="Payment Date">
 										<ItemTemplate>
-											<asp:Label Text='<%# Eval("PaymentDate") %>' runat="server" />
+											<asp:Label Text='<%# Eval("PaymentDate", "{0:dd/MM/yyyy}") %>' runat="server" />
 										</ItemTemplate>
 									</asp:TemplateField>
 								</Columns>

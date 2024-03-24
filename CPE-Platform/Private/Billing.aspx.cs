@@ -157,13 +157,14 @@ namespace CPE_Platform.Private
 							UpdateStudentInDatabase();
 							UpdateCPECourseSeats();
 							StoreIntoCPERegistration(result);
+							Session["Cart"] = null;
 
 							// Show a pop-up message
 							string script = "alert('Payment successful! You will be redirected to the Courses page.');";
 							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
 
 							// Redirect to Courses.aspx after a short delay
-							string redirectScript = "setTimeout(function() { window.location.href = '../Private/Courses.aspx'; }, 10);"; // Redirect after 2 seconds
+							string redirectScript = "setTimeout(function() { window.location.href = '../Private/PaymentHistory.aspx'; }, 10);"; // Redirect after 2 seconds
 							ScriptManager.RegisterStartupScript(this, GetType(), "Redirect", redirectScript, true);
 
 						}
@@ -173,12 +174,6 @@ namespace CPE_Platform.Private
 							Console.WriteLine("Error generating PDF invoice: " + ex.Message);
 							// Log the exception for further investigation
 						}
-
-						//tbc to display invoice
-						//testing purpose
-						//int paymentId = 7; // Replace with the actual payment ID
-						//string filePath = Path.Combine(Server.MapPath("~/Invoices"), $"invoice_{paymentId}.pdf");
-						//RetrieveAndWritePDFToFile(paymentId, filePath);
 
 					}
 					else
@@ -349,24 +344,52 @@ namespace CPE_Platform.Private
 			// Invoice Title
 			Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
 			Paragraph title = new Paragraph("Invoice", titleFont);
+			title.SpacingAfter = 20f;  // Set the spacing after the paragraph
 			title.Alignment = Element.ALIGN_CENTER;
 			document.Add(title);
 
 			// Order ID
+			
 			Font orderFont = FontFactory.GetFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
 			Paragraph orderID = new Paragraph($"Bill Ref No: {order.Id}", orderFont);
+			orderID.SpacingBefore = 20f; // Set the spacing before the paragraph
+			orderID.SpacingAfter = 20f;  // Set the spacing after the paragraph
 			document.Add(orderID);
 
+			// Date
+			
+			Font paymentFont = FontFactory.GetFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
+			Paragraph paymentDate = new Paragraph($"Payment Date: {DateTime.Now.ToString("MMMM dd, yyyy")}", paymentFont);
+			paymentDate.SpacingBefore = 20f; // Set the spacing before the paragraph
+			paymentDate.SpacingAfter = 20f;  // Set the spacing after the paragraph
+			document.Add(paymentDate);
+
 			// Student ID
+			
 			Paragraph studentID = new Paragraph($"Student ID: {Session["StudentID"]}", orderFont);
+			studentID.SpacingBefore = 20f; // Set the spacing before the paragraph
+			studentID.SpacingAfter = 20f;  // Set the spacing after the paragraph
 			document.Add(studentID);
 
+			// CPECourse
+
+			Paragraph CPECourse = new Paragraph($"Payment Description: CPE Course Bill", orderFont);
+			CPECourse.SpacingBefore = 20f; // Set the spacing before the paragraph
+			CPECourse.SpacingAfter = 20f;  // Set the spacing after the paragraph
+			document.Add(CPECourse);
+
 			// Status
+
 			Paragraph status = new Paragraph($"Payment Status: {order.Status}", orderFont);
+			status.SpacingBefore = 20f; // Set the spacing before the paragraph
+			status.SpacingAfter = 20f;  // Set the spacing after the paragraph
 			document.Add(status);
 
 			// Total Amount
+			
 			Paragraph totalAmount = new Paragraph($"Total Amount: RM {totalPrice:F2}", orderFont);
+			totalAmount.SpacingBefore = 20f; // Set the spacing before the paragraph
+			totalAmount.SpacingAfter = 20f;  // Set the spacing after the paragraph
 			document.Add(totalAmount);
 
 			// Add more details as needed
