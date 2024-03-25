@@ -41,16 +41,33 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
+						<asp:Label ID="lblmsg" Text="" ForeColor="IndianRed" runat="server" /><br />
 						<asp:Label ID="lblCPECode" runat="server" Text="CPE Code"></asp:Label>
 						<%--<label id ="lblCPECode">CPE Code</label>--%>
 						<asp:TextBox ID="txtCPECode" CssClass="form-control" placeholder="CPE Code" runat="server" />
 
 						<label>CPE Course Name</label>
 						<asp:TextBox ID="txtCPEName" CssClass="form-control" placeholder="CPE Course Name" runat="server" />
+						<label>CPE Course Description</label>
+						<asp:TextBox ID="txtCourseDesc" CssClass="form-control" placeholder="CPE Course Description" TextMode="MultiLine" BorderColor="#999999" BorderStyle="Dotted" Columns="1" EnableTheming="True" runat="server" />
+						
+						<label>CPE Type</label>
+						<asp:DropDownList ID="DropDownListType" CssClass="form-control" runat="server">
+							<asp:ListItem Value="">Select Type</asp:ListItem>
+							<asp:ListItem Value="Professional Programmes">Professional Programmes</asp:ListItem>
+							<asp:ListItem Value="Corporate Programmes">Corporate Programmes</asp:ListItem>
+							<asp:ListItem Value="Micro-Credential">Micro-Credential</asp:ListItem>
+						</asp:DropDownList>
+
+						<label>CPE Venue</label>
+						<asp:TextBox ID="txtVenue" CssClass="form-control" placeholder="CPE Venue" runat="server" />
 						<label>CPE Seat Amount</label>
 						<asp:TextBox ID="txtCPESeat" CssClass="form-control" placeholder="CPE Course Seat Amount" runat="server" />
 						<label>CPE Price</label>
 						<asp:TextBox ID="txtCPEPrice" CssClass="form-control" placeholder="Price" runat="server" />
+						<label>CPE Trainer</label>
+						<asp:TextBox ID="txtTrainer" CssClass="form-control" placeholder="CPE Trainer" runat="server" />
+
 						<%--<asp:HiddenField ID="CPECode" runat="server" />--%>
 						<label>CPE Upcoming Start Date</label>
 						<asp:DropDownList ID="dllStartDate" CssClass="form-control" runat="server">
@@ -100,9 +117,28 @@
 							<asp:ListItem Value="15 December 2024">15 December 2024</asp:ListItem>
 							
 						</asp:DropDownList>
+
+						<label>Start Time</label>
+						<asp:TextBox ID="txtStartTime" CssClass="form-control" placeholder="Start Time" runat="server" />
+						<label>End Time</label>
+						<asp:TextBox ID="txtEndTime" CssClass="form-control" placeholder="End Time" runat="server" />
+
+						<label>CPE Contact</label>
+						<asp:DropDownList ID="DropDownListContact" CssClass="form-control" runat="server">
+							<asp:ListItem Value="">Select Contact</asp:ListItem>
+							<asp:ListItem Value="03-4145 0170">03-4145 0170</asp:ListItem>
+							<asp:ListItem Value="03-4145 0123">03-4145 0123</asp:ListItem>
+						</asp:DropDownList>
+
+						<label>CPE Email</label>
+						<asp:DropDownList ID="DropDownListEmail" CssClass="form-control" runat="server">
+							<asp:ListItem Value="">Select Email</asp:ListItem>
+							<asp:ListItem Value="training@tarc.edu.my">training@tarc.edu.my</asp:ListItem>
+						</asp:DropDownList>
+
 						<label>Rewards Of the Course</label>
 						<asp:TextBox ID="txtCPERewards" CssClass="form-control" placeholder="Points" runat="server" />
-						<asp:Label ID="lblmsg" Text="" runat="server" />
+						
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>

@@ -15,6 +15,15 @@ namespace CPE_Platform.Private
 	{
 
 		/// <summary>
+		/// lblmsg control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblmsg;
+
+		/// <summary>
 		/// lblCPECode control.
 		/// </summary>
 		/// <remarks>
@@ -42,6 +51,33 @@ namespace CPE_Platform.Private
 		protected global::System.Web.UI.WebControls.TextBox txtCPEName;
 
 		/// <summary>
+		/// txtCourseDesc control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtCourseDesc;
+
+		/// <summary>
+		/// DropDownListType control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList DropDownListType;
+
+		/// <summary>
+		/// txtVenue control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtVenue;
+
+		/// <summary>
 		/// txtCPESeat control.
 		/// </summary>
 		/// <remarks>
@@ -58,6 +94,15 @@ namespace CPE_Platform.Private
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtCPEPrice;
+
+		/// <summary>
+		/// txtTrainer control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtTrainer;
 
 		/// <summary>
 		/// dllStartDate control.
@@ -78,6 +123,42 @@ namespace CPE_Platform.Private
 		protected global::System.Web.UI.WebControls.DropDownList dllEndDate;
 
 		/// <summary>
+		/// txtStartTime control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtStartTime;
+
+		/// <summary>
+		/// txtEndTime control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtEndTime;
+
+		/// <summary>
+		/// DropDownListContact control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList DropDownListContact;
+
+		/// <summary>
+		/// DropDownListEmail control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList DropDownListEmail;
+
+		/// <summary>
 		/// txtCPERewards control.
 		/// </summary>
 		/// <remarks>
@@ -85,15 +166,6 @@ namespace CPE_Platform.Private
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtCPERewards;
-
-		/// <summary>
-		/// lblmsg control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblmsg;
 
 		/// <summary>
 		/// btnsave control.
