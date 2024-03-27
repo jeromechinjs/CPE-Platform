@@ -158,9 +158,10 @@ namespace CPE_Platform.Private
 							UpdateCPECourseSeats();
 							StoreIntoCPERegistration(result);
 							Session["Cart"] = null;
+							Session["numOfItems"] = 0;
 
-							// Show a pop-up message
-							string script = "alert('Payment successful! You will be redirected to the Courses page.');";
+                            // Show a pop-up message
+                            string script = "alert('Payment successful! You will be redirected to the Courses page.');";
 							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
 
 							// Redirect to Courses.aspx after a short delay
