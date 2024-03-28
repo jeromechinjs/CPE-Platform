@@ -44,9 +44,10 @@ namespace CPE_Platform.Private
                 temp_cart.Remove(CPECode); // remove the selected course
                 Session["Cart"] = temp_cart; // update latest cart into session["cart"]
             }
+
             numOfItems--;
-            Session["numOfItems"] = numOfItems;
-            updateCartNumber(numOfItems);
+            Session["numOfItems"] = numOfItems; // update numOfItems session
+            updateCartNumber(numOfItems); // reflect changes into navbar
 
             loadCartItems();
         }
