@@ -44,6 +44,9 @@ namespace CPE_Platform.Private
                 temp_cart.Remove(CPECode); // remove the selected course
                 Session["Cart"] = temp_cart; // update latest cart into session["cart"]
             }
+            numOfItems--;
+            Session["numOfItems"] = numOfItems;
+            updateCartNumber(numOfItems);
 
             loadCartItems();
         }
@@ -80,6 +83,19 @@ namespace CPE_Platform.Private
                 cartContainer.Controls.Add(new LiteralControl(emptyCart));
             }
         }
+        private void updateCartNumber(int numOfItems)
+        {
+            System.Web.UI.WebControls.Label cartBadge = (System.Web.UI.WebControls.Label)Master.FindControl("cartBadge");
+            if (numOfItems > 0)
+            {
+                // access element form Master page
+                cartBadge.Text = "" + numOfItems;
+            } else
+            {
+                cartBadge.Text = "" + 0;
+            }
+        }
+
 
         protected void Button2_Click(object sender, EventArgs e)
         {
