@@ -26,221 +26,59 @@ namespace CPE_Platform.Private
 
             if (!IsPostBack)
             {
-                if ((ArrayList)Session["Cart"] != null)
-                {
-                    DataTable dt = new DataTable();
-                    DataRow dr;
-                    dt.Columns.Add("CPECode");
-                    dt.Columns.Add("CPEName");
-                    dt.Columns.Add("CPEPrice");
-
-                    dr = dt.NewRow(); // create a new row for each item in cart
-
-                    foreach (String CPECode in (ArrayList)Session["Cart"])
-                    {
-
-                        string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                        SqlConnection con = new SqlConnection(connectionstring);
-                        con.Open();
-
-                        SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        //DataSet ds = new DataSet();
-
-                        da.Fill(dt);
-
-                        cartItemCards.DataSource = dt;
-                        cartItemCards.DataBind();
-
-
-                        //if (Session["Total"] != null)
-                        //{
-                        //    string newTotal = Session["Total"].ToString();
-                        //    String[] total = Session["Total"].ToString().Split(',');
-                        //    total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-
-                        //    if (count == total.Length)
-                        //    {
-                        //        dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
-
-                        //        newTotal = newTotal + "," + ds.Tables[0].Rows[0]["CPEPrice"].ToString();
-                        //        Session["Total"] = newTotal;
-                        //    }
-                        //    else
-                        //    {
-                        //        dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    dt.Rows.Add(ds.Tables[0].Rows[0]["CPECode"].ToString(), ds.Tables[0].Rows[0]["CPEName"].ToString(), ds.Tables[0].Rows[0]["CPEPrice"].ToString());
-                        //}
-
-                        //sum = sum + Convert.ToInt32(ds.Tables[0].Rows[0]["CPEPrice"].ToString());
-
-                        //cartItemCards.DataSource = dt;
-                        //cartItemCards.DataBind();
-
-                        //cartItemCards.FooterRow.Cells[4].Text = sum.ToString();
-                        //Session["Sum"] = sum.ToString();
-
-                        //cartItemCards.FooterRow.Cells[3].HorizontalAlign = HorizontalAlign.Center;
-                        //cartItemCards.FooterRow.Cells[4].HorizontalAlign = HorizontalAlign.Center;
-
-                        //count++;
-                    }
-
-
-                    //if (Session["Quantity"] != null)
-                    //{
-                    //    string newQuantity = Session["Quantity"].ToString();
-                    //    String[] quantity = Session["Quantity"].ToString().Split(',');
-                    //    quantity = quantity.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-                    //    int countQuantity = 0;
-                    //    foreach (GridViewRow row in cartItemCards.Rows)
-                    //    {
-                    //        TextBox rowQuantity = (TextBox)row.FindControl("TextBox1");
-
-                    //        if (countQuantity == quantity.Length)
-                    //        {
-                    //            rowQuantity.Text = "1";
-                    //            newQuantity = newQuantity + "," + 1;
-                    //        }
-                    //        else
-                    //        {
-                    //            rowQuantity.Text = quantity[countQuantity++];
-                    //        }
-                    //    }
-
-                    //    Session["Quantity"] = newQuantity;
-                    //}
-
-                    //if (Session["total"] != null)
-                    //{
-                    //    String[] total = Session["Total"].ToString().Split(',');
-                    //    total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-                    //    sum = 0;
-                    //    for (int i = 0; i < total.Length; i++)
-                    //    {
-                    //        sum = sum + Convert.ToInt32(total[i]);
-                    //    }
-
-                    //    if (cartItemCards.DataSource != null)
-                    //    {
-                    //        cartItemCards.FooterRow.Cells[4].Text = sum.ToString();
-                    //    }
-                    //}
-
-
-                }
-
-
-                if (cartItemCards.DataSource == null)
-                {
-                    string emptyCart = "<div class=\"card w-100 my-5 p-3\">\r\n    <h2>No Items in Cart</h2>\r\n</div>";
-                    Button2.Visible = false;
-                    cartContainer.Controls.Add(new LiteralControl(emptyCart));
-                }
+                loadCartItems();
             }
         }
-        protected void removeItem(object sender, EventArgs e)
+        protected void removeItem(object sender, CommandEventArgs e)
         {
-            Button btn = (Button)sender;
-            string CPECode = btn.CommandArgument.ToString();
+            string CPECode = e.CommandArgument.ToString();
+            int numOfItems = Convert.ToInt32(Session["numOfItems"]); // for cart number badge
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
-
-            con.Open();
-            SqlDataReader dataReader = cmd.ExecuteReader();
-
-            if (dataReader.Read())
+            if ((ArrayList)Session["Cart"] != null)
             {
-                CPECode = dataReader.GetString(0);
-            }
-            con.Close();
-            //Session["Cart"] = Session["Cart"].ToString().Replace(productID, "");
-
-            if (Session["Cart"] != null)
-            {
-                String[] cart = Session["Cart"].ToString().Split(',');
-
-                string newCart = "";
-                cart = cart.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-                Boolean checkFirst = true;
-                for (int i = 0; i < cart.Length; i++)
+                ArrayList temp_cart = new ArrayList(); // temporary cart to be temporary clone of Session["Cart"]
+                foreach (String course in (ArrayList)Session["Cart"])
                 {
-                    if (cart[i] == null)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        if (checkFirst == true)
-                        {
-                            newCart = cart[i];
-                            checkFirst = false;
-                        }
-                        else
-                        {
-                            newCart = newCart + "," + cart[i];
-                        }
-                    }
+                    temp_cart.Add(course); // copy all items inside session["cart"] into temp_cart, clone all things
                 }
-
-                Session["Cart"] = newCart;
+                temp_cart.Remove(CPECode); // remove the selected course
+                Session["Cart"] = temp_cart; // update latest cart into session["cart"]
             }
-            GridViewRow gridRow = (GridViewRow)((Button)sender).NamingContainer;
-            int rowIndex = gridRow.RowIndex;
 
+            loadCartItems();
+        }
 
+        protected void loadCartItems()
+        {
+            if ((ArrayList)Session["Cart"] != null)
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("CPECode");
+                dt.Columns.Add("CPEName");
+                dt.Columns.Add("CPEPrice");
 
-            //if (Session["Total"] != null)
-            //{
-            //    String[] total = Session["Total"].ToString().Split(',');
+                foreach (String CPECode in (ArrayList)Session["Cart"])
+                {
 
-            //    if (cartItemCards.Rows.Count == 1)
-            //    {
-            //        total[rowIndex] = null;
-            //    }
-            //    else
-            //    {
-            //        total[rowIndex + 1] = null;
-            //    }
+                    string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                    SqlConnection con = new SqlConnection(connectionstring);
+                    con.Open();
 
-            //    string newTotal = "";
-            //    total = total.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode='" + CPECode + "'", con);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            //    Boolean checkFirst = true;
-            //    for (int i = 0; i < total.Length; i++)
-            //    {
-            //        if (total[i] == null)
-            //        {
-            //            break;
-            //        }
-            //        else
-            //        {
-            //            if (checkFirst == true)
-            //            {
-            //                newTotal = total[i];
-            //                checkFirst = false;
-            //            }
-            //            else
-            //            {
-            //                newTotal = newTotal + "," + total[i];
-            //            }
-            //        }
-            //    }
+                    da.Fill(dt);
 
-            //    Session["Total"] = newTotal;
-
-            //    System.Diagnostics.Debug.WriteLine(Session["Total"].ToString() + " Total Session");
-            //}
-
-            Response.Redirect("Cart.aspx");
+                    cartItemCards.DataSource = dt;
+                    cartItemCards.DataBind();
+                }
+            }
+            if (cartItemCards.DataSource == null) // when cart is empty
+            {
+                string emptyCart = "<div class=\"card w-100 my-5 p-3\">No Items in Cart</div>";
+                Button2.Visible = false;
+                cartContainer.Controls.Add(new LiteralControl(emptyCart));
+            }
         }
 
         protected void Button2_Click(object sender, EventArgs e)

@@ -5,36 +5,28 @@
             <Columns>
 
                 <asp:BoundField DataField="CPECode" HeaderText="Course Code">
-                    <ItemStyle CssClass="card-title" Width="30%" HorizontalAlign="Center"></ItemStyle>
-                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle CssClass="card-title" Width="20%" HorizontalAlign="Left"></ItemStyle>
+                    <HeaderStyle HorizontalAlign="Left" />
                 </asp:BoundField>
 
                 <asp:BoundField DataField="CPEName" HeaderText="Course Name">
-                    <ItemStyle Width="10%" HorizontalAlign="Center"></ItemStyle>
+                    <ItemStyle Width="40%" CssClass="pe-5 py-3" HorizontalAlign="Left"></ItemStyle>
                 </asp:BoundField>
 
-<%--                <asp:BoundField DataField="CPEPrice" HeaderText="Course Price">
-                    <ItemStyle Width="10%" HorizontalAlign="Center"></ItemStyle>
-                </asp:BoundField>--%>
-
-                <asp:TemplateField HeaderText="Course Price">
-                    <ItemStyle Width="10%" HorizontalAlign="Center"></ItemStyle>
-                    <ItemTemplate>
-                        <%# Eval("CPEPrice") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="CPEPrice" HeaderText="Course Price (RM)">
+                    <ItemStyle Width="20%" CssClass="" HorizontalAlign="Left"></ItemStyle>
+                </asp:BoundField>
 
                 <asp:TemplateField HeaderText="">
                     <ItemTemplate>
-                        <asp:Button class="btn btn-sm btn-primary w-10" ID="Button1" runat="server" Text="Remove" CommandArgument='<%# Eval("CPEName") %>' CommandName="RemoveCartItem" OnClick="removeItem" />
+                        <asp:LinkButton CssClass="btn btn-sm btn-primary w-10" ID="Button1" CommandName="RemoveCartItem" OnCommand="removeItem" CommandArgument='<%# Eval("CPECode") %>' runat="server">Remove</asp:LinkButton>
                     </ItemTemplate>
-                </asp:TemplateField>                    
+                </asp:TemplateField>  
+                
             </Columns>
         </asp:GridView>
 
-        <div class="text-center">
-            <asp:Button class="btn btn-sm btn-primary" ID="Button2" runat="server" Text="Check Out" OnClick="Button2_Click" />
-        </div>
+        <asp:Button class="btn btn-sm btn-primary" ID="Button2" runat="server" Text="Check Out" OnClick="Button2_Click" />
     </div>
     <br />
 </asp:Content>
