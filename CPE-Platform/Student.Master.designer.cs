@@ -24,13 +24,13 @@ namespace CPE_Platform
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 
         /// <summary>
-        /// numOfItems control.
+        /// cartBadge control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label numOfItems;
+        protected global::System.Web.UI.WebControls.Label cartBadge;
 
         /// <summary>
         /// name control.

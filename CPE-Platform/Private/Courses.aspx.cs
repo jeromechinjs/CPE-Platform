@@ -47,6 +47,11 @@ namespace CPE_Platform.Private
             {
                 allCourses.SelectCommand = "SELECT * FROM CPE_Course";
             }
+
+            // hide all toasts
+            toast1.CssClass = toast1.CssClass.Replace("show", "hide");
+            toast2.CssClass = toast1.CssClass.Replace("show", "hide");
+
         }
         protected void view_course_info(object sender, CommandEventArgs e)
         {
@@ -123,12 +128,14 @@ namespace CPE_Platform.Private
                     // item not in cart, proceed to add new item to cart
                     if (itemInsideCart)
                     {
-                        Response.Write("<script>alert('Course already added in cart');</script>");
-                    } else
+                        toast2.CssClass = toast1.CssClass.Replace("hide", "show");
+                    }
+                    else
                     {
                         addToCart(CPECode);
                         numOfItems++;
-                        Response.Write("<script>alert('Item added to Cart');</script>");
+                        updateCartNumber(numOfItems);
+                        toast1.CssClass = toast1.CssClass.Replace("hide", "show");
                     }
                 }   
                 else
@@ -136,14 +143,11 @@ namespace CPE_Platform.Private
                     // cart is empty
                     addToCart(CPECode);
                     numOfItems++;
-                    liveToast.CssClass = liveToast.CssClass.Replace("hide", "show");
-                    Response.Write("<script>alert('Item added to Cart');</script>");
-
+                    updateCartNumber(numOfItems);
+                    toast1.CssClass = toast1.CssClass.Replace("hide", "show");
                 }
             }
             Session["numOfItems"] = numOfItems;
-            Response.Redirect(Page.Request.Url.ToString(), true); // initiate postback (refresh page so master page navbar cart item numbers can display
-
         }
 
         private void addToCart(String CPECode)
@@ -157,6 +161,16 @@ namespace CPE_Platform.Private
                 }
                 temp_cart.Add(CPECode); // push in newest course
                 Session["Cart"] = temp_cart; // update latest cart into session["cart"]
+            }
+        }
+
+        private void updateCartNumber(int numOfItems)
+        {
+            if (numOfItems > 0)
+            {
+                // access element form Master page
+                System.Web.UI.WebControls.Label cartBadge = (System.Web.UI.WebControls.Label)Master.FindControl("cartBadge");
+                cartBadge.Text = "" + numOfItems;
             }
         }
 

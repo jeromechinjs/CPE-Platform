@@ -39,15 +39,15 @@ namespace CPE_Platform
 				Response.Redirect("~/SessionEnd.aspx", true);
 			}
 
-            // cart item number badge
-            int cartItems = Convert.ToInt32(Session["numOfItems"]);
-            if (cartItems > 0)
+            // cart items number badge (this section important, when switching to other pages, cart number will change value)
+            int numOfItems = Convert.ToInt32(Session["numOfItems"]);
+            if (numOfItems > 0)
             {
-                numOfItems.Text = "" + cartItems;
+                cartBadge.Text = "" + numOfItems;
             }
         }
 
-		protected void Logout(object sender, EventArgs e)
+        protected void Logout(object sender, EventArgs e)
 		{
 			FormsAuthentication.SignOut();
 

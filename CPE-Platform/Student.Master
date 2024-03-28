@@ -84,7 +84,7 @@
 							<asp:LinkButton ID="LinkButton1" CssClass="btn d-flex rounded-0 border-0" Text="Go To Cart" OnClick="goCart" runat="server">
 								<i class="fa fa-shopping-cart fa-lg text-white">
 									<span class="position-relative translate-middle badge rounded-pill bg-danger">
-										<asp:Label ID="numOfItems" class="fs-badge" runat="server">0</asp:Label>
+										<asp:Label ID="cartBadge" class="fs-badge" runat="server">0</asp:Label>
 									</span>								
 								</i>
 							</asp:LinkButton>								
