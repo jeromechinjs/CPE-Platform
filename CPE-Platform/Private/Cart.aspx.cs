@@ -49,7 +49,7 @@ namespace CPE_Platform.Private
             Session["numOfItems"] = numOfItems; // update numOfItems session
             updateCartNumber(numOfItems); // reflect changes into navbar
 
-            loadCartItems();
+            loadCartItems(); // update cart page with latest items in cart
             Page.Response.Redirect(Page.Request.Url.ToString(), true); // must refresh page after each removed item (when only one item left, couldn't remove, so much refresh page)
         }
 
