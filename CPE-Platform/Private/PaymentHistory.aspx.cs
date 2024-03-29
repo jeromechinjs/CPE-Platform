@@ -25,7 +25,7 @@ namespace CPE_Platform.Private
 
 					SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
-					string query = "SELECT DISTINCT PaymentID, P.BillRefNo, Description, TotalPrice, Invoice, PaymentDate FROM Payment P, CPE_Registration R WHERE R.StudentID =@StudentID AND P.BillRefNo = R.BillRefNo";
+					string query = "SELECT DISTINCT PaymentID, P.BillRefNo, Description, TotalPrice, Invoice, PaymentDate FROM Payment P, CPE_Registration R WHERE R.StudentID =@StudentID AND P.BillRefNo = R.BillRefNo ORDER BY PaymentID ASC";
 
 					using (SqlCommand cmd = new SqlCommand(query, con))
 					{
