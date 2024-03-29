@@ -128,7 +128,7 @@ namespace CPE_Platform.Private
                     // item not in cart, proceed to add new item to cart
                     if (itemInsideCart)
                     {
-                        toast2.CssClass = toast1.CssClass.Replace("hide", "show");
+                        toast2.CssClass = toast2.CssClass.Replace("hide", "show");
                     }
                     else
                     {
@@ -160,7 +160,8 @@ namespace CPE_Platform.Private
                     temp_cart.Add(course); // copy all items inside session["cart"] into temp_cart, clone all things
                 }
                 temp_cart.Add(CPECode); // push in newest course
-            } else // when cart is empty
+            } 
+            else // when cart is empty
             {
                 temp_cart.Add(CPECode); // push in newest course
             }

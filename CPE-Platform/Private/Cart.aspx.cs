@@ -50,6 +50,7 @@ namespace CPE_Platform.Private
             updateCartNumber(numOfItems); // reflect changes into navbar
 
             loadCartItems();
+            Page.Response.Redirect(Page.Request.Url.ToString(), true); // must refresh page after each removed item (when only one item left, couldn't remove, so much refresh page)
         }
 
         protected void loadCartItems()
