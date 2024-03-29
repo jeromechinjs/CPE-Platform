@@ -152,16 +152,20 @@ namespace CPE_Platform.Private
 
         private void addToCart(String CPECode)
         {
+            ArrayList temp_cart = new ArrayList(); // temporary cart to be temporary clone of Session["Cart"]
             if ((ArrayList)Session["Cart"] != null)
             {
-                ArrayList temp_cart = new ArrayList(); // temporary cart to be temporary clone of Session["Cart"]
                 foreach (String course in (ArrayList)Session["Cart"])
                 {
                     temp_cart.Add(course); // copy all items inside session["cart"] into temp_cart, clone all things
                 }
                 temp_cart.Add(CPECode); // push in newest course
-                Session["Cart"] = temp_cart; // update latest cart into session["cart"]
+            } else // when cart is empty
+            {
+                temp_cart.Add(CPECode); // push in newest course
             }
+            Session["Cart"] = temp_cart; // update latest cart into session["cart"]
+
         }
 
         private void updateCartNumber(int numOfItems)
