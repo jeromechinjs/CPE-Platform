@@ -97,7 +97,7 @@ span.dropdown-toggle::after {
     padding: 0 12px 0 0;
 }
 
-/* Main content */
+/* Main content & Navbar */
 .body-content {
     height: 100vh;
 }
@@ -126,4 +126,17 @@ span.dropdown-toggle::after {
 .fs-badge {
     font-size: 11px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dashboard */
+.dashboard-figures {
+    align-items: center;
+    justify-content: center;
+    height: 38vh;
+    width: 18vw;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #5C5353;
+    border-radius: 50%;
+    background-color: #D9D9D9;
 }
