@@ -163,7 +163,7 @@
 
 				<div class="col-10 p-0 flex-column d-flex justify-content-start">
 					<asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
-					<div class="px-3">
+					<div class="">
 						<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
 					</div>
 

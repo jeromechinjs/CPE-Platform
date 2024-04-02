@@ -7,7 +7,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	</head>
 
-    <div class="container">
+    <div class="container px-4">
         <div class="row">
             <div class="p-3 m-0">
                 <p>Search by</p>
