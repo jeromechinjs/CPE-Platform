@@ -129,6 +129,10 @@ span.dropdown-toggle::after {
 }
 
 /* Dashboard */
+.dashboard {
+    width: 92%;
+}
+
 .dashboard-figures {
     align-items: center;
     justify-content: center;
@@ -145,4 +149,8 @@ span.dropdown-toggle::after {
 .dashboard-text {
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+.dashboard-figures-row {
+    max-width: 91%;
 }

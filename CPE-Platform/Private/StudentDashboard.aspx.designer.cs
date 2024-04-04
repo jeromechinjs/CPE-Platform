@@ -21,7 +21,7 @@ namespace CPE_Platform.Private
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pts_collected;
+        protected global::System.Web.UI.WebControls.Label pts_collected;
 
         /// <summary>
         /// txt_pts_collected control.
@@ -30,16 +30,16 @@ namespace CPE_Platform.Private
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel txt_pts_collected;
+        protected global::System.Web.UI.WebControls.Label txt_pts_collected;
 
         /// <summary>
-        /// Panel1 control.
+        /// discounts_collected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Label discounts_collected;
 
         /// <summary>
         /// txt_discounts control.
@@ -48,15 +48,15 @@ namespace CPE_Platform.Private
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel txt_discounts;
+        protected global::System.Web.UI.WebControls.Label txt_discounts;
 
         /// <summary>
-        /// Panel2 control.
+        /// num_active_courses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.Label num_active_courses;
     }
 }

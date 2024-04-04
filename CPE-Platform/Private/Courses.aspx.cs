@@ -30,22 +30,23 @@ namespace CPE_Platform.Private
                 allCourses.SelectCommand = "SELECT * FROM CPE_Course";
                 allCourses.DataBind(); // when need to retrieve data and display in frontend inside ASP control template, need bind (if backend oerations only, no ned bind, just read)
 
-                courseCards.DataBind();
-
                 // Dropdown course type selection filter
-                courseTypes.SelectCommand = "SELECT DISTINCT CPEType FROM [CPE_Course]";
-                courseTypes.DataBind();
+                //courseTypes.SelectCommand = "SELECT DISTINCT CPEType FROM [CPE_Course]";
+                //courseTypes.DataBind();
 
             }
 
             // Filter CPE Course Types
-            if (dropdown_courseTypes.SelectedValue == "-1")
+            if (dropdownCourseTypes.SelectedValue == "-1")
             {
                 allCourses.SelectCommand = "SELECT * FROM CPE_Course";
             }
             else
             {
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
+                String courseType = dropdownCourseTypes.SelectedValue.Trim();
+                test.Text = courseType;
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType='\" + courseType + \"'\"";
+
             }
 
             // hide all toasts
@@ -74,6 +75,7 @@ namespace CPE_Platform.Private
                     txtCPETrainer.Text = dataReader["CPETrainer"].ToString();
                     txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
                     txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
+                    txtRewards.Text = dataReader["Rewards"].ToString();
                     txtContact.Text = dataReader["CPEContact"].ToString();
                     txtEmail.Text = dataReader["CPEEmail"].ToString();
                     txtStartTime.Text = dataReader["CPEStartTime"].ToString();
@@ -97,11 +99,11 @@ namespace CPE_Platform.Private
             SqlConnection con = new SqlConnection(connectionstring);
             con.Open();
             SqlCommand cmd = new SqlCommand("SELECT CPESeatAmount FROM CPE_Course where CPECode='" + CPECode + "'", con);
-            SqlDataReader dataReader = cmd.ExecuteReader();
+            SqlDataReader getSeatsLeft = cmd.ExecuteReader();
 
-            if (dataReader.Read())
+            if (getSeatsLeft.Read())
             {
-                seatsLeft = dataReader.GetInt32(0); // retrieve seats left for currently selected CPE Course
+                seatsLeft = getSeatsLeft.GetInt32(0); // retrieve seats left for currently selected CPE Course
             }
 
             if (seatsLeft == 0)

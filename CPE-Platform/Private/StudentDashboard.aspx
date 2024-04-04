@@ -1,21 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Student.Master" AutoEventWireup="true" CodeBehind="StudentDashboard.aspx.cs" Inherits="CPE_Platform.Private.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container py-5">
-      <div class="row mt-3"> <!-- row max width 90%-->
+    <div class="container dashboard py-5">
+      <div class="row mt-3">
         <div class="col p-3 d-flex flex-column align-items-center">
-            <asp:Panel class="dashboard-figures d-flex" ID="pts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Panel>
-            <asp:Panel class="dashboard-text" ID="txt_pts_collected" runat="server">points collected</asp:Panel>
+            <div class="dashboard-figures d-flex" runat="server">
+                <asp:Label ID="pts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Label>
+            </div>
+            <asp:Label class="dashboard-text" ID="txt_pts_collected" runat="server">points collected</asp:Label>
         </div>
+
         <div class="col p-3 d-flex flex-column align-items-center">
-            <asp:Panel class="dashboard-figures d-flex" ID="Panel1" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Panel>
-            <asp:Panel class="dashboard-text" ID="txt_discounts" runat="server">redeemable discounts</asp:Panel>
+            <div class="dashboard-figures d-flex" runat="server">
+                <asp:Label ID="discounts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0%</asp:Label>
+            </div>
+            <asp:Label class="dashboard-text" ID="txt_discounts" runat="server">redeemable discounts</asp:Label>
         </div>
-        <div class="col p-3 d-flex flex-column align-items-center">
-            <asp:Panel class="dashboard-figures d-flex" ID="Panel2" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Panel>
+
+        <div class="col me-5 p-3 d-flex flex-column align-items-center">
+            <div class="dashboard-figures d-flex" runat="server">
+                <asp:Label ID="num_active_courses" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Label>
+            </div>
             <a href="#" class="dashboard-text">active courses</a>
         </div>
-<%--        <div class="col"></div>--%>
       </div>
       <div class="row">
 

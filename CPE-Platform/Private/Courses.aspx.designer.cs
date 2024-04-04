@@ -15,22 +15,22 @@ namespace CPE_Platform.Private
     {
 
         /// <summary>
-        /// dropdown_courseTypes control.
+        /// dropdownCourseTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropdown_courseTypes;
+        protected global::System.Web.UI.WebControls.DropDownList dropdownCourseTypes;
 
         /// <summary>
-        /// courseTypes control.
+        /// test control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource courseTypes;
+        protected global::System.Web.UI.WebControls.Label test;
 
         /// <summary>
         /// courseCards control.
@@ -238,6 +238,24 @@ namespace CPE_Platform.Private
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtCPESeat;
+
+        /// <summary>
+        /// Label11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label11;
+
+        /// <summary>
+        /// txtRewards control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtRewards;
 
         /// <summary>
         /// addCart control.

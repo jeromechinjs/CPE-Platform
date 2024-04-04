@@ -11,12 +11,17 @@
         <div class="row">
             <div class="p-3 m-0">
                 <p>Search by</p>
-                <asp:DropDownList class="dropdown-center form-select" ID="dropdown_courseTypes" runat="server" DataSourceID="courseTypes" DataTextField="CPEType" DataValueField="CPEType" AutoPostBack="True" AppendDataBoundItems="True">
+                <asp:DropDownList class="dropdown-center form-select" ID="dropdownCourseTypes" runat="server"  DataTextField="CPEType" DataValueField="CPEType" AutoPostBack="True" AppendDataBoundItems="True">
                     <asp:ListItem Value="-1">Show All</asp:ListItem>
+                    <asp:ListItem Value="Professional Programmes">Professional Programmes</asp:ListItem>
+                    <asp:ListItem Value="Micro-Credential">Micro-Credential</asp:ListItem>
+                    <asp:ListItem Value="Corporate Programmes">Corporate Programmes</asp:ListItem>
+
                 </asp:DropDownList>
                 <!-- Remaining list items are derived from sql data source below-->
-                <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
+<%--                <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>--%>
             </div>
+                                                <asp:Label class="card-title fw-bold" ID="test" runat="server">TEST</asp:Label>
 
             <!-- Course Cards -->
             <div class="p-3 m-0">
@@ -105,6 +110,10 @@
                         <asp:Label class="card-title fw-bold" ID="Label10" runat="server" Text='Available Seats Left: '></asp:Label>
                         <asp:Label class="card-text" ID="txtCPESeat" runat="server" Text='<%# Eval("CPESeatAmount") %>'></asp:Label>
                         <span>seats</span>
+                        <br /><br />
+
+                        <asp:Label class="card-title fw-bold" ID="Label11" runat="server" Text='Reward points: '></asp:Label>
+                        <asp:Label class="card-title" ID="txtRewards" runat="server" Text='<%# Eval("Rewards") %>'></asp:Label>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Close</button>
