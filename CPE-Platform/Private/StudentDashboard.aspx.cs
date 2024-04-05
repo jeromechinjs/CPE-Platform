@@ -43,7 +43,7 @@ namespace CPE_Platform.Private
                         pts_collected.Text = studentInfo["RewardsAmount"].ToString();
                         //discounts_collected.Text = (studentInfo["RewardsAmount"].GetInt32(0) / 200).ToString();
                         num_active_courses.Text = studentInfo["RewardsAmount"].ToString();
-                        // need get rows of active courses
+                        // need get rows of active courses (COUNT inside CPE_Registration table)
                     }
                     studentInfo.Close();
                 }
