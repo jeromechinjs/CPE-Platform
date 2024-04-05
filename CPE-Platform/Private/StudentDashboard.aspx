@@ -24,8 +24,80 @@
             <a href="#" class="dashboard-text">active courses</a>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
+		<%--Rewards part --%>
+<%--		<h3 class="mb-1 ms-5 text-sm" style="color:cornflowerblue">CPE Course Completed</h3>--%>
+		<div>
+			<asp:Label ID="lblStudentID" runat="server"></asp:Label>
+		</div>
 
+		<div class="p-4 flex-column d-flex justify-content-center">
+			<%--<p class="my-3 fs-2 fw-bolder">Rewards</p>--%>
+			<div class="container">
+				<asp:GridView class="table table-bordered table-condensed table-responsive table-hover" ID="gvRewardsView" runat="server" AutoGenerateColumns="False" DataKeyNames="CPECode"
+					ShowHeaderWhenEmpty="True" AllowSorting="True">
+					<%-- Theme --%>
+
+					<Columns>
+						<%-- CPE Code --%>
+
+						<asp:TemplateField HeaderText="Course Code">
+							<ItemTemplate>
+								<asp:Label Text='<%# Eval("CPECode") %>' runat="server" />
+							</ItemTemplate>
+
+							<EditItemTemplate>
+								<asp:TextBox ID="txtCPECode" Text='<%# Eval("CPECode") %>' runat="server" />
+							</EditItemTemplate>
+
+						</asp:TemplateField>
+
+						<%-- Course Name --%>
+
+						<asp:TemplateField HeaderText="Course Name">
+							<ItemTemplate>
+								<asp:Label Text='<%# Eval("CPEName") %>' runat="server" />
+							</ItemTemplate>
+
+							<EditItemTemplate>
+								<asp:TextBox ID="txtCPEDesc" Text='<%# Eval("CPEName") %>' runat="server" />
+							</EditItemTemplate>
+
+						</asp:TemplateField>
+
+
+						<%-- Progress --%>
+
+						<asp:TemplateField HeaderText="Progress">
+							<ItemTemplate>
+								<asp:Label Text='<%# Eval("Progress") %>' runat="server" />
+							</ItemTemplate>
+
+							<EditItemTemplate>
+								<asp:TextBox ID="txtProgress" Text='<%# Eval("Progress") %>' runat="server" />
+							</EditItemTemplate>
+
+						</asp:TemplateField>
+
+						<%-- Rewards --%>
+
+						<asp:TemplateField HeaderText="Rewards">
+							<ItemTemplate>
+								<asp:Label Text='<%# Eval("RewardAwarded") %>' runat="server" />
+							</ItemTemplate>
+
+							<EditItemTemplate>
+								<asp:TextBox ID="txtRewards" Text='<%# Eval("RewardsAwarded") %>' runat="server" />
+							</EditItemTemplate>
+
+						</asp:TemplateField>
+
+
+
+					</Columns>
+				</asp:GridView>
+			</div>
+		</div>
       </div>
     </div>
 </asp:Content>
