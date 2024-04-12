@@ -91,7 +91,7 @@ namespace CPE_Platform.Private
                         gvRewardsView.Rows[0].Cells.Clear();
                         gvRewardsView.Rows[0].Cells.Add(new TableCell());
                         gvRewardsView.Rows[0].Cells[0].ColumnSpan = table.Columns.Count;
-                        gvRewardsView.Rows[0].Cells[0].Text = "No Record is found !!";
+                        gvRewardsView.Rows[0].Cells[0].Text = "No Record is found!";
                         gvRewardsView.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
                     }
 
