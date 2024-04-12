@@ -28,6 +28,7 @@ using static iTextSharp.text.pdf.AcroFields;
 using System.Drawing;
 using Org.BouncyCastle.Asn1.X509;
 using Font = iTextSharp.text.Font;
+using Image = iTextSharp.text.Image;
 
 
 
@@ -342,9 +343,28 @@ namespace CPE_Platform.Private
 			document.Open();
 
 			// Add content to the PDF document
+			// tar umt image
+			string imagePath = Server.MapPath("~/Resources/tarumt-logo.png");
+
+			// Create an Image instance
+			Image image = Image.GetInstance(imagePath);
+
+			// line spacing
+			image.SpacingAfter = 20f;  // Set the spacing after the paragraph
+
+			// Set the image alignment
+			image.Alignment = Image.ALIGN_CENTER;
+
+			// Set the width and height of the image (optional)
+			image.ScaleToFit(200f, 200f); // Adjust width and height as needed
+
+			// Add the image to the document
+			document.Add(image);
+
 			// Invoice Title
 			Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
 			Paragraph title = new Paragraph("Invoice", titleFont);
+			title.SpacingBefore = 20f; // Set the spacing before the paragraph
 			title.SpacingAfter = 20f;  // Set the spacing after the paragraph
 			title.Alignment = Element.ALIGN_CENTER;
 			document.Add(title);
