@@ -70,14 +70,15 @@
 									<div class="form-outline form-white mb-4">
 										<%--<asp:Label runat="server" ID="lblNewPassword" Text="New Password"></asp:Label>--%>
 										<asp:TextBox ID="txtNewPassword" class="form-control custom-form-control custom-input" Style="background-color: rgb(232, 240, 254);" placeholder="New Password" runat="server" TextMode="Password"></asp:TextBox>
-										<asp:RequiredFieldValidator CssClass="single-validator" ID="RequiredFieldValidatorStuNewPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="New Password is required" ControlToValidate="txtNewPassword"></asp:RequiredFieldValidator>
+										<asp:RequiredFieldValidator ID="RequiredFieldValidatorStuNewPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="New Password is required." ControlToValidate="txtNewPassword"></asp:RequiredFieldValidator>
+										<asp:RegularExpressionValidator ID="RegularExpressionValidatorStuNewPassword" runat="server" ForeColor="Red" Text="*" ErrorMessage="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character." ControlToValidate="txtNewPassword" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$"></asp:RegularExpressionValidator>
 									</div>
 
 									<div class="form-outline form-white mb-4">
 										<%--<asp:Label runat="server" ID="lblConfirmPassword" Text="Confirm Password"></asp:Label>--%>
 										<asp:TextBox ID="txtConfirmPassword" class="form-control custom-form-control custom-input" Style="background-color: rgb(232, 240, 254);" placeholder="Confirm Password" runat="server" TextMode="Password"></asp:TextBox>
-										<asp:RequiredFieldValidator CssClass="double-validator" ID="RequiredFieldValidatorStuConfirmPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="Confirm New Password is required" ControlToValidate="txtConfirmPassword"></asp:RequiredFieldValidator>
-										<asp:CompareValidator CssClass="double-validator" ID="CompareValidatorConfirmPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="Both New Password are not match with each other." ControlToCompare="txtNewPassword" ControlToValidate="txtConfirmPassword"></asp:CompareValidator>
+										<asp:RequiredFieldValidator ID="RequiredFieldValidatorStuConfirmPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="Confirm New Password is required." ControlToValidate="txtConfirmPassword"></asp:RequiredFieldValidator>
+										<asp:CompareValidator ID="CompareValidatorConfirmPassword" Text="*" ForeColor="Red" runat="server" ErrorMessage="Both New Password are not match with each other." ControlToCompare="txtNewPassword" ControlToValidate="txtConfirmPassword"></asp:CompareValidator>
 									</div>
 
 								</div>

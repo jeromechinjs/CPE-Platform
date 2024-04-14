@@ -162,7 +162,7 @@ namespace CPE_Platform.Private
 							Session["numOfItems"] = 0;
 
                             // Show a pop-up message
-                            string script = "alert('Payment successful! You will be redirected to the Courses page.');";
+                            string script = "alert('Payment successful! You will be redirected to the Payment Page to download invoice.');";
 							ScriptManager.RegisterStartupScript(this, GetType(), "Alert", script, true);
 
 							// Redirect to Courses.aspx after a short delay

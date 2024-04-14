@@ -70,7 +70,7 @@ namespace CPE_Platform.Private
 				{
 					// Set the appropriate headers for file download
 					Response.ContentType = "application/pdf";
-					Response.AddHeader("Content-Disposition", $"inline; filename=invoice_{billRefNo}.pdf");
+					Response.AddHeader("Content-Disposition", $"inline; filename={Session["StudentID"]}_invoice_{billRefNo}.pdf");
 
 					// Create a PDF reader
 					PdfReader pdfReader = new PdfReader(memoryStream);
