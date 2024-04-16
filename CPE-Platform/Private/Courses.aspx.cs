@@ -45,7 +45,8 @@ namespace CPE_Platform.Private
             {
                 String courseType = dropdownCourseTypes.SelectedValue.Trim();
                 test.Text = courseType;
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType='\" + courseType + \"'\"";
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType='" + courseType + "'";
+                allCourses.DataBind();
 
             }
 

@@ -28,24 +28,54 @@ namespace CPE_Platform.Private
         protected void getDashboardFigures()
         {
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string queryPtsCollected = "SELECT * FROM Student WHERE StudentID = @StudentID";
+            string queryActiveCourses = "SELECT * FROM CPE_Registration WHERE StudentID = @StudentID";
+
             using (SqlConnection con = new SqlConnection(connectionstring))
+
             {
                 if (Session["StudentID"] != null)
                 {
                     String studentID = Session["StudentID"].ToString();
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Student WHERE StudentID = @StudentID", con);
-                    cmd.Parameters.AddWithValue("@StudentID", studentID);
-                    SqlDataReader studentInfo = cmd.ExecuteReader();
-                    if (studentInfo.Read()) // returns true if have more rows to read, else false
+                    // First SqlCommand object for executing the first query
+                    using (SqlCommand getPtsCollected = new SqlCommand(queryPtsCollected, con))
                     {
-                        pts_collected.Text = studentInfo["RewardsAmount"].ToString();
-                        //discounts_collected.Text = (studentInfo["RewardsAmount"].GetInt32(0) / 200).ToString();
-                        num_active_courses.Text = studentInfo["RewardsAmount"].ToString();
-                        // need get rows of active courses (COUNT inside CPE_Registration table)
+                        getPtsCollected.Parameters.AddWithValue("@StudentID", studentID);
+                        con.Open();
+
+                        using (SqlDataReader studentInfo = getPtsCollected.ExecuteReader())
+                        {
+                            if (studentInfo.Read()) // returns true if have more rows to read, else false
+                            {
+                                pts_collected.Text = studentInfo["RewardsAmount"].ToString();
+                                //discounts_collected.Text = (studentInfo["RewardsAmount"].GetInt32(0) / 200).ToString();
+                            }
+                            //studentInfo.Close();
+                        }
+
                     }
-                    studentInfo.Close();
+
+                    // Second SqlCommand object for executing the second query
+                    using (SqlCommand countActiveCourses = new SqlCommand(queryActiveCourses, con))
+                    {
+                        int activeCourses = 0;
+                        countActiveCourses.Parameters.AddWithValue("@StudentID", studentID);
+
+                        //con.Open();
+
+                        using (SqlDataReader studentActiveCourses = countActiveCourses.ExecuteReader())
+                        {
+                            if (studentActiveCourses.Read()) // returns true if have more rows to read, else false
+                            {
+                                activeCourses++;
+                            }
+                            num_active_courses.Text = activeCourses.ToString();
+                            studentActiveCourses.Close();
+                            con.Close();
+
+                        }
+                    }
                 }
             }
         }
