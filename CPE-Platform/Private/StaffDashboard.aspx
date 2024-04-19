@@ -6,14 +6,14 @@
             <div class="dashboard-figures d-flex" runat="server">
                 <asp:Label ID="pts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Label>
             </div>
-            <asp:Label class="dashboard-text" ID="txt_pts_collected" runat="server">points collected</asp:Label>
+            <asp:Label class="dashboard-text" ID="txt_pts_collected" runat="server">revenue</asp:Label>
         </div>
 
         <div class="col p-3 d-flex flex-column align-items-center">
             <div class="dashboard-figures d-flex" runat="server">
-                <asp:Label ID="discounts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0%</asp:Label>
+                <asp:Label ID="discounts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Label>
             </div>
-            <asp:Label class="dashboard-text" ID="txt_discounts" runat="server">redeemable discounts</asp:Label>
+            <asp:Label class="dashboard-text" ID="txt_discounts" runat="server">registered courses</asp:Label>
         </div>
 
         <div class="col me-5 p-3 d-flex flex-column align-items-center">

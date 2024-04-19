@@ -84,12 +84,7 @@ namespace CPE_Platform.Private
         {
             if (Session["StudentID"] != null)
             {
-                //lblStudentID.Text = Session["StudentID"].ToString();
                 string studentID = Session["StudentID"].ToString();
-                //PopulateGridView();
-
-
-                // studentID = Session["StudentID"].ToString();
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
                 string query = "SELECT R.CPECode, C.CPEName, R.Progress, R.RewardAwarded FROM CPE_Course C, Rewards_Assign R WHERE R.StudentID =@StudentID AND R.CPECode =C.CPECode";

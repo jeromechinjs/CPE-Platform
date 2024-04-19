@@ -26,10 +26,6 @@
       </div>
       <div class="row mt-5">
 		<%--Rewards part --%>
-<%--		<h3 class="mb-1 ms-5 text-sm" style="color:cornflowerblue">CPE Course Completed</h3>--%>
-		<div>
-			<asp:Label ID="lblStudentID" runat="server"></asp:Label>
-		</div>
 
 		<div class="p-4 flex-column d-flex justify-content-center">
 			<%--<p class="my-3 fs-2 fw-bolder">Rewards</p>--%>

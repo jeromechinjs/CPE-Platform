@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Reflection.Emit;
 
 namespace CPE_Platform
 {
@@ -24,13 +25,31 @@ namespace CPE_Platform
 			{
 				if (Session["StudentID"] != null)
 				{
-					//lblStudentID.Text = Session["StudentID"].ToString();
-					string studentID = Session["StudentID"].ToString();
-					//PopulateGridView();
+                    // Profile part
+                    string studentID = Session["StudentID"].ToString();
+
+                    string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                    using (SqlConnection con2 = new SqlConnection(connectionstring))
+                    {
+                        con2.Open();
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM Student where studentID=@studentID", con2);
+                        cmd.Parameters.AddWithValue("@studentID", studentID);
+                        SqlDataReader dataReader = cmd.ExecuteReader();
+                        if (dataReader.Read()) // returns true if have more rows to read, else false
+                        {
+                            txtID.Text = dataReader["StudentID"].ToString();
+                            txtIC.Text = dataReader["StudentIC"].ToString();
+                            txtName.Text = dataReader["StudentName"].ToString();
+                            txtPhone.Text = dataReader["StudentPhoneNum"].ToString();
+                            txtEmail.Text = dataReader["StudentEmail"].ToString();
+                            txtFaculty.Text = dataReader["StudentFaculty"].ToString();
+                        }
+                        dataReader.Close();
+                    }
 
 
-					// studentID = Session["StudentID"].ToString();
-					SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+                    // Rewards part
+                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
 					string query = "SELECT R.CPECode, C.CPEName, R.Progress, R.RewardAwarded FROM CPE_Course C, Rewards_Assign R WHERE R.StudentID =@StudentID AND R.CPECode =C.CPECode";
 
@@ -71,5 +90,11 @@ namespace CPE_Platform
 
 			}
 		}
-	}
+        protected void editInfo()
+		{
+
+		}
+
+
+    }
 }

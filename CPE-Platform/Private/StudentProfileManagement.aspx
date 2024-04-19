@@ -14,18 +14,40 @@
 		</ul>
 
 		<div class="tab-content" id="myTabContent">
-			<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-				<%--add the content over here for profile page--%>
+			<div class="tab-pane fade show active p-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				<h3>Profile Information</h3>
+                    <asp:Label class="card-title fw-bold" ID="Label1" runat="server" Text='Student ID: '></asp:Label>
+                    <asp:Label class="card-title" ID="txtID" runat="server" Text='<%# Eval("StudentID") %>'></asp:Label>
+                    <br />
+
+                    <asp:Label class="card-title fw-bold" ID="Label4" runat="server" Text='Student IC Number: '></asp:Label>
+                    <asp:Label class="card-title" ID="txtIC" runat="server" Text='<%# Eval("StudentIC") %>'></asp:Label>
+                    <br /><br />
+
+                    <asp:Label class="card-title fw-bold" ID="Label6" runat="server" Text='Name: '></asp:Label>
+                    <asp:Label class="card-title" ID="txtName" runat="server" Text='<%# Eval("StudentName") %>'></asp:Label>
+                    <br /><br />
+
+                    <asp:Label class="card-title fw-bold" ID="Label2" runat="server" Text='Phone Number: '></asp:Label>
+                    <asp:Label class="card-title" ID="txtPhone" runat="server" Text='<%# Eval("StudentPhoneNum") %>'></asp:Label>
+                    <br /><br />
+
+                    <asp:Label class="card-title fw-bold" ID="Label3" runat="server" Text='Email: '></asp:Label>
+                    <asp:Label class="card-title" ID="txtEmail" runat="server" Text='<%# Eval("StudentEmail") %>'></asp:Label>
+                    <br /><br />
+
+                    <asp:Label class="card-title fw-bold" ID="Label5" runat="server" Text='Faculty: '></asp:Label>
+                    <asp:Label class="card-title" ID="txtFaculty" runat="server" Text='<%# Eval("StudentFaculty") %>'></asp:Label>
+                    <br /><br />
+				    <%--<asp:LinkButton CssClass="btn btn-sm btn-primary" ID="edit" CommandName="Edit" OnCommand="editInfo" CommandArgument='<%# Eval("CPECode") %>' runat="server">Add To Cart</asp:LinkButton>--%>
+
 			</div>
 
 			<%--Rewards part --%>
-			<div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
-				<h3 class="mb-1 ms-5 text-sm" style="color:cornflowerblue">CPE Course Completed</h3>
-				<div>
-					<asp:Label ID="lblStudentID" runat="server"></asp:Label>
-				</div>
+			<div class="tab-pane fade p-3" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
+				<h3>CPE Course Completed</h3>
 
-				<div class="col-10 p-4 flex-column d-flex justify-content-center">
+				<div class="p-4 flex-column d-flex justify-content-center">
 					<%--<p class="my-3 fs-2 fw-bolder">Rewards</p>--%>
 					<div class="container">
 						<asp:GridView class="table table-bordered table-condensed table-responsive table-hover" ID="gvRewardsView" runat="server" AutoGenerateColumns="False" DataKeyNames="CPECode"
