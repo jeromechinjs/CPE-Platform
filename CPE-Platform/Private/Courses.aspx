@@ -21,7 +21,7 @@
                 <!-- Remaining list items are derived from sql data source below-->
 <%--                <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>--%>
             </div>
-                                                <asp:Label class="card-title fw-bold" ID="test" runat="server">TEST</asp:Label>
+            <asp:Label class="card-title fw-bold" ID="test" runat="server">TEST</asp:Label>
 
             <!-- Course Cards -->
             <div class="p-3 m-0">
@@ -151,6 +151,21 @@
             </div>
             <div class="toast-body">
                 Course already existed in cart.
+            </div>
+        </asp:Panel>
+    </div>
+
+    <!-- Out of seats message -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <asp:Panel ID="toast3" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+            <div class="toast-header">
+                <img src="src/tarucLogo.png" class="rounded me-2" width="12">
+                <strong class="me-auto">CPE Platform</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                No more seats left for this course.
             </div>
         </asp:Panel>
     </div>

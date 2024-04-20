@@ -27,8 +27,8 @@ namespace CPE_Platform.Private
         {
 			if (!Page.IsPostBack)
 			{
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
-                allCourses.DataBind(); // when need to retrieve data and display in frontend inside ASP control template, need bind (if backend oerations only, no ned bind, just read)
+                //allCourses.SelectCommand = "SELECT * FROM CPE_Course";
+                //allCourses.DataBind(); // when need to retrieve data and display in frontend inside ASP control template, need bind (if backend oerations only, no ned bind, just read)
 
                 // Dropdown course type selection filter
                 //courseTypes.SelectCommand = "SELECT DISTINCT CPEType FROM [CPE_Course]";
@@ -39,7 +39,7 @@ namespace CPE_Platform.Private
             // Filter CPE Course Types
             if (dropdownCourseTypes.SelectedValue == "-1")
             {
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course";
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course"; // add: WHERE end date does not exceed today's date
             }
             else
             {
@@ -53,6 +53,8 @@ namespace CPE_Platform.Private
             // hide all toasts
             toast1.CssClass = toast1.CssClass.Replace("show", "hide");
             toast2.CssClass = toast1.CssClass.Replace("show", "hide");
+            toast3.CssClass = toast1.CssClass.Replace("show", "hide");
+
 
         }
         protected void view_course_info(object sender, CommandEventArgs e)
@@ -109,7 +111,7 @@ namespace CPE_Platform.Private
 
             if (seatsLeft == 0)
             {
-                Response.Write("<script>alert('No more seats left');</script>");
+                toast3.CssClass = toast1.CssClass.Replace("hide", "show");
             }
             else
             {

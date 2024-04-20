@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Student Profile" Language="C#" MasterPageFile="~/Student.Master" AutoEventWireup="true" CodeBehind="StudentProfileManagement.aspx.cs" Inherits="CPE_Platform.StudentProfileManagement" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+     <head>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</head>
 
     <div class="container p-3">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -39,8 +44,65 @@
                     <asp:Label class="card-title fw-bold" ID="Label5" runat="server" Text='Faculty: '></asp:Label>
                     <asp:Label class="card-title" ID="txtFaculty" runat="server" Text='<%# Eval("StudentFaculty") %>'></asp:Label>
                     <br /><br />
-				    <%--<asp:LinkButton CssClass="btn btn-sm btn-primary" ID="edit" CommandName="Edit" OnCommand="editInfo" CommandArgument='<%# Eval("CPECode") %>' runat="server">Add To Cart</asp:LinkButton>--%>
+                    
+					<asp:LinkButton CssClass="btn btn-sm btn-primary" ID="btnEdit" CommandName="Edit Profile Information" OnCommand="edit_info" runat="server">Edit Info<span class="fa fa-edit"></span></asp:LinkButton>
+			</div>
 
+			<%--modal popup--%>
+			<div class="container">
+				<div class="modal fade" id="updateDetails" data-backdrop="static" role="dialog">
+					<div class=" modal-dialog modal-dailog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Edit Profile Information</h4>
+
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<asp:Label ID="lblmsg" Text="" ForeColor="IndianRed" runat="server" /><br />
+
+								<label>Student ID</label>
+								<asp:TextBox ID="modaltxtID" CssClass="form-control" placeholder="Student ID" runat="server" />
+
+								<label>Student IC</label>
+								<asp:TextBox ID="modaltxtIC" CssClass="form-control" placeholder="Student IC" runat="server" />
+														
+
+								<label>Name</label>
+								<asp:TextBox ID="modaltxtName" CssClass="form-control" placeholder="Name" runat="server" />
+								
+								<label>Phone Number</label>
+								<asp:TextBox ID="modaltxtPhone" CssClass="form-control" placeholder="Phone Number" runat="server" />
+								
+								<label>Email</label>
+								<asp:TextBox ID="modaltxtEmail" CssClass="form-control" placeholder="Email" runat="server" />
+								
+								<label>Faculty</label>
+								<asp:TextBox ID="modaltxtFaculty" CssClass="form-control" placeholder="Faculty" runat="server" />
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+								<asp:Button ID="btnsave" CssClass="btn btn-outline-success" OnClick="btnsave_Click" Text="Save" runat="server" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Information updated successfully toast message -->
+			<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+				<asp:Panel ID="updateSucess" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+					<div class="toast-header">
+						<img src="src/tarucLogo.png" class="rounded me-2" width="12">
+						<strong class="me-auto">CPE Platform</strong>
+						<small>Just now</small>
+						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+						Profile information sucessfully saved.
+					</div>
+				</asp:Panel>
 			</div>
 
 			<%--Rewards part --%>
@@ -107,9 +169,6 @@
 									</EditItemTemplate>
 
 								</asp:TemplateField>
-
-
-
 							</Columns>
 						</asp:GridView>
 					</div>
