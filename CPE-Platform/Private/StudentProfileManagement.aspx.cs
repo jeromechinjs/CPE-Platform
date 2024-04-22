@@ -18,9 +18,9 @@ namespace CPE_Platform
 		protected void Page_Load(object sender, EventArgs e)
 		{
             if (!IsPostBack)
-			{
+            {
                 if (Session["StudentID"] != null)
-				{
+                {
                     string studentID = Session["StudentID"].ToString();
 
                     // Profile part
@@ -28,12 +28,14 @@ namespace CPE_Platform
 
                     // Rewards part
                     getRewardsInfo(studentID);
-
-				}
-
-			}
-            // hide toasts
+                }
+            }
+            // hide all toasts
             updateSucess.CssClass = updateSucess.CssClass.Replace("show", "hide");
+            originalPasswordWrong.CssClass = originalPasswordWrong.CssClass.Replace("show", "hide");
+            passwordSame.CssClass = passwordSame.CssClass.Replace("show", "hide");
+            passwordDifferent.CssClass = passwordDifferent.CssClass.Replace("show", "hide");
+            passwordChangedSuccess.CssClass = passwordChangedSuccess.CssClass.Replace("show", "hide");
 
         }
         protected void edit_info(object sender, CommandEventArgs e)
@@ -52,11 +54,11 @@ namespace CPE_Platform
                     if (dataReader.Read()) // returns true if have more rows to read, else false
                     {
                         modaltxtID.Text = dataReader["StudentID"].ToString();
-                        modaltxtIC.Text = dataReader["StudentIC"].ToString();
-                        modaltxtName.Text = dataReader["StudentName"].ToString();
+                        //modaltxtIC.Text = dataReader["StudentIC"].ToString();
+                        //modaltxtName.Text = dataReader["StudentName"].ToString();
                         modaltxtPhone.Text = dataReader["StudentPhoneNum"].ToString();
-                        modaltxtEmail.Text = dataReader["StudentEmail"].ToString();
-                        modaltxtFaculty.Text = dataReader["StudentFaculty"].ToString();
+                        //modaltxtEmail.Text = dataReader["StudentEmail"].ToString();
+                        //modaltxtFaculty.Text = dataReader["StudentFaculty"].ToString();
                     } 
                     dataReader.Close();
                 }
@@ -74,32 +76,112 @@ namespace CPE_Platform
             if (Session["StudentID"] != null)
             {
                 string studentID = Session["StudentID"].ToString();
-                string updateProfileInfo = "UPDATE CPE_Course SET CPEName=@CPEName, CPEDesc=@CPEDesc, CPEType=@CPEType,CPEVenue=@CPEVenue, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice,\" +\r\n                        \"CPETrainer=@CPETrainer, CPEStartDate=@CPEStartDate,CPEEndDate=@CPEEndDate,CPEStartTime=@CPEStartTime, CPEEndTime=@CPEEndTime, CPEContact=@CPEContact, CPEEmail=@CPEEmail, Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id";
-
+                string updateProfileInfo = "UPDATE Student SET StudentPhoneNum=@StudentPhoneNum WHERE StudentID=@StudentID";
+                
                 string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 using (SqlConnection con = new SqlConnection(connectionstring))
                 {
                     using (SqlCommand getPtsCollected = new SqlCommand(updateProfileInfo, con))
                     {
-                        con.Open();
-
                         // edit update command
-                        getPtsCollected.Parameters.AddWithValue("@studentID", studentID);
+                        getPtsCollected.Parameters.AddWithValue("@StudentID", studentID);
+                        getPtsCollected.Parameters.AddWithValue("@StudentPhoneNum", modaltxtPhone.Text);
+                        
                         // add parameters to update
-
                         //cmd.Parameters.AddWithValue("@CPEName", txtCPEName.Text);
                         //cmd.Parameters.AddWithValue("@CPEDesc", txtCourseDesc.Text);
-
                         //cmd.Parameters.AddWithValue("@CPEVenue", txtVenue.Text);
 
-                        updateSucess.CssClass = updateSucess.CssClass.Replace("hide", "show");
+                        con.Open();
+                        int rowsAltered = getPtsCollected.ExecuteNonQuery();
+
+                        if (rowsAltered > 0)
+                        {
+                            // show update sucessful message
+                            updateSucess.CssClass = updateSucess.CssClass.Replace("hide", "show");
+                            getProfileInformation(studentID); // update view
+                        }
+
+                        con.Close();
+                    }
+                }
+            }
+        }
+
+        protected void change_password(object sender, EventArgs e)
+        {
+            if (Session["StudentID"] != null)
+            {
+                string studentID = Session["StudentID"].ToString();
+                string queryGetPassword = "SELECT * FROM Student where studentID=@studentID";
+                string queryUpdatePassword = "UPDATE Student SET StudentPassword=@StudentPassword WHERE studentID=@studentID";
+                bool passwordInputsOk = false;
+
+                string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(connectionstring))
+                {
+                    // first command, retreive current password for checking if new password same as current password 
+                    using (SqlCommand getPassword = new SqlCommand(queryGetPassword, con))
+                    {
+                        con.Open();
+                        getPassword.Parameters.AddWithValue("@studentID", studentID);
+
+                        // validation checks 
+                        using (SqlDataReader dataReader = getPassword.ExecuteReader())
+                        {
+                            if (dataReader.Read()) // returns true if have more rows to read, else false
+                            {
+                                string currentPassword = dataReader["StudentPassword"].ToString();
+                                testlbl.Text = currentPassword;
+                                if (oldPassword.Text != currentPassword) // old password same as current password
+                                {
+                                    originalPasswordWrong.CssClass = originalPasswordWrong.CssClass.Replace("hide", "show");
+                                }
+                                else if (oldPassword.Text == newPassword.Text) // new password same as old password
+                                {
+                                    passwordSame.CssClass = passwordSame.CssClass.Replace("hide", "show");
+                                }
+                                else if (newPassword.Text != confirmPassword.Text) // new password not same as confirm password
+                                {
+                                    passwordDifferent.CssClass = passwordDifferent.CssClass.Replace("hide", "show");
+                                }
+                                else // change password if all inputs ok
+                                {
+                                    passwordInputsOk = true;
+
+                                }
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    // secomd command, update password into db
+                    using (SqlCommand updatePassword = new SqlCommand(queryUpdatePassword, con))
+                    {
+                        if (passwordInputsOk)
+                        {
+                            // edit update command
+                            updatePassword.Parameters.AddWithValue("@StudentID", studentID);
+                            updatePassword.Parameters.AddWithValue("@StudentPassword", newPassword.Text);
+
+                            con.Open();
+                            int rowsAltered = updatePassword.ExecuteNonQuery();
+
+                            if (rowsAltered > 0)
+                            {
+                                // show update sucessful message
+                                passwordChangedSuccess.CssClass = passwordChangedSuccess.CssClass.Replace("hide", "show");
+                            }
+
+                            con.Close();
+                        }
 
                     }
                 }
             }
         }
 
-        protected  void getProfileInformation(String studentID)
+        protected void getProfileInformation(String studentID)
         {
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connectionstring))
