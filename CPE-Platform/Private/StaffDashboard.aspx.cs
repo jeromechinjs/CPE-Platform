@@ -175,6 +175,9 @@ namespace CPE_Platform.Private
                     }
                 }
 
+                string script = "$('#mymodal').modal('show');";
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
+
                 // refresh data view
                 rptr1.DataBind();
                 con.Close();

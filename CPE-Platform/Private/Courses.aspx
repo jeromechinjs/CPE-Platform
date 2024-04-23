@@ -9,7 +9,7 @@
 
     <div class="container px-4">
         <div class="row">
-            <div class="p-3 m-0">
+<%--            <div class="p-3 m-0">
                 <p>Search by</p>
                 <asp:DropDownList class="dropdown-center form-select" ID="dropdownCourseTypes" runat="server"  DataTextField="CPEType" DataValueField="CPEType" AutoPostBack="True" AppendDataBoundItems="True">
                     <asp:ListItem Value="-1">Show All</asp:ListItem>
@@ -18,10 +18,7 @@
                     <asp:ListItem Value="Corporate Programmes">Corporate Programmes</asp:ListItem>
 
                 </asp:DropDownList>
-                <!-- Remaining list items are derived from sql data source below-->
-<%--                <asp:SqlDataSource ID="courseTypes" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>--%>
-            </div>
-            <asp:Label class="card-title fw-bold" ID="test" runat="server">TEST</asp:Label>
+            </div>--%>
 
             <!-- Course Cards -->
             <div class="p-3 m-0">

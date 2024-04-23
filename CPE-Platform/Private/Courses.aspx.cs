@@ -37,18 +37,25 @@ namespace CPE_Platform.Private
             }
 
             // Filter CPE Course Types
-            if (dropdownCourseTypes.SelectedValue == "-1")
-            {
-                //allCourses.SelectCommand = "SELECT * FROM CPE_Course"; // add: WHERE end date does not exceed today's date
-            }
-            else
-            {
-                String courseType = dropdownCourseTypes.SelectedValue.Trim();
-                test.Text = courseType;
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType=" + courseType + "";
-                allCourses.DataBind();
+            //if (dropdownCourseTypes.SelectedValue == "-1")
+            //{
+            //}
+            //else
+            //{
+            //    String courseType = dropdownCourseTypes.SelectedValue.Trim();
+            //    allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType='" + courseType + "'";
+            //    allCourses.DataBind();
 
-            }
+            //}
+
+            // get today date
+            //DateTime today = DateTime.Today;
+            //String todayDate = today.ToString("d"); // get date only (given format is mm/dd/yyyy)
+
+            allCourses.SelectCommand = "SELECT * FROM CPE_Course"; // add: WHERE end date does not exceed today's date
+            allCourses.DataBind();
+
+
 
             // hide all toasts
             toast1.CssClass = toast1.CssClass.Replace("show", "hide");
