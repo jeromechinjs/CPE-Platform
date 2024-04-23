@@ -57,7 +57,7 @@
 						<li class="nav-item p-2 bg-lightgreen">
 							<div class="dropdown">
 								<span class="btn dropdown-toggle d-flex rounded-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-tasks text-white"></i>								
+									<i class="fa fa-tasks text-white"></i>
 								</span>
 
 								<ul class="dropdown-menu form-select dropdown-menu-end">
@@ -70,7 +70,7 @@
 						<li class="nav-item p-2 bg-maroon">
 							<div class="dropdown">
 								<span class="btn dropdown-toggle d-flex rounded-0 border-0" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-bell text-white"></i>								
+									<i class="fa fa-bell text-white"></i>
 								</span>
 
 								<ul class="dropdown-menu form-select dropdown-menu-end">
@@ -83,8 +83,7 @@
 
 					<div class="dropdown">
 						<button class="btn btn-light dropdown-toggle d-flex rounded-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<small class="font-11 text-start">
-								Welcome,
+							<small class="font-11 text-start">Welcome,
 								<br />
 								<asp:Label runat="server" ID="name"></asp:Label>
 							</small>
@@ -93,7 +92,8 @@
 						<ul class="dropdown-menu form-select dropdown-menu-end">
 							<li><a class="dropdown-item" href="StaffDashboard.aspx">Dashboard</a></li>
 							<li><a class="dropdown-item" href="#">Set Password</a></li>
-							<li><asp:LinkButton ID="btn_logout" class="dropdown-item" Text="Log Out" OnClick="Logout" runat="server"></asp:LinkButton></li>
+							<li>
+								<asp:LinkButton ID="btn_logout" class="dropdown-item" Text="Log Out" OnClick="Logout" runat="server"></asp:LinkButton></li>
 						</ul>
 					</div>
 
@@ -113,13 +113,13 @@
 								</a>
 							</button>
 							<button class="btn btn-info rounded-0" title="Info" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-info fa-fw text-white"></i>			
+								<i class="fa fa-info fa-fw text-white"></i>
 							</button>
 							<button class="btn btn-warning rounded-0" title="E-Learning" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-sitemap fa-fw text-white"></i>			
+								<i class="fa fa-sitemap fa-fw text-white"></i>
 							</button>
 							<button class="btn btn-danger rounded-0" title="UC Email" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-envelope fa-fw text-white"></i>			
+								<i class="fa fa-envelope fa-fw text-white"></i>
 							</button>
 						</div>
 
@@ -132,20 +132,31 @@
 							</h2>
 						  </div>
 
-						  <div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#viewCourse" aria-expanded="false" aria-controls="viewCourse">
-								Management
-								</button>
-							</h2>
-							<div id="viewCourse" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#sidebarNavAccordian">
-							  <div class="accordion-body">
-								<asp:LinkButton ID="btnCourses" class="fw-normal text-decoration-none" Text="CPE Management" OnClick="cpeMangement" runat="server"></asp:LinkButton>
-							  </div>
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#viewCourse" aria-expanded="false" aria-controls="viewCourse">
+										Management
+									</button>
+								</h2>
+								<div id="viewCourse" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#sidebarNavAccordian">
+									<div class="accordion-body">
+										<asp:LinkButton ID="btnCourses" class="fw-normal text-decoration-none" Text="CPE Management" OnClick="cpeMangement" runat="server"></asp:LinkButton>
+									</div>
+								</div>
 							</div>
-						  </div>
 
-
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingThree">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#viewRewards" aria-expanded="false" aria-controls="viewRewards">
+										Rewards
+									</button>
+								</h2>
+								<div id="viewRewards" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#sidebarNavAccordian">
+									<div class="accordion-body">
+										<asp:LinkButton ID="btnRewardsAllocation" class="fw-normal text-decoration-none" Text="Rewards Allocation" OnClick="rewardsAllocation" runat="server"></asp:LinkButton>
+									</div>
+								</div>
+							</div>
 					</section>
 				</div>
 
@@ -160,7 +171,6 @@
 					</div>
 
 					<footer>
-
 					</footer>
 				</div>
 			</div>

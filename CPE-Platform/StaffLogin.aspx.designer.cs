@@ -67,14 +67,5 @@ namespace CPE_Platform
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button btnStaffLogin;
-
-		/// <summary>
-		/// navRegisterStudent control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink navRegisterStudent;
 	}
 }

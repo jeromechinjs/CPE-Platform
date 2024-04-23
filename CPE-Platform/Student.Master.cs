@@ -74,8 +74,14 @@ namespace CPE_Platform
             Response.Redirect("~/Private/Cart.aspx", true);
         }
 
+		protected void goPaymentHistory(object sender, EventArgs e)
+		{
+			// Redirect the user to the dashboard page
+			Response.Redirect("~/Private/PaymentHistory.aspx", true);
+		}
 
-        protected void goDashboard(object sender, EventArgs e)
+
+		protected void goDashboard(object sender, EventArgs e)
         {
             // Redirect the user to the dashboard page
             Response.Redirect("~/Private/StudentDashboard.aspx", true);
