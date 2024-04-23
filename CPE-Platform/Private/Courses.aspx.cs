@@ -39,13 +39,13 @@ namespace CPE_Platform.Private
             // Filter CPE Course Types
             if (dropdownCourseTypes.SelectedValue == "-1")
             {
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course"; // add: WHERE end date does not exceed today's date
+                //allCourses.SelectCommand = "SELECT * FROM CPE_Course"; // add: WHERE end date does not exceed today's date
             }
             else
             {
                 String courseType = dropdownCourseTypes.SelectedValue.Trim();
                 test.Text = courseType;
-                allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType='" + courseType + "'";
+                allCourses.SelectCommand = "SELECT * FROM CPE_Course WHERE CPEType=" + courseType + "";
                 allCourses.DataBind();
 
             }

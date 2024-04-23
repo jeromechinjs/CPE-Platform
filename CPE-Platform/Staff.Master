@@ -128,7 +128,7 @@
 						<div class="accordion accordion-flush" id="sidebarNavAccordian">
 						  <div class="accordion-item">
 							<h2 class="accordion-header" id="headingOne">
-								<asp:LinkButton ID="btnDashboard" class="accordion-button collapsed hide-accordion-caret fw-normal text-decoration-none" Text="Dashboard" OnClick="goDashboard" runat="server"></asp:LinkButton>
+								<asp:LinkButton ID="btnDashboard" class="accordion-button collapsed hide-accordion-caret fw-normal text-decoration-none" Text="Notice Centre" OnClick="goDashboard" runat="server"></asp:LinkButton>
 							</h2>
 						  </div>
 
