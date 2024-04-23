@@ -56,18 +56,13 @@ namespace CPE_Platform
                     if (dataReader.Read()) // returns true if have more rows to read, else false
                     {
                         modaltxtID.Text = dataReader["StudentID"].ToString();
-                        //modaltxtIC.Text = dataReader["StudentIC"].ToString();
-                        //modaltxtName.Text = dataReader["StudentName"].ToString();
                         modaltxtPhone.Text = dataReader["StudentPhoneNum"].ToString();
-                        //modaltxtEmail.Text = dataReader["StudentEmail"].ToString();
-                        //modaltxtFaculty.Text = dataReader["StudentFaculty"].ToString();
                     } 
                     dataReader.Close();
                 }
             }
 
             modaltxtID.ReadOnly = true;
-            Session["IsUpdateFlag"] = true;
             lblmsg.Text = null;
             ScriptManager.RegisterStartupScript(this, GetType(), "OpenModalScript", "$('#updateDetails').modal('show');", true);
 
@@ -89,11 +84,6 @@ namespace CPE_Platform
                         getPtsCollected.Parameters.AddWithValue("@StudentID", studentID);
                         getPtsCollected.Parameters.AddWithValue("@StudentPhoneNum", modaltxtPhone.Text);
                         
-                        // add parameters to update
-                        //cmd.Parameters.AddWithValue("@CPEName", txtCPEName.Text);
-                        //cmd.Parameters.AddWithValue("@CPEDesc", txtCourseDesc.Text);
-                        //cmd.Parameters.AddWithValue("@CPEVenue", txtVenue.Text);
-
                         con.Open();
                         int rowsAltered = getPtsCollected.ExecuteNonQuery();
 
@@ -101,7 +91,7 @@ namespace CPE_Platform
                         {
                             // show update sucessful message
                             updateSucess.CssClass = updateSucess.CssClass.Replace("hide", "show");
-                            getProfileInformation(studentID); // update view
+                            getProfileInformation(studentID); // update view with new info (like refresh it)
                         }
 
                         con.Close();
@@ -116,6 +106,7 @@ namespace CPE_Platform
 			byte[] passwordHash = Encoding.UTF8.GetBytes(SimpleString);
 			return Encoding.UTF8.GetString(md5.ComputeHash(passwordHash));
 		}
+
 		protected void change_password(object sender, EventArgs e)
         {
             if (Session["StudentID"] != null)

@@ -154,3 +154,7 @@ span.dropdown-toggle::after {
 .dashboard-figures-row {
     max-width: 91%;
 }
+
+#noticeTable {
+    max-width: fit-content;
+}

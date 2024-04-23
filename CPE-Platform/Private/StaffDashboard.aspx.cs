@@ -22,6 +22,11 @@ namespace CPE_Platform.Private
                 rptr1.DataBind();
 
             }
+            // hide all toasts
+            noticeUpdated.CssClass = noticeUpdated.CssClass.Replace("show", "hide");
+            noticeAdded.CssClass = noticeAdded.CssClass.Replace("show", "hide");
+
+
 
         }
 
@@ -29,39 +34,52 @@ namespace CPE_Platform.Private
         {
             string script = "$('#mymodal').modal('show');";
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
-            Session["IsUpdateFlag"] = false;    // session to set whether the user clicked which button
-            txtCPECode.Text = "";
-            txtCPECode.ReadOnly = false;
-            txtCPEName.Text = null;
-            txtCourseDesc.Text = null;
-            DropDownListType.SelectedValue = null;
-            txtVenue.Text = null;
-            txtTrainer.Text = null;
-            txtCPEPrice.Text = null;
-            txtStartTime.Text = null;
-            txtEndTime.Text = null;
-            DropDownListContact.SelectedValue = null;
-            DropDownListEmail.SelectedValue = null;
-            txtCPERewards.Text = null;
-            dllStartDate.SelectedValue = null;
-            dllEndDate.SelectedValue = null;
-            txtCPESeat.Text = null;
+
+            Session["gotNoticeUpdate"] = false; // keep track if user adding new notice or updating existing ones
+
+            // prevent edit, will auto assign (read-only)
+            txtNoticeID.ReadOnly = true;
+            txtNoticeDate.ReadOnly = true;
+
+            // let staff fill in these empty boxes
+            txtNoticeTitle.Text = null;
+            txtNoticeDesc.Text = null;
+            txtNoticeSender.Text = null;
             lblmsg.Text = null;
+
+            // auto assign date and time
+            string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Notices", conn);
+
+                // execute scalar counts number of rows retreived when cmd is used
+                int numOfRecords = (int)cmd.ExecuteScalar() + 1; // increment by one, to add new record with new notice ID
+
+                // get today date
+                DateTime today = DateTime.Today;
+
+                // auto assign
+                txtNoticeID.Text = numOfRecords.ToString();
+                txtNoticeDate.Text = today.ToString("d"); // get date only (given format is mm/dd/yyyy)
+            }
         }
 
 
 
         protected void btndlt_Command(object sender, CommandEventArgs e)
         {
-            string id = e.CommandArgument.ToString(); // command argument refer to the button eval name and pass the value into here
+            string NoticeID = e.CommandArgument.ToString(); // command argument refer to the button eval name and pass the value into here
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("delete from CPE_Course where CPECode=@id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                SqlCommand cmd = new SqlCommand("delete from Notices where NoticeID=@NoticeID", conn);
+                cmd.Parameters.AddWithValue("@NoticeID", NoticeID);
                 cmd.ExecuteNonQuery();
             }
+
             rptr1.DataBind();
             string message = "Successfully Delete the record";
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + message + "');", true);
@@ -72,37 +90,29 @@ namespace CPE_Platform.Private
 
         protected void btnupdate_Command(object sender, CommandEventArgs e)
         {
-            string id = e.CommandArgument.ToString();
-            txtCPECode.Text = id;
+            string NoticeID = e.CommandArgument.ToString();
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connectionstring))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM CPE_Course where CPECode=@id", conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Notices where NoticeID=@NoticeID", conn);
+                cmd.Parameters.AddWithValue("@NoticeID", NoticeID);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.Read())
                 {
-                    txtCPECode.Text = dataReader["CPECode"].ToString();
-                    txtCPEName.Text = dataReader["CPEName"].ToString();
-                    txtCourseDesc.Text = dataReader["CPEDesc"].ToString();
-                    DropDownListType.SelectedValue = dataReader["CPEType"].ToString().Trim();
-                    txtVenue.Text = dataReader["CPEVenue"].ToString();
-                    txtCPESeat.Text = dataReader["CPESeatAmount"].ToString();
-                    txtCPEPrice.Text = dataReader["CPEPrice"].ToString();
-                    txtTrainer.Text = dataReader["CPETrainer"].ToString();
-                    dllStartDate.SelectedValue = dataReader["CPEStartDate"].ToString().Trim();
-                    dllEndDate.SelectedValue = dataReader["CPEEndDate"].ToString().Trim();
-                    txtStartTime.Text = dataReader["CPEStartTime"].ToString();
-                    txtEndTime.Text = dataReader["CPEEndTime"].ToString();
-                    DropDownListContact.SelectedValue = dataReader["CPEContact"].ToString().Trim();
-                    DropDownListEmail.SelectedValue = dataReader["CPEEmail"].ToString().Trim();
-                    txtCPERewards.Text = dataReader["Rewards"].ToString();
+                    // display existing notice info into text box
+                    txtNoticeID.Text = dataReader["NoticeID"].ToString();
+                    txtNoticeTitle.Text = dataReader["NoticeTitle"].ToString();
+                    txtNoticeDesc.Text = dataReader["NoticeDesc"].ToString();
+                    txtNoticeSender.Text = dataReader["NoticeSEnder"].ToString();
+                    txtNoticeDate.Text = dataReader["NoticeDate"].ToString();
                 }
                 dataReader.Close();
             }
-            txtCPECode.ReadOnly = true;
-            Session["IsUpdateFlag"] = true;
+            txtNoticeID.ReadOnly = true; // prevent edit, will auto assign
+            txtNoticeDate.ReadOnly = true;
+
+            Session["gotNoticeUpdate"] = true; // user updating, update the flag. So will use update command to modify existing record
             lblmsg.Text = null;
             ScriptManager.RegisterStartupScript(this, GetType(), "OpenModalScript", "$('#mymodal').modal('show');", true);
         }
@@ -114,173 +124,72 @@ namespace CPE_Platform.Private
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 SqlCommand cmd;
-                int cpeSeatAmount, cpeRewards;
-                con.Open();
-                bool isUpdateFlag = Session["IsUpdateFlag"] != null && (bool)Session["IsUpdateFlag"];
-                // check if the CPE code is exist
 
-                if (!isUpdateFlag)
+                string NoticeID = txtNoticeID.Text;
+                bool gotNoticeUpdate = Session["gotNoticeUpdate"] != null && (bool)Session["gotNoticeUpdate"];
+
+                if (gotNoticeUpdate) // user wants to update existing notice
                 {
-                    // to check whether the CPECode is exist
-                    cmd = new SqlCommand("SELECT COUNT(*) FROM CPE_Course WHERE CPECode = @CPECode", con);
-                    cmd.Parameters.AddWithValue("@CPECode", txtCPECode.Text);
-                    int existingCPECount = (int)cmd.ExecuteScalar();
+                    cmd = new SqlCommand("UPDATE Notices SET NoticeTitle=@NoticeTitle,  NoticeDesc=@NoticeDesc, NoticeSender=@NoticeSender WHERE NoticeID=@NoticeID", con);
+                    cmd.Parameters.AddWithValue("@NoticeID", NoticeID);
+                    cmd.Parameters.AddWithValue("@NoticeTitle", txtNoticeTitle.Text);
+                    cmd.Parameters.AddWithValue("@NoticeDesc", txtNoticeDesc.Text);
+                    cmd.Parameters.AddWithValue("@NoticeSender", txtNoticeSender.Text);
 
-                    if (existingCPECount == 0)
+                    con.Open();
+                    int rowsAltered = cmd.ExecuteNonQuery();
+
+                    if (rowsAltered > 0)
                     {
-                        if (string.IsNullOrEmpty(txtCPECode.Text) || string.IsNullOrEmpty(txtCPEName.Text) || string.IsNullOrEmpty(txtCPEPrice.Text) || string.IsNullOrEmpty(txtCPERewards.Text) || string.IsNullOrEmpty(txtCPESeat.Text))
-                        {
-                            lblmsg.Text = "Please fill up the information";
-                        }
-                        else
-                        {
-                            cmd = new SqlCommand("INSERT INTO CPE_Course (CPECode,CPEName,CPEDesc,CPEType,CPEVenue,CPESeatAmount,CPEPrice,CPETrainer,CPEStartDate,CPEEndDate,CPEStartTime,CPEEndTime,CPEContact,CPEEmail,Rewards,ModifiedDate) VALUES (@id,@CPEName,@CPEDesc,@CPEType,@CPEVenue,@CPESeatAmount,@CPEPrice,@CPETrainer,@CPEStartDate,@CPEEndDate,@CPEStartTime,@CPEEndTime,@CPEContact,@CPEEmail,@Rewards,@ModifiedDate)", con);
-                            cmd.Parameters.AddWithValue("@id", txtCPECode.Text);
-                            cmd.Parameters.AddWithValue("@CPEName", txtCPEName.Text);
-                            cmd.Parameters.AddWithValue("@CPEDesc", txtCourseDesc.Text);
-                            cmd.Parameters.AddWithValue("@CPEType", DropDownListType.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@CPEVenue", txtVenue.Text);
+                        // show update sucessful message
+                        noticeUpdated.CssClass = noticeUpdated.CssClass.Replace("hide", "show");
+                    }
+                    con.Close();
 
-                            if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
-                            {
-                                // Conversion successful, add the parameter
-                                cmd.Parameters.AddWithValue("@CPESeatAmount", cpeSeatAmount);
-                                if (dllStartDate.SelectedValue == "" || dllEndDate.SelectedValue == "" || DropDownListType.SelectedValue == "" || DropDownListContact.SelectedValue == "" || DropDownListEmail.SelectedValue == "")
-                                {
-                                    lblmsg.Text = "Please select a valid data";
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
-                                    cmd.Parameters.AddWithValue("@CPETrainer", txtTrainer.Text);
-                                    cmd.Parameters.AddWithValue("@CPEStartDate", dllStartDate.SelectedItem.ToString());
-                                    cmd.Parameters.AddWithValue("@CPEEndDate", dllEndDate.SelectedItem.ToString());
-                                    cmd.Parameters.AddWithValue("@CPEStartTime", txtStartTime.Text);
-                                    cmd.Parameters.AddWithValue("@CPEEndTime", txtEndTime.Text);
-                                    cmd.Parameters.AddWithValue("@CPEContact", DropDownListContact.SelectedItem.ToString());
-                                    cmd.Parameters.AddWithValue("@CPEEmail", DropDownListEmail.SelectedItem.ToString());
+                }
+                else // user wants to add new notice
+                {
+                    cmd = new SqlCommand("INSERT INTO Notices (NoticeID,NoticeTitle,NoticeDesc,NoticeSender,NoticeDate) VALUES (@NoticeID,@NoticeTitle,@NoticeDesc,@NoticeSender,@NoticeDate)", con);
 
-                                    if (int.TryParse(txtCPERewards.Text, out cpeRewards))
-                                    {
-                                        // Conversion successful, add the parameter
-                                        cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
-                                    }
-                                    else
-                                    {
-                                        cmd.Parameters.AddWithValue("@Rewards", DBNull.Value);
-                                    }
-
-                                    DateTime currentDateTime = DateTime.Now;
-                                    cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
-                                    int rowsaffected = cmd.ExecuteNonQuery();
-
-                                    if (rowsaffected > 0)
-                                    {
-                                        lblmsg.Text = "Data Insert Successfully";
-                                    }
-                                    else
-                                    {
-                                        lblmsg.Text = "CPE Code exists";
-
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                lblmsg.Text = "Please select a valid data";
-                            }
-
-
-                        }
+                    if (string.IsNullOrEmpty(txtNoticeTitle.Text) || string.IsNullOrEmpty(txtNoticeDesc.Text) || string.IsNullOrEmpty(txtNoticeSender.Text))
+                    {
+                        lblmsg.Text = "Please fill up the information"; // validation checks
                     }
                     else
                     {
-                        lblmsg.Text = "Please Enter a valid Data";
+                        cmd.Parameters.AddWithValue("@NoticeID", NoticeID);
+                        cmd.Parameters.AddWithValue("@NoticeTitle", txtNoticeTitle.Text);
+                        cmd.Parameters.AddWithValue("@NoticeDesc", txtNoticeDesc.Text);
+                        cmd.Parameters.AddWithValue("@NoticeSender", txtNoticeSender.Text);
+                        cmd.Parameters.AddWithValue("@NoticeDate", txtNoticeDate.Text);
+
+                        con.Open();
+                        int rowsAltered = cmd.ExecuteNonQuery();
+
+                        if (rowsAltered > 0)
+                        {
+                            // show notice added sucessful message
+                            noticeAdded.CssClass = noticeAdded.CssClass.Replace("hide", "show");
+                        }
+                        con.Close();
                     }
                 }
 
-                else
-                {
-
-                    string id = txtCPECode.Text;
-
-                    cmd = new SqlCommand("UPDATE CPE_Course SET CPEName=@CPEName, CPEDesc=@CPEDesc, CPEType=@CPEType,CPEVenue=@CPEVenue, CPESeatAmount=@CPESeatAmount,CPEPrice=@CPEPrice," +
-                    "CPETrainer=@CPETrainer, CPEStartDate=@CPEStartDate,CPEEndDate=@CPEEndDate,CPEStartTime=@CPEStartTime, CPEEndTime=@CPEEndTime, CPEContact=@CPEContact, CPEEmail=@CPEEmail, Rewards=@Rewards, ModifiedDate=@ModifiedDate where CPECode=@id", con);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@CPEName", txtCPEName.Text);
-                    cmd.Parameters.AddWithValue("@CPEDesc", txtCourseDesc.Text);
-
-                    cmd.Parameters.AddWithValue("@CPEVenue", txtVenue.Text);
-
-                    if (int.TryParse(txtCPESeat.Text, out cpeSeatAmount))
-                    {
-                        // Conversion successful, add the parameter
-                        cmd.Parameters.AddWithValue("@CPESeatAmount", cpeSeatAmount);
-                        cmd.Parameters.AddWithValue("@CPEPrice", txtCPEPrice.Text);
-                        if (dllStartDate.SelectedValue == "" || dllEndDate.SelectedValue == "" || DropDownListType.SelectedValue == "" || DropDownListContact.SelectedValue == "" || DropDownListEmail.SelectedValue == "")
-                        {
-                            lblmsg.Text = "Please select a valid data";
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@CPEType", DropDownListType.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@CPETrainer", txtTrainer.Text);
-                            cmd.Parameters.AddWithValue("@CPEStartDate", dllStartDate.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@CPEEndDate", dllEndDate.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@CPEStartTime", txtStartTime.Text);
-                            cmd.Parameters.AddWithValue("@CPEEndTime", txtEndTime.Text);
-                            cmd.Parameters.AddWithValue("@CPEContact", DropDownListContact.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@CPEEmail", DropDownListEmail.SelectedItem.ToString());
-
-                            if (int.TryParse(txtCPERewards.Text, out cpeRewards))
-                            {
-                                // Conversion successful, add the parameter
-                                cmd.Parameters.AddWithValue("@Rewards", cpeRewards);
-                                DateTime currentDateTime = DateTime.Now;
-                                cmd.Parameters.AddWithValue("@ModifiedDate", currentDateTime);
-
-                                int rowsaffected = cmd.ExecuteNonQuery();
-
-                                if (rowsaffected > 0)
-                                {
-                                    lblmsg.Text = "Data Update Successfully";
-                                }
-                                else
-                                {
-                                    lblmsg.Text = "CPE Code is exist";
-                                }
-                            }
-                            else
-                            {
-                                lblmsg.Text = "Please Enter a valid Data";
-                            }
-
-                        }
-                    }
-                    else
-                    {
-                        lblmsg.Text = "Please Enter a valid Data";
-                    }
-
-
-
-                }
-                //Response.Redirect("~/Private/StaffCPEManagement.aspx");
-                string script = "$('#mymodal').modal('show');";
-                ClientScript.RegisterStartupScript(this.GetType(), "Popup", script, true);
+                // refresh data view
                 rptr1.DataBind();
                 con.Close();
 
                 DataTable initialData = GetDataFromDatabase("");
                 rptr1.DataSource = initialData;
                 rptr1.DataBind();
+
             }
         }
 
         private DataTable GetDataFromDatabase(string searchKeyword)
         {
             // Define your SQL query to fetch data based on the search query
-            string query = "SELECT CONCAT(CPECode, ' ', CPEName) AS CPECourse, * FROM CPE_Course WHERE CONCAT(CPECode, ' ', CPEName) LIKE @DescKeywords ORDER BY ModifiedDate DESC";
+            string query = "SELECT NoticeTitle, * FROM Notices WHERE NoticeTitle LIKE @DescKeywords ORDER BY NoticeDate DESC";
 
             // Execute the query using ADO.NET and fetch data into a DataTable
             DataTable searchData = new DataTable();
