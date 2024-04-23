@@ -9,6 +9,8 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Reflection.Emit;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace CPE_Platform
 {
@@ -107,8 +109,14 @@ namespace CPE_Platform
                 }
             }
         }
+		public static string EncryptData(string SimpleString)
+		{
+			MD5 md5 = new MD5CryptoServiceProvider();
 
-        protected void change_password(object sender, EventArgs e)
+			byte[] passwordHash = Encoding.UTF8.GetBytes(SimpleString);
+			return Encoding.UTF8.GetString(md5.ComputeHash(passwordHash));
+		}
+		protected void change_password(object sender, EventArgs e)
         {
             if (Session["StudentID"] != null)
             {
@@ -132,7 +140,8 @@ namespace CPE_Platform
                             if (dataReader.Read()) // returns true if have more rows to read, else false
                             {
                                 string currentPassword = dataReader["StudentPassword"].ToString();
-                                testlbl.Text = currentPassword;
+                                currentPassword = EncryptData(currentPassword);
+								testlbl.Text = currentPassword;
                                 if (oldPassword.Text != currentPassword) // old password same as current password
                                 {
                                     originalPasswordWrong.CssClass = originalPasswordWrong.CssClass.Replace("hide", "show");
