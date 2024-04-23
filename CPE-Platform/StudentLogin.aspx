@@ -77,12 +77,12 @@
 
 							</div>
 
-							<div>
+							<%--<div>
 								<p class="mb-4" style="color:dodgerblue">
 									Don't have an account?
 									<asp:HyperLink ID="navRegisterStudent" class="text-blue-50 fw-bold custom-link" NavigateUrl="~/Public/RegisterStudentInfo.aspx" runat="server">Sign Up</asp:HyperLink>
 								</p>
-							</div>
+							</div>--%>
 
 						</div>
 					</div>

@@ -92,5 +92,11 @@ namespace CPE_Platform
             // Redirect the user to the courses page
             Response.Redirect("~/Private/StaffCPEManagement.aspx", true);
         }
-    }
+
+		protected void rewardsAllocation(object sender, EventArgs e)
+		{
+			// Redirect the user to the rewards page
+			Response.Redirect("~/Private/StaffRewardsAllocation.aspx", true);
+		}
+	}
 }
