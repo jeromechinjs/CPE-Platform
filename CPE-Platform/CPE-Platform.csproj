@@ -237,6 +237,7 @@
     <Content Include="Private\Courses.aspx" />
     <Content Include="Private\Cart.aspx" />
     <Content Include="Private\ViewNotices.aspx" />
+    <Content Include="Private\ActiveCourses.aspx" />
     <Content Include="Public\RegisterStudentInfo.aspx" />
     <Content Include="Public\StaffForgetPassword.aspx" />
     <Content Include="Public\StaffResetPassword.aspx" />
@@ -414,6 +415,13 @@
     </Compile>
     <Compile Include="Private\ViewNotices.aspx.designer.cs">
       <DependentUpon>ViewNotices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\ActiveCourses.aspx.cs">
+      <DependentUpon>ActiveCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\ActiveCourses.aspx.designer.cs">
+      <DependentUpon>ActiveCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public\RegisterStudentInfo.aspx.cs">

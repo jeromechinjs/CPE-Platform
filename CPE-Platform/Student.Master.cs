@@ -95,6 +95,12 @@ namespace CPE_Platform
             Response.Redirect("~/Private/Courses.aspx", true);
         }
 
+        protected void goActiveCourses(object sender, EventArgs e)
+        {
+            // Redirect the user to the courses page
+            Response.Redirect("~/Private/ActiveCourses.aspx", true);
+        }
+
         protected void goViewNotices(object sender, EventArgs e)
         {
             Response.Redirect("~/Private/ViewNotices.aspx", true);

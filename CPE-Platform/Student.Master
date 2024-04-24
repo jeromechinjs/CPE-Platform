@@ -157,6 +157,10 @@
 									<div class="accordion-body">
 										<asp:LinkButton ID="btnCourses" class="fw-normal text-decoration-none" Text="View Courses" OnClick="goCourses" runat="server"></asp:LinkButton>
 									</div>
+									<div class="accordion-body">
+										<asp:LinkButton ID="btnActiveCourses" class="fw-normal text-decoration-none" Text="Your Courses" OnClick="goActiveCourses" runat="server"></asp:LinkButton>
+									</div>
+
 								</div>
 							</div>
 							<div class="accordion-item">

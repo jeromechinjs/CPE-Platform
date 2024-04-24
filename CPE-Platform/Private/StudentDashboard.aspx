@@ -21,7 +21,7 @@
             <div class="dashboard-figures d-flex" runat="server">
                 <asp:Label ID="num_active_courses" runat="server" Text='<%# Eval("RewardsUsed") %>'>0</asp:Label>
             </div>
-            <a href="#" class="dashboard-text">active courses</a>
+            <a href="ActiveCourses.aspx" class="dashboard-text">active courses</a>
         </div>
       </div>
       <div class="row mt-5">
