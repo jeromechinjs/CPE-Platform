@@ -10,12 +10,12 @@
             <asp:Label class="dashboard-text" ID="txt_pts_collected" runat="server">points collected</asp:Label>
         </div>
 
-        <div class="col p-3 d-flex flex-column align-items-center">
+<%--        <div class="col p-3 d-flex flex-column align-items-center">
             <div class="dashboard-figures d-flex" runat="server">
                 <asp:Label ID="discounts_collected" runat="server" Text='<%# Eval("RewardsUsed") %>'>0%</asp:Label>
             </div>
             <asp:Label class="dashboard-text" ID="txt_discounts" runat="server">redeemable discounts</asp:Label>
-        </div>
+        </div>--%>
 
         <div class="col me-5 p-3 d-flex flex-column align-items-center">
             <div class="dashboard-figures d-flex" runat="server">

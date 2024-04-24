@@ -93,13 +93,13 @@
 
 <%--				<asp:Label id="testlbl" runat="server">Old Password</asp:Label>--%>
 				<label>Old Password</label>
-				<asp:TextBox ID="oldPassword" CssClass="form-control mb-3" placeholder="Student ID" runat="server" />
+				<asp:TextBox ID="oldPassword" TextMode="Password" CssClass="form-control mb-3" placeholder="Old Password" runat="server" />
 
 				<label>New Password</label>
-				<asp:TextBox ID="newPassword" CssClass="form-control mb-3" placeholder="Student ID" runat="server" />
+				<asp:TextBox ID="newPassword" TextMode="Password" CssClass="form-control mb-3" placeholder="New Password" runat="server" />
 
 				<label>Confirm Password</label>
-				<asp:TextBox ID="confirmPassword" CssClass="form-control mb-3" placeholder="Student ID" runat="server" />
+				<asp:TextBox ID="confirmPassword" TextMode="Password" CssClass="form-control mb-3" placeholder="Confirm Password" runat="server" />
 
 				<asp:Button ID="changePassword" CssClass="btn btn-sm btn-primary" OnClick="change_password" Text="Submit" runat="server" />
 			</div>	

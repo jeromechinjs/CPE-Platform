@@ -29,7 +29,7 @@ namespace CPE_Platform.Private
         {
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             string queryPtsCollected = "SELECT * FROM Student WHERE StudentID = @StudentID";
-            string queryActiveCourses = "SELECT * FROM CPE_Registration WHERE StudentID = @StudentID";
+            string queryActiveCourses = "SELECT COUNT(*) FROM CPE_Registration WHERE StudentID = @StudentID";
 
             using (SqlConnection con = new SqlConnection(connectionstring))
 
@@ -49,32 +49,23 @@ namespace CPE_Platform.Private
                             if (studentInfo.Read()) // returns true if have more rows to read, else false
                             {
                                 pts_collected.Text = studentInfo["RewardsAmount"].ToString();
-                                //discounts_collected.Text = (studentInfo["RewardsAmount"].GetInt32(0) / 200).ToString();
                             }
-                            //studentInfo.Close();
                         }
+                        con.Close();
 
                     }
 
                     // Second SqlCommand object for executing the second query
                     using (SqlCommand countActiveCourses = new SqlCommand(queryActiveCourses, con))
                     {
-                        int activeCourses = 0;
+                        con.Open();
+
                         countActiveCourses.Parameters.AddWithValue("@StudentID", studentID);
+                        int numActiveCourses = (int)countActiveCourses.ExecuteScalar();
 
-                        //con.Open();
+                        num_active_courses.Text = numActiveCourses.ToString();
+                        con.Close();
 
-                        using (SqlDataReader studentActiveCourses = countActiveCourses.ExecuteReader())
-                        {
-                            if (studentActiveCourses.Read()) // returns true if have more rows to read, else false
-                            {
-                                activeCourses++;
-                            }
-                            num_active_courses.Text = activeCourses.ToString();
-                            studentActiveCourses.Close();
-                            con.Close();
-
-                        }
                     }
                 }
             }

@@ -241,7 +241,7 @@
     <Content Include="Public\RegisterStudentInfo.aspx" />
     <Content Include="Public\StaffForgetPassword.aspx" />
     <Content Include="Public\StaffResetPassword.aspx" />
-    <Content Include="Readme.txt" />
+    <None Include="Readme.md" />
     <Content Include="Resources\empty-blackboard.jpg" />
     <Content Include="Resources\student_bg.jpg" />
     <Content Include="Resources\tarumt-logo.png" />
