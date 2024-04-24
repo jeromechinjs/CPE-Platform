@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.Remoting.Contexts;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.UI;
@@ -25,8 +26,8 @@ namespace CPE_Platform.Private
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-			if (!Page.IsPostBack)
-			{
+            if (!Page.IsPostBack)
+            {
                 //allCourses.SelectCommand = "SELECT * FROM CPE_Course";
                 //allCourses.DataBind(); // when need to retrieve data and display in frontend inside ASP control template, need bind (if backend oerations only, no ned bind, just read)
 
@@ -59,8 +60,10 @@ namespace CPE_Platform.Private
 
             // hide all toasts
             toast1.CssClass = toast1.CssClass.Replace("show", "hide");
-            toast2.CssClass = toast1.CssClass.Replace("show", "hide");
-            toast3.CssClass = toast1.CssClass.Replace("show", "hide");
+            toast2.CssClass = toast2.CssClass.Replace("show", "hide");
+            toast3.CssClass = toast3.CssClass.Replace("show", "hide");
+            toast4.CssClass = toast4.CssClass.Replace("show", "hide");
+
 
 
         }
@@ -103,7 +106,7 @@ namespace CPE_Platform.Private
             int seatsLeft = 0; // need to initialized to a value
             int numOfItems = Convert.ToInt32(Session["numOfItems"]); // for cart number badge
             String CPECode = Session["currentCPECode"].ToString();
-            Boolean itemInsideCart = false;
+            bool itemInsideCart = false;
 
             string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionstring);
@@ -118,7 +121,7 @@ namespace CPE_Platform.Private
 
             if (seatsLeft == 0)
             {
-                toast3.CssClass = toast1.CssClass.Replace("hide", "show");
+                toast3.CssClass = toast3.CssClass.Replace("hide", "show");
             }
             else
             {
@@ -131,16 +134,39 @@ namespace CPE_Platform.Private
                         {
                             itemInsideCart = true;
                             break;
-                        } 
+                        }
                         else
                         {
                             itemInsideCart = false;
                         }
                     }
-                    // item not in cart, proceed to add new item to cart
                     if (itemInsideCart)
                     {
                         toast2.CssClass = toast2.CssClass.Replace("hide", "show");
+                    }
+                    else   // item not in cart, proceed to add new item to cart
+                    {
+                        bool alreadyActiveCourse = checkActiveCourse(CPECode); // check if student already registered for this course
+                        if (alreadyActiveCourse)
+                        {
+                            toast4.CssClass = toast4.CssClass.Replace("hide", "show");
+                        }
+                        else
+                        {
+                            addToCart(CPECode);
+                            numOfItems++;
+                            updateCartNumber(numOfItems);
+                            toast1.CssClass = toast1.CssClass.Replace("hide", "show");
+                        }
+                    }
+                }
+                else
+                {
+                    // cart is empty
+                    bool alreadyActiveCourse = checkActiveCourse(CPECode); // check if student already registered for this course
+                    if (alreadyActiveCourse)
+                    {
+                        toast4.CssClass = toast4.CssClass.Replace("hide", "show");
                     }
                     else
                     {
@@ -149,14 +175,6 @@ namespace CPE_Platform.Private
                         updateCartNumber(numOfItems);
                         toast1.CssClass = toast1.CssClass.Replace("hide", "show");
                     }
-                }   
-                else
-                {
-                    // cart is empty
-                    addToCart(CPECode);
-                    numOfItems++;
-                    updateCartNumber(numOfItems);
-                    toast1.CssClass = toast1.CssClass.Replace("hide", "show");
                 }
             }
             Session["numOfItems"] = numOfItems;
@@ -172,7 +190,7 @@ namespace CPE_Platform.Private
                     temp_cart.Add(course); // copy all items inside session["cart"] into temp_cart, clone all things
                 }
                 temp_cart.Add(CPECode); // push in newest course
-            } 
+            }
             else // when cart is empty
             {
                 temp_cart.Add(CPECode); // push in newest course
@@ -191,5 +209,38 @@ namespace CPE_Platform.Private
             }
         }
 
+        private bool checkActiveCourse(String CPECode)
+        {
+            string connectionstring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            bool alreadyActiveCourse = false;
+
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                if (Session["StudentID"] != null)
+                {
+                    String studentID = Session["StudentID"].ToString();
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM CPE_Registration WHERE StudentID = @StudentID AND CPECode = @CPECode ", con);
+
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@StudentID", studentID);
+                    cmd.Parameters.AddWithValue("@CPECode", CPECode);
+
+                    int activeCourses = (int)cmd.ExecuteScalar();
+
+                    if (activeCourses == 0) // student have not registered for this course before
+                    {
+                        alreadyActiveCourse = false;
+                    }
+                    else
+                    {
+                        alreadyActiveCourse = true; // student already registered for this course, its ongoing active course
+                    }
+
+                    con.Close();
+                }
+            }
+            return alreadyActiveCourse;
+        }
     }
-}
+    }
