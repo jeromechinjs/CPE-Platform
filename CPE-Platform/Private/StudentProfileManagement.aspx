@@ -11,17 +11,17 @@
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<!-- tab 1 -->
 			<li class="nav-item" role="presentation">
-				<button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+				<button class="nav-link active" id="profileTab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
 			</li>
 
 			<!-- tab 2 -->
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="resetPassword-tab" data-bs-toggle="tab" data-bs-target="#resetPassword" type="button" role="tab" aria-controls="rewards" aria-selected="false">Reset Password</button>
+				<button class="nav-link" id="resetPasswordTab" data-bs-toggle="tab" data-bs-target="#resetPassword" type="button" role="tab" aria-controls="rewards" aria-selected="false">Reset Password</button>
 			</li>
 
 			<!-- tab 3 -->
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="rewards-tab" data-bs-toggle="tab" data-bs-target="#rewards" type="button" role="tab" aria-controls="rewards" aria-selected="false">CPE Rewards</button>
+				<button class="nav-link" id="rewardsTab" data-bs-toggle="tab" data-bs-target="#rewards" type="button" role="tab" aria-controls="rewards" aria-selected="false">CPE Rewards</button>
 			</li>
 		</ul>
 
@@ -73,23 +73,9 @@
 
 									<label>Student ID</label>
 									<asp:TextBox ID="modaltxtID" CssClass="form-control" placeholder="Student ID" runat="server" />
-
-	<%--								<label>Student IC</label>
-									<asp:TextBox ID="modaltxtIC" CssClass="form-control" placeholder="Student IC" runat="server" />
-														
-
-									<label>Name</label>
-									<asp:TextBox ID="modaltxtName" CssClass="form-control" placeholder="Name" runat="server" />--%>
 								
 									<label>Phone Number</label>
 									<asp:TextBox ID="modaltxtPhone" CssClass="form-control" placeholder="Phone Number" runat="server" />
-								
-	<%--								<label>Email</label>
-									<asp:TextBox ID="modaltxtEmail" CssClass="form-control" placeholder="Email" runat="server" />
-								
-									<label>Faculty</label>
-									<asp:TextBox ID="modaltxtFaculty" CssClass="form-control" placeholder="Faculty" runat="server" />--%>
-
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -99,29 +85,13 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- Information updated successfully toast message -->
-				<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-					<asp:Panel ID="updateSucess" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
-						<div class="toast-header">
-							<img src="src/tarucLogo.png" class="rounded me-2" width="12">
-							<strong class="me-auto">CPE Platform</strong>
-							<small>Just now</small>
-							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-						</div>
-						<div class="toast-body">
-							Profile information sucessfully saved.
-						</div>
-					</asp:Panel>
-				</div>
-
 			</div>
 
 			<!-- tab 2 -->
 			<div class="tab-pane fade p-3" id="resetPassword" role="tabpanel" aria-labelledby="resetPassword-tab">
 				<h3 class="mb-5">Reset Password</h3>
 
-				<asp:Label id="testlbl" runat="server">Old Password</asp:Label>
+<%--				<asp:Label id="testlbl" runat="server">Old Password</asp:Label>--%>
 				<label>Old Password</label>
 				<asp:TextBox ID="oldPassword" CssClass="form-control mb-3" placeholder="Student ID" runat="server" />
 
@@ -132,69 +102,8 @@
 				<asp:TextBox ID="confirmPassword" CssClass="form-control mb-3" placeholder="Student ID" runat="server" />
 
 				<asp:Button ID="changePassword" CssClass="btn btn-sm btn-primary" OnClick="change_password" Text="Submit" runat="server" />
-				
-				<!-- Old password not same as curent password toast message -->
-				<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-					<asp:Panel ID="originalPasswordWrong" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
-						<div class="toast-header">
-							<img src="src/tarucLogo.png" class="rounded me-2" width="12">
-							<strong class="me-auto">CPE Platform</strong>
-							<small>Just now</small>
-							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-						</div>
-						<div class="toast-body">
-							Your current password has been typed wrongly. Please try again.
-						</div>
-					</asp:Panel>
-				</div>
-
-				<!-- New password same as old password toast message -->
-				<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-					<asp:Panel ID="passwordSame" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
-						<div class="toast-header">
-							<img src="src/tarucLogo.png" class="rounded me-2" width="12">
-							<strong class="me-auto">CPE Platform</strong>
-							<small>Just now</small>
-							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-						</div>
-						<div class="toast-body">
-							Password is same as before. Kindly try a new password.
-						</div>
-					</asp:Panel>
-				</div>
-
-				<!-- New password not same as confirm password toast message -->
-				<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-					<asp:Panel ID="passwordDifferent" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
-						<div class="toast-header">
-							<img src="src/tarucLogo.png" class="rounded me-2" width="12">
-							<strong class="me-auto">CPE Platform</strong>
-							<small>Just now</small>
-							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-						</div>
-						<div class="toast-body">
-							New password doesn't match. Please try again.
-						</div>
-					</asp:Panel>
-				</div>
-
-				<!-- Password changed success toast message -->
-				<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-					<asp:Panel ID="passwordChangedSuccess" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
-						<div class="toast-header">
-							<img src="src/tarucLogo.png" class="rounded me-2" width="12">
-							<strong class="me-auto">CPE Platform</strong>
-							<small>Just now</small>
-							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-						</div>
-						<div class="toast-body">
-							Password successfully changed.
-						</div>
-					</asp:Panel>
-				</div>
-
-			</div>
-
+			</div>	
+			
 			<!-- tab 3 -->
 			<%--Rewards part --%>
 			<div class="tab-pane fade p-3" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
@@ -267,4 +176,82 @@
 			</div>
 		</div>
     </div>
+
+	<!-- Toast Messages -->
+	<!-- Profile nformation updated successfully toast message -->
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		<asp:Panel ID="updateSucess" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+			<div class="toast-header">
+				<img src="src/tarucLogo.png" class="rounded me-2" width="12">
+				<strong class="me-auto">CPE Platform</strong>
+				<small>Just now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				Profile information sucessfully saved.
+			</div>
+		</asp:Panel>
+	</div>
+
+
+	<!-- Old password not same as curent password toast message -->
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		<asp:Panel ID="originalPasswordWrong" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+			<div class="toast-header">
+				<img src="src/tarucLogo.png" class="rounded me-2" width="12">
+				<strong class="me-auto">CPE Platform</strong>
+				<small>Just now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				Your current password has been typed wrongly. Please try again.
+			</div>
+		</asp:Panel>
+	</div>
+
+	<!-- New password same as old password toast message -->
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		<asp:Panel ID="passwordSame" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+			<div class="toast-header">
+				<img src="src/tarucLogo.png" class="rounded me-2" width="12">
+				<strong class="me-auto">CPE Platform</strong>
+				<small>Just now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				Password is same as before. Kindly try a new password.
+			</div>
+		</asp:Panel>
+	</div>
+
+	<!-- New password not same as confirm password toast message -->
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		<asp:Panel ID="passwordDifferent" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+			<div class="toast-header">
+				<img src="src/tarucLogo.png" class="rounded me-2" width="12">
+				<strong class="me-auto">CPE Platform</strong>
+				<small>Just now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				New password doesn't match. Please try again.
+			</div>
+		</asp:Panel>
+	</div>
+
+	<!-- Password changed success toast message -->
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		<asp:Panel ID="passwordChangedSuccess" CssClass="toast hide" role="alert" aria-live="assertive" aria-atomic="true" runat="server">
+			<div class="toast-header">
+				<img src="src/tarucLogo.png" class="rounded me-2" width="12">
+				<strong class="me-auto">CPE Platform</strong>
+				<small>Just now</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				Password successfully changed.
+			</div>
+		</asp:Panel>
+	</div>
+</asp:Panel>
 </asp:Content>

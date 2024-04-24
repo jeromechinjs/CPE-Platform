@@ -168,24 +168,6 @@ namespace CPE_Platform
         protected global::System.Web.UI.WebControls.Button btnsave;
 
         /// <summary>
-        /// updateSucess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel updateSucess;
-
-        /// <summary>
-        /// testlbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label testlbl;
-
-        /// <summary>
         /// oldPassword control.
         /// </summary>
         /// <remarks>
@@ -222,6 +204,24 @@ namespace CPE_Platform
         protected global::System.Web.UI.WebControls.Button changePassword;
 
         /// <summary>
+        /// gvRewardsView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRewardsView;
+
+        /// <summary>
+        /// updateSucess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel updateSucess;
+
+        /// <summary>
         /// originalPasswordWrong control.
         /// </summary>
         /// <remarks>
@@ -256,14 +256,5 @@ namespace CPE_Platform
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel passwordChangedSuccess;
-
-        /// <summary>
-        /// gvRewardsView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRewardsView;
     }
 }

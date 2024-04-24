@@ -42,6 +42,24 @@ namespace CPE_Platform
         protected global::System.Web.UI.WebControls.Label name;
 
         /// <summary>
+        /// btnProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnProfile;
+
+        /// <summary>
+        /// btnSetPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSetPassword;
+
+        /// <summary>
         /// btn_logout control.
         /// </summary>
         /// <remarks>

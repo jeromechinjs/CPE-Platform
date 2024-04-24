@@ -45,6 +45,8 @@ namespace CPE_Platform
             {
                 cartBadge.Text = "" + numOfItems;
             }
+
+            
         }
 
         protected void Logout(object sender, EventArgs e)
@@ -95,8 +97,19 @@ namespace CPE_Platform
 
         protected void goViewNotices(object sender, EventArgs e)
         {
-            // Redirect the user to the dashboard page
             Response.Redirect("~/Private/ViewNotices.aspx", true);
         }
+
+        protected void goProfilePage(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Private/StudentProfileManagement.aspx", true);
+        }
+
+        protected void goSetPassword(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Private/StudentProfileManagement.aspx", true);
+        }
+
+
     }
 }

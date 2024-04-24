@@ -62,7 +62,7 @@
 
 								<ul class="dropdown-menu form-select dropdown-menu-end">
 									<li><a class="dropdown-item" href="StaffCPEManagement.aspx">Staff CPE Management</a></li>
-									<li><a class="dropdown-item" href="#">Annoucements</a></li>
+									<li><a class="dropdown-item" href="StaffDashboard.aspx">Notice Centre</a></li>
 								</ul>
 							</div>
 						</li>
@@ -75,7 +75,6 @@
 
 								<ul class="dropdown-menu form-select dropdown-menu-end">
 									<li><a class="dropdown-item" href="StaffRewardsAllocation.aspx">Rewards Allocation</a></li>
-									<li><a class="dropdown-item" href="#">Annoucements</a></li>
 								</ul>
 							</div>
 						</li>
@@ -90,8 +89,8 @@
 						</button>
 
 						<ul class="dropdown-menu form-select dropdown-menu-end">
-							<li><a class="dropdown-item" href="StaffDashboard.aspx">Profile</a></li>
-							<li><a class="dropdown-item" href="#">Set Password</a></li>
+<%--							<li><a class="dropdown-item" href="StaffDashboard.aspx">Profile</a></li>
+							<li><a class="dropdown-item" href="#">Set Password</a></li>--%>
 							<li>
 								<asp:LinkButton ID="btn_logout" class="dropdown-item" Text="Log Out" OnClick="Logout" runat="server"></asp:LinkButton></li>
 						</ul>
@@ -108,7 +107,7 @@
 						<!-- sidebar shortcut buttons -->
 						<div class="sidebar-shortcut d-flex justify-content-evenly p-1">
 							<button class="btn btn-success rounded-0 ms-2" title="Home" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<a href="~/StudentDashboard.aspx">
+								<a href="~/StaffDashboard.aspx">
 									<i class="fa fa-home fa-fw text-white"></i>
 								</a>
 							</button>

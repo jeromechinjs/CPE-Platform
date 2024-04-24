@@ -74,8 +74,8 @@
 								</span>
 
 								<ul class="dropdown-menu form-select dropdown-menu-end">
-									<li><a class="dropdown-item" href="StudentProfileManagement.aspx">News & Notices</a></li>
-									<li><a class="dropdown-item" href="#">Annoucements</a></li>
+									<li><a class="dropdown-item" href="ViewNotices.aspx">News & Notices</a></li>
+									<li><a class="dropdown-item" href="ViewNotices.aspx">Annoucements</a></li>
 								</ul>
 							</div>
 						</li>
@@ -98,11 +98,10 @@
 								<asp:Label runat="server" ID="name"></asp:Label>
 							</small>
 						</button>
-
 						<ul class="dropdown-menu form-select dropdown-menu-end">
-							<li><a class="dropdown-item" href="StudentProfileManagement.aspx">Profile</a></li>
-							<li><a class="dropdown-item" href="StudentProfileManagement.aspx">Set Password</a></li>
-							<li><asp:LinkButton ID="btn_logout" class="dropdown-item" Text="Log Out" OnClick="Logout" runat="server"></asp:LinkButton></li>
+							<li><asp:LinkButton CssClass="dropdown-item" ID="btnProfile" CommandName="go Profile Page" OnCommand="goProfilePage" runat="server">Profile</asp:LinkButton></li>
+							<li><asp:LinkButton CssClass="dropdown-item" ID="btnSetPassword" CommandName="go Set Password" OnCommand="goSetPassword" runat="server">Set Password</asp:LinkButton></li>
+							<li><asp:LinkButton ID="btn_logout" CssClass="dropdown-item" Text="Log Out" OnClick="Logout" runat="server"></asp:LinkButton></li>
 						</ul>
 					</div>
 
@@ -120,7 +119,7 @@
 								<i class="fa fa-home fa-fw text-white"></i>
 							</asp:LinkButton>
 
-							<asp:LinkButton ID="LinkButton4" class="btn btn-info rounded-0 ms-2" Text="Info" OnClick="goDashboard" runat="server">
+							<asp:LinkButton ID="LinkButton4" class="btn btn-info rounded-0 ms-2" Text="Info" OnClick="goViewNotices" runat="server">
 								<i class="fa fa-info fa-fw text-white"></i>
 							</asp:LinkButton>
 
@@ -128,7 +127,7 @@
 								<i class="fa fa-sitemap fa-fw text-white"></i>
 							</asp:LinkButton>
 
-							<asp:LinkButton ID="LinkButton6" class="btn btn-danger rounded-0 ms-2" Text="UC Email" OnClick="goDashboard" runat="server">
+							<asp:LinkButton ID="LinkButton6" class="btn btn-danger rounded-0 ms-2" Text="UC Email" OnClick="goViewNotices" runat="server">
 								<i class="fa fa-envelope fa-fw text-white"></i>
 							</asp:LinkButton>
 						</div>

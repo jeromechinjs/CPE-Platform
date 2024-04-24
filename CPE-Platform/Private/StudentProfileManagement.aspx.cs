@@ -31,7 +31,11 @@ namespace CPE_Platform
                     // Rewards part
                     getRewardsInfo(studentID);
                 }
+
             }
+
+
+
             // hide all toasts
             updateSucess.CssClass = updateSucess.CssClass.Replace("show", "hide");
             originalPasswordWrong.CssClass = originalPasswordWrong.CssClass.Replace("show", "hide");
@@ -131,13 +135,14 @@ namespace CPE_Platform
                             if (dataReader.Read()) // returns true if have more rows to read, else false
                             {
                                 string currentPassword = dataReader["StudentPassword"].ToString();
-                                currentPassword = EncryptData(currentPassword);
-								testlbl.Text = currentPassword;
-                                if (oldPassword.Text != currentPassword) // old password same as current password
-                                {
-                                    originalPasswordWrong.CssClass = originalPasswordWrong.CssClass.Replace("hide", "show");
-                                }
-                                else if (oldPassword.Text == newPassword.Text) // new password same as old password
+                                //currentPassword = EncryptData(currentPassword);
+								//testlbl.Text = currentPassword;
+                                //if (oldPassword.Text != currentPassword) // old password same as current password
+                                //{
+                                //    originalPasswordWrong.CssClass = originalPasswordWrong.CssClass.Replace("hide", "show");
+                                //}
+
+                                if (oldPassword.Text == newPassword.Text) // new password same as old password
                                 {
                                     passwordSame.CssClass = passwordSame.CssClass.Replace("hide", "show");
                                 }
@@ -161,8 +166,10 @@ namespace CPE_Platform
                         if (passwordInputsOk)
                         {
                             // edit update command
+                            string password = EncryptData(newPassword.Text);
+
                             updatePassword.Parameters.AddWithValue("@StudentID", studentID);
-                            updatePassword.Parameters.AddWithValue("@StudentPassword", newPassword.Text);
+                            updatePassword.Parameters.AddWithValue("@StudentPassword", password);
 
                             con.Open();
                             int rowsAltered = updatePassword.ExecuteNonQuery();
